@@ -10,7 +10,7 @@ async function toRegister(req, res) {
         if (error.message === 'El nombre de usuario ya está en uso') {
             return res.status(400).json({ message: error.message });
         }
-        return res.status(500).json({ message: 'Hubo un error inesperado' });
+        return res.status(500).json({ message: 'Hubo un error' });
     }
 }
 
