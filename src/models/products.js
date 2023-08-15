@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Products', {
+    sequelize.define('Product', {
         id: {       //id unico de cada producto creado a partir del id de la subcategoria mas el numero de producto
             type: DataTypes.STRING,
             primaryKey: true,
