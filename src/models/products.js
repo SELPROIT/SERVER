@@ -2,17 +2,11 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('Product', {
-        id: {
+        id: {       //id unico de cada producto creado a partir del id de la subcategoria mas el numero de producto
             type: DataTypes.STRING,
             primaryKey: true,
-
-        },
-        ref_products: {
-            type: DataTypes.STRING,
-            allowNull: false,
-
-        },
-        ref_final: {
+        }, 
+        ref_category: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -38,10 +32,6 @@ module.exports = (sequelize) => {
         //     type: DataTypes.BOLEAN,
         //     allowNull: false,
         // },
-        num_items: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         stock: {
             type: DataTypes.STRING,
             allowNull: false,
