@@ -1,18 +1,18 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define('Category', {
-    id: {
-      type: DataTypes.STRING,
-      primaryKey: true,
+    sequelize.define('Category', {
+        id: {
+            type: DataTypes.STRING,
+            primaryKey: true,
+        },
+        category: {
+            type: DataTypes.ARRAY(DataTypes.JSONB),
+            allowNull: false,
+        },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
-  },
-    {
-      timestamps: false,
-    }
-  );
+        {
+            timestamps: false,
+        }
+    );
 };

@@ -1,26 +1,18 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('User_admin', {
+    sequelize.define('Shop', {
         id: {
             type: DataTypes.UUIDV4,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        name: {
-            type: DataTypes.STRING,
+        proposed_price: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        role: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        phone: {
-            type: DataTypes.STRING,
+        total: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
@@ -29,3 +21,8 @@ module.exports = (sequelize) => {
         }
     );
 };
+
+
+
+
+
