@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Users', {
+    sequelize.define('User', {
         id: {
-            type: DataTypes.UUIDV4,
+            type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         num_ident: {
-            type: DataTypes.REAL,
+            type: DataTypes.FLOAT,
             allowNull: false,
         },
         user_name: {
@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         RUT: {
-            type: DataTypes.REAL,
+            type: DataTypes.FLOAT,
             allowNull: false,
         },
         RUT_image: {
@@ -52,7 +52,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         CIIU: {
-            type: DataTypes.REAL,
+            type: DataTypes.FLOAT,
             allowNull: false,
         },
         phone: {
@@ -64,40 +64,37 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         id_subcat: {
-            type: DataTypes.ARRAY,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
         },
         adress: {
-            type: DataTypes.ARRAY,
-            allowNull: false,
+            type: DataTypes.ARRAY(DataTypes.STRING), 
         },
         interaction_history: {
-            type: DataTypes.ARRAY,
+            type: DataTypes.ARRAY(DataTypes.JSONB), 
             allowNull: false,
         },
         buy_history: {
-            type: DataTypes.ARRAY,
+            type: DataTypes.ARRAY(DataTypes.JSONB),
             allowNull: false,
         },
         offers_history: {
-            type: DataTypes.ARRAY,
-            allowNull: false,
+            type: DataTypes.ARRAY(DataTypes.JSONB), 
         },
         win_history: {
-            type: DataTypes.ARRAY,
+            type: DataTypes.ARRAY(DataTypes.JSONB), 
             allowNull: false,
         },
         sub_part: {
-            type: DataTypes.ARRAY,
+            type: DataTypes.ARRAY(DataTypes.JSONB), //Array de objetos sujeto a cambios
             allowNull: false,
         },
         favorites: {
-            type: DataTypes.ARRAY,
+            type: DataTypes.ARRAY(DataTypes.JSONB),
             allowNull: false,
         },
     },
-        {
-            timestamps: false,
-        }
-    );
+    {
+        timestamps: false,
+    });
 };
