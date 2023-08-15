@@ -1,5 +1,5 @@
 const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const { conn } = require('./src/database.js');
 
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
