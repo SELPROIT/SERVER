@@ -3,8 +3,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     sequelize.define('Product', {
         id: {       //id unico de cada producto creado a partir del id de la subcategoria mas el numero de producto
-            type: DataTypes.UUIDV4,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.STRING,
             primaryKey: true,
         }, 
         ref_category: {
