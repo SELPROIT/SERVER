@@ -1,11 +1,15 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Category', {
+    sequelize.define('Sub_category', {
         id: {
-            type: DataTypes.STRING,
+            type: DataTypes.REAL,
             primaryKey: true,
         },
+        // sub_categoria: {
+        //     type: DataTypes.REAL,
+        //     allowNull: false,
+        // },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -16,8 +20,3 @@ module.exports = (sequelize) => {
         }
     );
 };
-
-
-
-
-
