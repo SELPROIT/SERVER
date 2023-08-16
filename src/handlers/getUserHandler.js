@@ -5,9 +5,14 @@ const getAllUsers = async (req, res) => {
 
     try {
         const users = await getUsers(); 
-        res.status(200).json(responseObj('Estos son los usuarios creados', users)); 
+        
+        if (users.length === 0) {
+            res.status(404).json(responseObj('No se encontraron usuarios.'));
+        } else {
+            res.status(200).json(responseObj('Estos son los usuarios creados', users)); 
+        }
     } catch (error) {
-        res.status(400).json(responseObj('Error al obtener usuarios'));
+        res.status(400).json(responseObj(error.message));
     }
 };
 
