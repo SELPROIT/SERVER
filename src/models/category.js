@@ -6,9 +6,13 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             primaryKey: true,
         },
-        category: {
-            type: DataTypes.ARRAY(DataTypes.JSONB),
+        name: {
+            type: DataTypes.STRING,
             allowNull: false,
+        },
+        type: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
     },
         {

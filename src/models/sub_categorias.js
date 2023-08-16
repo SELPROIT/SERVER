@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     sequelize.define('Sub_category', {
         id: {
-            type: DataTypes.REAL,
+            type: DataTypes.STRING,
             primaryKey: true,
         },
         // sub_categoria: {
@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        type: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
     },
         {
