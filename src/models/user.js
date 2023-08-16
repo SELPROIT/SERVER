@@ -29,23 +29,23 @@ module.exports = (sequelize) => {
         },
         RUT: {
             type: DataTypes.FLOAT,
-            allowNull: false,
+            allowNull: true,
         },
         RUT_image: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         commerce_chamber: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
-        DNI: {
+        legal_ident: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         commercial_references: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         sector: {
             type: DataTypes.STRING,
@@ -65,36 +65,38 @@ module.exports = (sequelize) => {
         },
         id_subcat: {
             type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: true,
+            allowNull: false,
         },
         adress: {
-            type: DataTypes.ARRAY(DataTypes.STRING), 
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false,
         },
         interaction_history: {
-            type: DataTypes.ARRAY(DataTypes.JSONB), 
-            allowNull: false,
+            type: DataTypes.ARRAY(DataTypes.JSONB),
+            allowNull: true,
         },
         buy_history: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
-            allowNull: false,
+            allowNull: true,
         },
         offers_history: {
-            type: DataTypes.ARRAY(DataTypes.JSONB), 
+            type: DataTypes.ARRAY(DataTypes.JSONB),
+            allowNull: true,
         },
         win_history: {
-            type: DataTypes.ARRAY(DataTypes.JSONB), 
-            allowNull: false,
+            type: DataTypes.ARRAY(DataTypes.JSONB),
+            allowNull: true,
         },
-        sub_part: {
+        curr_auc: {
             type: DataTypes.ARRAY(DataTypes.JSONB), //Array de objetos sujeto a cambios
-            allowNull: false,
+            allowNull: true,
         },
         favorites: {
             type: DataTypes.ARRAY(DataTypes.JSONB),
-            allowNull: false,
+            allowNull: true,
         },
     },
-    {
-        timestamps: false,
-    });
+        {
+            timestamps: false,
+        });
 };
