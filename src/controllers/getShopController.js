@@ -12,7 +12,7 @@ const getShop = async () => {
     //   },
     //   {
     //     model: User, 
-    //     attributes: ['num_ident'] //muestro sólo el número de identidad del usuario en la puja
+    //     attributes: ['id'] //muestro sólo el número de identidad del usuario en la puja
     //   }
     // ]
   });
