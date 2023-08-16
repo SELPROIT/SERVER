@@ -1,7 +1,6 @@
-// controllers/authController.js
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const { User } = require('../db');
 const { JWT_SECRET } = process.env;
 
 async function register(username, password) {
@@ -11,8 +10,11 @@ async function register(username, password) {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({ username, password: hashedPassword });
+
+    
     const token = jwt.sign({ userId: newUser.id }, JWT_SECRET, { expiresIn: '1h' });
     return { token, userId: newUser.id, username: newUser.username };
+
 }
 
 module.exports = {
