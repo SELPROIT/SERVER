@@ -1,7 +1,7 @@
-const getProdHandler = require('../handlers/getAllProdH');
+const express = require('express');
+const router = express.Router();
+const { getProdHandler } = require('../handlers/getAllProdH');
 
-const prodRoute = require('express').Router();
+router.get('/prod', getProdHandler);
 
-prodRoute.get('/', getProdHandler)
-
-module.exports = prodRoute
+module.exports = router;
