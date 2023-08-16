@@ -7,7 +7,7 @@ const getAllUsers = async (req, res) => {
         const users = await getUsers(); 
         res.status(200).json(responseObj('Estos son los usuarios creados', users)); 
     } catch (error) {
-        res.status(400).json(responseObj());
+        res.status(400).json(responseObj('Error al obtener usuarios'));
     }
 };
 
