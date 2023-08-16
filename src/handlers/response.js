@@ -1,9 +1,9 @@
-const response = (message, data = null) => ({
+const responseObj = (message, data = null) => ({
     success: true,
     message,       
     data,          
 });
 
 module.exports = {
-    response
+    responseObj
 }
