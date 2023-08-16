@@ -6,4 +6,5 @@ const responseObj = (message, data = null) => ({
 
 module.exports = {
     responseObj
+    
 }
