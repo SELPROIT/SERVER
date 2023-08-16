@@ -2,8 +2,8 @@ const { register } = require('../controllers/authController')
 
 async function toRegister(req, res) {
     try {
-        const { username, password } = req.body;
-        const result = await register(username, password);
+        const { user_name, password } = req.body;
+        const result = await register(user_name, password);
 
         res.json(result);
     } catch (error) {
@@ -16,5 +16,4 @@ async function toRegister(req, res) {
 
 module.exports = {
     toRegister,
-
 }
