@@ -1,7 +1,7 @@
 const {getShop} = require("../controllers/getShopController");
 const {responseObj} = require("./response")
 
-const getAllUsers = async (req, res) => {
+const getAllShops = async (req, res) => {
 
     try {
         const shops = await getShop(); 
@@ -17,5 +17,5 @@ const getAllUsers = async (req, res) => {
 };
 
 module.exports = {
-    getAllUsers
+    getAllShops
 };
