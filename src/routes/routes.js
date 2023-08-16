@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const usersRouter = require("./getUserRoutes");
 
 const router = Router();
 
