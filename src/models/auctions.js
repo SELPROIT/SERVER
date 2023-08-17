@@ -7,15 +7,11 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        // product_name: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // },
-        initial_date: {
-            type: DataTypes.DATE,
+        base_price: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
-        final_date: {
+        close_date: {
             type: DataTypes.DATE,
             allowNull: false,
         },

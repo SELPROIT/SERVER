@@ -7,10 +7,6 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        // product_name: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // },
         base_price: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -20,10 +16,6 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         total: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        base_price: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
