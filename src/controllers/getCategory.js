@@ -1,4 +1,3 @@
-
 const { Category } = require('../db');
 
 const getAllCategory = async () => {
