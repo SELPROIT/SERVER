@@ -1,12 +1,12 @@
-const {getShop} = require("../controllers/getShopController");
+const {getAuctionBid} = require("../controllers/getAuctionBidController");
 const {responseObj} = require("./response")
 
-const getAllShops = async (req, res) => {
+const getAllAuctionBids = async (req, res) => {
 
     try {
-        const shops = await getShop(); 
+        const bids = await getAuctionBid(); 
 
-        if (shops.length === 0) {
+        if (bids.length === 0) {
             res.status(404).json(responseObj('No se encontró ninguna puja para este producto.'));
         } else {
             res.status(200).json(responseObj('Estas son las pujas de este producto.', shops)); 
@@ -17,5 +17,5 @@ const getAllShops = async (req, res) => {
 };
 
 module.exports = {
-    getAllShops
+    getAllAuctionBids
 };

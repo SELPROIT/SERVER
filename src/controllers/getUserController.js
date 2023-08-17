@@ -1,22 +1,16 @@
-const { User, Product, Shop } = require("../db");
+const { User, Product } = require("../db");
 
 const getUsers = async () => {
   const users = await User.findAll({
     attributes: { exclude: ['password'] },
-    // include: [
-    //   {
-    //     model: Product,
-    //     through: {
-    //       attributes: []
-    //     }
-    //   },
-    //   {
-    //     model: Shop,
-    //     through: {
-    //       attributes: []
-    //     }
-    //   }
-    // ]
+    include: [
+      {
+        model: Product,
+        through: {
+          attributes: []
+        }
+      }
+   ]
   });
 
   return users;
