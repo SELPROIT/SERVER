@@ -34,19 +34,17 @@ Category.hasMany(Sub_category);
 Sub_category.hasMany(Product);
 Sub_category.belongsTo(Category);
 Product.belongsTo(Sub_category);
-Auction.hasMany(Product);
-Product.belongsTo(Auction);
+Product.hasMany(Auction);
+Auction.belongsTo(Product);
+Auction.hasMany(Auction_bid);
+Auction_bid.belongsTo(Auction);
+Invert_auction.hasMany(Auction_bid);
+Auction_bid.belongsTo(Invert_auction);
 
 
 //Relaciones n*m
-Product.belongsToMany(Invert_auction, { through: 'main_auction' });
-Invert_auction.belongsToMany(Product, { through: 'main_auction' });
 Product.belongsToMany(User, { through: 'favorites' });
 User.belongsToMany(Product, { through: 'favorites' });
-Auction_bid.belongsToMany(Auction, { through: 'auction_offer' });
-Auction.belongsToMany(Auction_bid, { through: 'auction_offer' });
-Auction_bid.belongsToMany(Invert_auction, { through: 'invert_auction_offer' });
-Invert_auction.belongsToMany(Auction_bid, { through: 'invert_auction_offer' });
 
 
 
