@@ -44,12 +44,12 @@ const create_subCategory = async (type, data) => {
             for (const subCategory_name of name) {
 
                 const id = `${id_category}${counter}`;
-                await Sub_category.create({
+                const subCategory = await Sub_category.create({
                     id,
                     name: subCategory_name,
                     type,
                 });
-
+                await category.addSub_category(subCategory);
                 counter++;
             }
         })
