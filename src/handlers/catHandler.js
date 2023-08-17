@@ -1,4 +1,4 @@
-const { getAllCategory } = require('../controllers/getCategory.js')
+const { getAllCategory } = require('../controllers/getCategory')
 const responseObj = require('./response.js')
 
 

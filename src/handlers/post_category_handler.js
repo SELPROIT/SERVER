@@ -10,7 +10,7 @@ async function post_category_handler(req, res) {
         const response = await create_category(category, data);
 
         if (!response) throw new Error()
-        res.status(200).json(responseObj("Category created successfully"));
+        res.status(200).json(responseObj("Category created successfully", response));
 
     } catch (error) {
         if (error.message === 'Missing data') {

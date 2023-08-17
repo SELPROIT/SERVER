@@ -6,4 +6,4 @@ const getAllCategory = async () => {
     return categories;
 }
 
-module.exports = getAllCategory;
+module.exports = { getAllCategory };
