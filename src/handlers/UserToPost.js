@@ -29,8 +29,8 @@ const toPostUser = async (req, res) => {
 			favorites,
 		} = req.body;
 
-		// result = await register(user_name, password);
-		// if (!result) {
+		const result = await register(user_name, password);
+		if (!result) {
 		const newUser = await postUser({
 			name,
 			num_ident,
@@ -57,7 +57,7 @@ const toPostUser = async (req, res) => {
 		});
 
 		res.status(200).json(newUser);
-		// }
+		}
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}
