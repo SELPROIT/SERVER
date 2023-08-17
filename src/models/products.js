@@ -5,12 +5,19 @@ module.exports = (sequelize) => {
         id: {       //id unico de cada producto creado a partir del id de la subcategoria mas el numero de producto
             type: DataTypes.STRING,
             primaryKey: true,
-        }, 
-        ref_subCategory: {
+        },
+
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
+
         brand: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
+        image: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -20,27 +27,28 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
 
-        image: {
+        datasheet: {
             type: DataTypes.STRING,
             allowNull: false,
         },
+
         rating: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+        },
+
+        stock: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        // favorite: {
-        //     type: DataTypes.BOLEAN,
-        //     allowNull: false,
-        // },
-        stock: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+
         price: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        
+
+
+
     },
         {
             timestamps: false,

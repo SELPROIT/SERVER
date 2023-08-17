@@ -1,5 +1,6 @@
-const getAllCategory = require('../controllers/getCategory.js');
-const responseObj = require('./response.js');
+const { getAllCategory } = require('../controllers/getCategory')
+const responseObj = require('./response.js')
+
 
 async function toCategory(req, res) {
     try {
