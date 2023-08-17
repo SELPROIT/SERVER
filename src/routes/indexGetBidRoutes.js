@@ -1,8 +1,8 @@
 const { Router } = require("express");
-const shopsRouter = require("./getShopRoutes");
+const bidsRouter = require("./getAuctionBidsRoutes");
 
 const router = Router();
 
-router.use("/shops", shopsRouter);
+router.use("/bids", bidsRouter);
 
 module.exports = router;
