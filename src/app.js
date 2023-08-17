@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/routes.js');
+const { requiresAuth } = require('express-openid-connect');
 
 require('./db.js');
 
@@ -22,6 +23,14 @@ server.use((req, res, next) => {
   next();
 });
 
+server.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+server.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
+
 server.use('/', routes);
 
 // Error catching endware.
@@ -33,3 +42,6 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 module.exports = server;
+
+
+
