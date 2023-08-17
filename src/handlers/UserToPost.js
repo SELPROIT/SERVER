@@ -63,4 +63,4 @@ const toPostUser = async (req, res) => {
 	}
 };
 
-module.exports = toPostUser;
+module.exports = {toPostUser};
