@@ -91,10 +91,6 @@ module.exports = (sequelize) => {
             type: DataTypes.ARRAY(DataTypes.JSONB), //Array de objetos sujeto a cambios
             allowNull: true,
         },
-        favorites: {
-            type: DataTypes.ARRAY(DataTypes.JSONB),
-            allowNull: true,
-        },
     },
         {
             timestamps: false,

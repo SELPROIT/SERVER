@@ -1,18 +1,18 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Auction', {
+    sequelize.define('Auction_bid', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        base_price: {
+        proposed_price: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        close_date: {
-            type: DataTypes.DATE,
+        total: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
     },
