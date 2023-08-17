@@ -4,18 +4,12 @@ const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-const sequelize = new Sequelize(
-	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/selpro`,
-	{
-		logging: false, // set to console.log to see the raw SQL queries
-		native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-	}
-);
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/selpro`, {
+    logging: false,
+    native: false,
+});
 const basename = path.basename(__filename);
-
 const modelDefiners = [];
-
-// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
 	.filter(
 		(file) =>
@@ -25,9 +19,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 		modelDefiners.push(require(path.join(__dirname, '/models', file)));
 	});
 
-// Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((model) => model(sequelize));
-// Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
 	entry[0][0].toUpperCase() + entry[0].slice(1),
@@ -35,21 +27,30 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-const { Category, Product, Sub_category, Auction, Shop, User_admin, User} = sequelize.models;
-// Aca vendrian las relaciones
-// categorias.hasMany(sub_categorias, { through: "temp-dog", timestamps: false });
-// productos.belongsTo(Temperaments, { through: "temp-dog", timestamps: false });
+const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction} = sequelize.models;
+// Relaciones n*1
 
 Category.hasMany(Sub_category);
-Sub_category.belongsTo(Category);
 Sub_category.hasMany(Product);
+Sub_category.belongsTo(Category);
 Product.belongsTo(Sub_category);
+Auction.hasMany(Product);
+Product.belongsTo(Auction);
 
-// Product.hasMany(Reviews);
+
+//Relaciones n*m
+Product.belongsToMany(Invert_auction, { through: 'main_auction' });
+Invert_auction.belongsToMany(Product, { through: 'main_auction' });
+Product.belongsToMany(User, { through: 'favorites' });
+User.belongsToMany(Product, { through: 'favorites' });
+Auction_bid.belongsToMany(Auction, { through: 'auction_offer' });
+Auction.belongsToMany(Auction_bid, { through: 'auction_offer' });
+Auction_bid.belongsToMany(Invert_auction, { through: 'invert_auction_offer' });
+Invert_auction.belongsToMany(Auction_bid, { through: 'invert_auction_offer' });
+
+
 
 module.exports = {
-	...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-	conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+	...sequelize.models,
+	conn: sequelize,
 };
