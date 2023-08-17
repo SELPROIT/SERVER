@@ -7,7 +7,7 @@ const createdProd = async (req, res) => {
     const prodCreated = await postProductC(newProduct);
     res.json(responseObj('Product created successfully', prodCreated));
   } catch (error) {
-    res.json(responseObj('Error creating product', {}));
+    res.json(responseObj({error: error.message}, {}));
   }
 };
 

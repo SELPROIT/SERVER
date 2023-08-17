@@ -2,42 +2,35 @@ const { Product, Sub_category } = require('../db')
 
 const postProductC = async ({
   id,
-  ref_category,
+  name,
   brand,
-  description,
   image,
+  description,
+  datasheet,
   rating,
   stock,
   price,
+  ref_subCategory,
 }) => {
   let product = {
     id,
+    name,
     brand,
-    description,
     image,
+    description,
+    datasheet,
     rating,
     stock,
     price,
   };
 
-  const foundRef = await Sub_category.findOne({ where: { id: ref_category } });
+  const foundRef = await Sub_category.findOne({ where: { id: ref_subCategory } });
 
-  if (foundRef.length > 0) {
+  if (foundRef.id) {
     const newProd = await Product.create(product);
     await newProd.setSub_category(foundRef);
-
-    const createdProd = {
-      id: newProd.id,
-      ref_category: foundRef,
-      brand: newProd.brand,
-      description: newProd.description,
-      image: newProd.image,
-      rating: newProd.rating,
-      stock: newProd.stock,
-      price: newProd.price,
-    };
-
-    return createdProd;
+    console.log('newProd', newProd)
+    return newProd;
   } else {
     console.error("Could not find Category");
     return null;
