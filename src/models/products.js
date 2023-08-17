@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
         id: {       //id unico de cada producto creado a partir del id de la subcategoria mas el numero de producto
             type: DataTypes.STRING,
             primaryKey: true,
-        }, 
+        },
 
         name: {
             type: DataTypes.STRING,
@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        
+
         stock: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -46,7 +46,9 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        
+
+
+
     },
         {
             timestamps: false,
