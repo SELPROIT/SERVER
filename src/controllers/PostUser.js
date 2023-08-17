@@ -1,20 +1,10 @@
 const { User } = require('../db');
-const cloudinary = require('cloudinary').v2;
-const multer = require('multer');
-const upload = multer().single('image');
-const config = require('../configCloud');
-
-cloudinary.config({
-	cloud_name: config.cloud_name,
-	api_key: config.api_key,
-	api_secret: config.api_secret,
-});
+const userCloudinaryConfig = require('../utils/userCloudinaryConfig');
 
 const postUser = async (newUser) => {
 	try {
-		const result = await cloudinary.uploader.upload(newUser.RUT_image, {
-			folder: 'selpro/user-documents',
-		});
+		const RUT_image = await userCloudinaryConfig(newUser.RUT_image);
+		//mando en const RUT_imagen al newUser.RUT_image, para luego pisar la prop con su propio nombre, es decir no necesito del newUser delante
 
 		const user = await User.create({
 			name: newUser.name,
@@ -23,7 +13,7 @@ const postUser = async (newUser) => {
 			password: newUser.password,
 			supplier: newUser.supplier,
 			RUT: newUser.RUT,
-			RUT_image: result.secure_url,
+			RUT_image: RUT_image, // result.secure_url,
 			commerce_chamber: newUser.commerce_chamber,
 			legal_ident: newUser.DNI,
 			commercial_references: newUser.commercial_references,
