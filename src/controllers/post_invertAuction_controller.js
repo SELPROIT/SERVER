@@ -2,7 +2,7 @@ const { Invert_auction, Product } = require('../db');
 
 const create_invert_auction = async (product_id, base_price, target_quantity, total, close_date ) => {
 
-    const newAuction = await Invert_auction.create({
+    const new_invert_auction = await Invert_auction.create({
         base_price,
         target_quantity,
         total,
@@ -14,7 +14,7 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
     if (!product) {
         throw new Error("Product not found");
     }
-    await newAuction.addInvert_auction(product);
+    await Product.addInvert_auction(new_invert_auction);
 
     return true;
 }
