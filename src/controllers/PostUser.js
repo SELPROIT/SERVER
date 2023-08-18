@@ -6,6 +6,10 @@ const postUser = async (newUser) => {
 	try {
 		const RUT_image = await userCloudinaryConfig(newUser.RUT_image);
 		const image = await userCloudinaryConfig(newUser.image);
+		const commerce_chamber = await userCloudinaryConfig(
+			newUser.commerce_chamber
+		);
+		const legal_ident = await userCloudinaryConfig(newUser.legal_ident);
 		//mando en const RUT_imagen al newUser.RUT_image, para luego pisar la prop con su propio nombre, es decir no necesito del newUser delante
 		const hashedPassword = await bcrypt.hash(newUser.password, 10);
 		const user = await User.create({
@@ -17,9 +21,9 @@ const postUser = async (newUser) => {
 			supplier: newUser.supplier,
 			RUT: newUser.RUT,
 			RUT_image: RUT_image, // result.secure_url,
-			commerce_chamber: newUser.commerce_chamber,
-			legal_ident: newUser.DNI,
-			commercial_references: newUser.commercial_references,
+			commerce_chamber: commerce_chamber, //
+			legal_ident: legal_ident, //
+			commercial_references: newUser.commercial_references, //
 			sector: newUser.sector,
 			CIIU: newUser.CIIU,
 			phone: newUser.phone,
