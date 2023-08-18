@@ -7,9 +7,9 @@ const { getAllAuctionBids } = require('../handlers/getAuctionBidHandler');
 const getRoutes = require('express').Router()
 
 getRoutes.get('/cat', toCategory);
-getRoutes.get('/subCat', toSubCategory);
+getRoutes.get('/subcat', toSubCategory);
 getRoutes.get('/prod', getProdHandler);
 getRoutes.get('/users', getAllUsers);
-getRoutes.get('/bids', getAllAuctionBids);
+getRoutes.get('/bid', getAllAuctionBids);
 
 module.exports = getRoutes

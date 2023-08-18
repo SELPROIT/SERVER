@@ -7,8 +7,8 @@ const { postAuction } = require("../handlers/postAuctionBidHandler");
 
 const postRoutes = require('express').Router()
 
-postRoutes.post("/category", post_category_handler);
-postRoutes.post("/subCategory", post_subCategoty_handler);
+postRoutes.post("/cat", post_category_handler);
+postRoutes.post("/subcat", post_subCategoty_handler);
 postRoutes.post('/prod', createdProd);
 postRoutes.post('/user', toPostUser);
 postRoutes.post('/bid', postAuction);
