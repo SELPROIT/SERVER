@@ -19,7 +19,9 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
         target_quantity,
         total,
         close_date,
-        invert: true
+        invert: true,
+        product_name: product.name,
+        type: "IA"
     });
 
     await product.setInvert_auction(new_invert_auction);

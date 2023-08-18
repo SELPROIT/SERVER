@@ -5,7 +5,7 @@ async function get_invertAuction_handler(req, res) {
     try {
 
         const response = await get_invert_auction();
-        if (!response) throw new Error()
+        if (!response.length) throw new Error("Empty invert-auctions")
         res.status(200).json(responseObj("Data acquire successfully", response));
 
     } catch (error) {
