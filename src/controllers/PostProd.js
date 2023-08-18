@@ -2,7 +2,6 @@ const { Product, Sub_category } = require('../db');
 const productCloudinaryConfig = require('../utils/productCloudinaryConfig');
 
 const postProductC = async ({
-	// id,
 	name,
 	brand,
 	image,
@@ -13,19 +12,23 @@ const postProductC = async ({
 	price,
 	ref_subCategory,
 }) => {
-  let product = {
-    id: null,
-    name,
-    brand,
-    image,
-    description,
-    datasheet,
-    rating,
-    stock,
-    price,
-  };
-  const foundProd = await Product.findAll({where: {SubCategoryId: ref_subCategory}})
-  const prodLen = foundProd.length
+	const cloudImage = await productCloudinaryConfig(image);
+	const cloudDatasheet = await productCloudinaryConfig(datasheet);
+	let product = {
+		id: null,
+		name,
+		brand,
+		image: cloudImage,
+		description,
+		datasheet: cloudDatasheet,
+		rating,
+		stock,
+		price,
+	};
+	const foundProd = await Product.findAll({
+		where: { SubCategoryId: ref_subCategory },
+	});
+	const prodLen = foundProd.length;
 
 	if (prodLen === 0) {
 		product.id = `${ref_subCategory}1`;
@@ -34,15 +37,15 @@ const postProductC = async ({
 		product.id = `${ref_subCategory}${newID}`;
 	}
 
-  if (foundRef.id) {
-    const newProd = await Product.create(product);
-    await newProd.setSub_category(foundRef);
-    
-    return newProd;
-  } else {
-    console.error("Could not find Sub-Category");
-    return null;
-  }
+	if (foundRef.id) {
+		const newProd = await Product.create(product);
+		await newProd.setSub_category(foundRef);
+
+		return newProd;
+	} else {
+		console.error("Could not find Sub-Category");
+		return null;
+	}
 };
 
 module.exports = { postProductC };
