@@ -1,16 +1,17 @@
-const { Product, Sub_category } = require('../db')
+const { Product, Sub_category } = require('../db');
+const productCloudinaryConfig = require('../utils/productCloudinaryConfig');
 
 const postProductC = async ({
-  // id,
-  name,
-  brand,
-  image,
-  description,
-  datasheet,
-  rating,
-  stock,
-  price,
-  ref_subCategory,
+	// id,
+	name,
+	brand,
+	image,
+	description,
+	datasheet,
+	rating,
+	stock,
+	price,
+	ref_subCategory,
 }) => {
   let product = {
     id: null,
@@ -26,14 +27,12 @@ const postProductC = async ({
   const foundProd = await Product.findAll({where: {SubCategoryId: ref_subCategory}})
   const prodLen = foundProd.length
 
-  if(prodLen === 0) {
-    product.id = `${ref_subCategory}1`
-    } else {
-      const newID = prodLen + 1
-      product.id = `${ref_subCategory}${newID}`
-    }
-  
-  const foundRef = await Sub_category.findOne({ where: { id: ref_subCategory } });
+	if (prodLen === 0) {
+		product.id = `${ref_subCategory}1`;
+	} else {
+		const newID = prodLen + 1;
+		product.id = `${ref_subCategory}${newID}`;
+	}
 
   if (foundRef.id) {
     const newProd = await Product.create(product);
@@ -46,5 +45,4 @@ const postProductC = async ({
   }
 };
 
-module.exports = { postProductC }
-
+module.exports = { postProductC };

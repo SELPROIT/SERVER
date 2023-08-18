@@ -1,20 +1,19 @@
 const { User_admin } = require('../db');
 
 
-const postUserAdmin = async (newUA) => {
-    try {
+const postUserAdmin = async (newUserAdmin) => {
+    if (newUserAdmin.role === 'CEO' && newUserAdmin.password === 'selpro123*') {
         const userAdmin = await User_admin.create({
-            name: newUA.name,
-            role: newUA.role,
-            password: newUA.password,
-            phone: newUA.phone,
-
+            name: newUserAdmin.name,
+            role: newUserAdmin.role,
+            password: newUserAdmin.password,
+            phone: newUserAdmin.phone,
         });
 
         return userAdmin;
-    } catch (error) {
-        throw error;
+    } else {
+        throw new Error('No tienes acceso para crear un usuario admin.');
     }
-};
+}
 
 module.exports = postUserAdmin;
