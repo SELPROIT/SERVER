@@ -14,13 +14,14 @@ const postProductC = async ({
 	ref_subCategory,
 }) => {
 	const cloudImage = await productCloudinaryConfig(image);
+	const cloudDatasheet = await productCloudinaryConfig(datasheet);
 	let product = {
 		id: null,
 		name,
 		brand,
 		image: cloudImage,
 		description,
-		datasheet,
+		datasheet: cloudDatasheet,
 		rating,
 		stock,
 		price,
