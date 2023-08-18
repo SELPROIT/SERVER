@@ -7,7 +7,7 @@ async function toSubCategory(req, res) {
         const subCategories = await getAllSubCategories();
         res.status(200).json(responseObj("Funciona", subCategories));
     } catch (error) {
-        return res.status(500).json(responseObj);
+        return res.status(500).json(responseObj("Error fetching subcategories", null));
     }
 }
 

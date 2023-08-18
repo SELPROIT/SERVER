@@ -5,11 +5,11 @@ const path = require('path');
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
 const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`, {
-    logging: false,
-    native: false,
+	logging: false,
+	native: false,
 	dialectOptions: {
 		ssl: {
-		  rejectUnauthorized: false,
+			rejectUnauthorized: false,
 		},
 	}
 });
@@ -32,7 +32,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction} = sequelize.models;
+const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction } = sequelize.models;
 // Relaciones n*1
 
 Category.hasMany(Sub_category);
