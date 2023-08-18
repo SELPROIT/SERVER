@@ -25,8 +25,6 @@ const postProductC = async ({
   };
   const foundProd = await Product.findAll({where: {SubCategoryId: ref_subCategory}})
   const prodLen = foundProd.length
-  console.log('prodLen', prodLen)
-  console.log('foundProd', foundProd)
 
   if(prodLen === 0) {
     product.id = `${ref_subCategory}1`
@@ -41,10 +39,9 @@ const postProductC = async ({
     const newProd = await Product.create(product);
     await newProd.setSub_category(foundRef);
     
-    console.log('newProd', newProd)
     return newProd;
   } else {
-    console.error("Could not find Category");
+    console.error("Could not find Sub-Category");
     return null;
   }
 };
