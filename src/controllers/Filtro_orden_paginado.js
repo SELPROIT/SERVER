@@ -5,14 +5,15 @@ const paginateAu = (auctions, page, pageSize) => {
 }; 
 
 const sortAuByName = async (sort = 'asc', auctions) => {
-  const allAuctions = await auctions;
+  const allAuctions = await auctions
   const sortedAuctions = allAuctions.slice().sort((a, b) => {
-    const nameA = a.name.toLowerCase();
-    const nameB = b.name.toLowerCase();
+    let nameA = a.product_name ? a.product_name.toLowerCase() : '';
+    let nameB = b.product_name ? b.product_name.toLowerCase() : '';
+
 
     if (sort === 'asc') {
       return nameA.localeCompare(nameB);
-    } else if (sort === 'desc') {
+    } else if (sort === 'des') {
       return nameB.localeCompare(nameA);
     } else {
       throw new Error('Invalid sort order');
@@ -21,11 +22,13 @@ const sortAuByName = async (sort = 'asc', auctions) => {
   return sortedAuctions;
 };
 
-const getAuByType = async (type = 'AU', auction) => {
-  const allAuctions = await auction;
+const getAuByType = async (type = 'AU', auctions) => {
+  const allAuctions = await auctions;
+  // console.log('allAuctions', allAuctions)
   if (type === 'AU') {
     const filteredAuctions = allAuctions.filter((a) =>
       a.type === 'AU');
+      // console.log('filteredAuctions', filteredAuctions)
     return filteredAuctions;
   } else if (type === 'IA') {
     const filteredAuctions = allAuctions.filter((a) =>
