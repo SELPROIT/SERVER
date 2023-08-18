@@ -7,7 +7,6 @@ async function toCategory(req, res) {
         const categories = await getAllCategory();
         res.status(200).json(("Funciona", categories));
     } catch (error) {
-        console.error("Error en toCategory:", error);
         res.status(500).json({error: error.message});
     }
 }
