@@ -2,7 +2,7 @@ const { Auction, Product } = require('../db');
 
 const create_auction = async (product_id, base_price, close_date) => {
 
-    const newAuction = await Auction.create({
+    const new_auction = await Auction.create({
         base_price,
         close_date
     });
@@ -11,7 +11,7 @@ const create_auction = async (product_id, base_price, close_date) => {
     if (!product) {
         throw new Error("Product not found");
     }
-    await Product.addAuction(newAuction);
+    await product.addAuction(new_auction);
 
     return true;
 }

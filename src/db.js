@@ -32,12 +32,19 @@ const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auct
 
 Category.hasMany(Sub_category);
 Sub_category.hasMany(Product);
+
 Sub_category.belongsTo(Category);
 Product.belongsTo(Sub_category);
+
 Product.hasMany(Auction);
 Auction.belongsTo(Product);
+
+Invert_auction.hasOne(Product);
+Product.belongsTo(Invert_auction);
+
 Auction.hasMany(Auction_bid);
 Auction_bid.belongsTo(Auction);
+
 Invert_auction.hasMany(Auction_bid);
 Auction_bid.belongsTo(Invert_auction);
 
