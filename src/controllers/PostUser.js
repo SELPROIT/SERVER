@@ -5,10 +5,12 @@ const userCloudinaryConfig = require('../utils/userCloudinaryConfig');
 const postUser = async (newUser) => {
 	try {
 		const RUT_image = await userCloudinaryConfig(newUser.RUT_image);
+		const image = await userCloudinaryConfig(newUser.image);
 		//mando en const RUT_imagen al newUser.RUT_image, para luego pisar la prop con su propio nombre, es decir no necesito del newUser delante
 		const hashedPassword = await bcrypt.hash(newUser.password, 10);
 		const user = await User.create({
 			name: newUser.name,
+			image: image,
 			num_ident: newUser.num_ident,
 			user_name: newUser.user_name,
 			password: hashedPassword,
