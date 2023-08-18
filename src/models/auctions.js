@@ -15,6 +15,14 @@ module.exports = (sequelize) => {
             type: DataTypes.DATE,
             allowNull: false,
         },
+        product_name: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        type: {
+            type: DataTypes.STRING,
+            allowNull: true
+        }
     },
         {
             timestamps: false,
