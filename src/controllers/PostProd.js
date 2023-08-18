@@ -2,7 +2,6 @@ const { Product, Sub_category } = require('../db');
 const productCloudinaryConfig = require('../utils/productCloudinaryConfig');
 
 const postProductC = async ({
-	// id,
 	name,
 	brand,
 	image,
@@ -30,8 +29,6 @@ const postProductC = async ({
 		where: { SubCategoryId: ref_subCategory },
 	});
 	const prodLen = foundProd.length;
-	console.log('prodLen', prodLen);
-	console.log('foundProd', foundProd);
 
 	if (prodLen === 0) {
 		product.id = `${ref_subCategory}1`;
@@ -40,18 +37,13 @@ const postProductC = async ({
 		product.id = `${ref_subCategory}${newID}`;
 	}
 
-	const foundRef = await Sub_category.findOne({
-		where: { id: ref_subCategory },
-	});
-
 	if (foundRef.id) {
 		const newProd = await Product.create(product);
 		await newProd.setSub_category(foundRef);
 
-		console.log('newProd', newProd);
 		return newProd;
 	} else {
-		console.error('Could not find Category');
+		console.error("Could not find Sub-Category");
 		return null;
 	}
 };

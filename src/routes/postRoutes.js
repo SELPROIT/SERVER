@@ -12,8 +12,8 @@ const { post_invert_auction_handler } = require("../handlers/post_invertAuction_
 
 const postRoutes = require('express').Router()
 
-postRoutes.post("/category", post_category_handler);
-postRoutes.post("/subCategory", post_subCategoty_handler);
+postRoutes.post("/cat", post_category_handler);
+postRoutes.post("/subcat", post_subCategoty_handler);
 postRoutes.post('/prod', createdProd);
 postRoutes.post('/admin', createUserAdmin) // no va al front
 postRoutes.post('/user', toPostUser);
