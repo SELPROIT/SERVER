@@ -44,8 +44,8 @@ Product.belongsTo(Sub_category);
 Product.hasMany(Auction);
 Auction.belongsTo(Product);
 
-Invert_auction.hasOne(Product);
-Product.belongsTo(Invert_auction);
+Product.hasOne(Invert_auction);
+Invert_auction.belongsTo(Product);
 
 Auction.hasMany(Auction_bid);
 Auction_bid.belongsTo(Auction);
