@@ -6,14 +6,14 @@ const createUserAdmin = async (req, res) => {
             name,
             role,
             password,
-            telefono, // Debería ser "phone" en tu objeto JSON
+            telefono, 
         } = req.body;
 
         const newUserAdmin = {
             name,
             role,
             password,
-            phone: telefono, // Debería ser "phone" en tu objeto JSON
+            phone: telefono, 
         };
 
         const createdUserAdmin = await postUserAdmin(newUserAdmin);
