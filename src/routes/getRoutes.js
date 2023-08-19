@@ -4,6 +4,7 @@ const { getProdHandler } = require('../handlers/getAllProdH');
 const { getAllUsers } = require('../handlers/getUserHandler');
 const { getAllAuctionBids } = require('../handlers/getAuctionBidHandler');
 const { getUserAdmin } = require('../handlers/getUserAdm');
+const { getUserByName } = require('../handlers/getToUserByName');
 const { get_all_auctions_handler } = require("../handlers/get_all_auctions_handler");
 const { get_invertAuction_handler } = require("../handlers/get_invertAuction.handler");
 const { get_auction_handler } = require("../handlers/get_auction_handler");
@@ -16,6 +17,7 @@ getRoutes.get('/category', toCategory);
 getRoutes.get('/subcategory', toSubCategory);
 getRoutes.get('/product', getProdHandler);
 getRoutes.get('/allUsers', getAllUsers);
+getRoutes.get('/user/:name', getUserByName)
 getRoutes.get('/bid', getAllAuctionBids);
 getRoutes.get('/admins', getUserAdmin);
 getRoutes.get("/allAuctions", get_all_auctions_handler)
