@@ -24,11 +24,9 @@ const sortAuByName = async (sort = 'asc', auctions) => {
 
 const getAuByType = async (type = 'AU', auctions) => {
   const allAuctions = await auctions;
-  // console.log('allAuctions', allAuctions)
   if (type === 'AU') {
     const filteredAuctions = allAuctions.filter((a) =>
       a.type === 'AU');
-      // console.log('filteredAuctions', filteredAuctions)
     return filteredAuctions;
   } else if (type === 'IA') {
     const filteredAuctions = allAuctions.filter((a) =>
