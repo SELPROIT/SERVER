@@ -8,7 +8,7 @@ const get_invertAuction_by_id = async (invertAuction_id) => {
     const category = await Category.findByPk(sub_category.CategoryId)
 
     const response = {
-        invert_auction_id: id,
+        id,
         product_id: ProductId,
         sub_category_id: sub_category.id,
         category_id: category.id,

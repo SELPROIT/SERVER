@@ -46,6 +46,12 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        
+        deleteFlag: {
+			// no "delete" porque es palabra reservada.
+			type: DataTypes.BOOLEAN,
+			defaultValue: false,
+		},
     },
         {
             timestamps: false,
