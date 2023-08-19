@@ -99,9 +99,8 @@ module.exports = (sequelize) => {
 		deleteFlag: {
 			// no "delete" porque es palabra reservada.
 			type: DataTypes.BOOLEAN,
-			allowNull: false,
+			defaultValue: false,
 		},
 
-		timestamps: false,
-	});
+	}, { timestamps: false, });
 };
