@@ -28,6 +28,7 @@ const toPostUser = async (req, res) => {
 			win_history,
 			curr_auc,
 			favorites,
+			deleteFlag,
 		} = req.body;
 
 		const result = await register(user_name, password);
@@ -56,6 +57,7 @@ const toPostUser = async (req, res) => {
 				win_history,
 				curr_auc,
 				favorites,
+				deleteFlag,
 			});
 
 			res.status(200).json(newUser);
