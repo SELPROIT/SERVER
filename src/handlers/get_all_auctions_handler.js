@@ -12,6 +12,7 @@ async function get_all_auctions_handler(req, res) {
     const response = await get_auction();
     const response2 = await get_invert_auction();
     let finalResponse = [...response, ...response2]
+    if(!finalResponse) res.status(400).json({ message: error.message });
 
     if(name){
 

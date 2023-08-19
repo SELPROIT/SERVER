@@ -5,6 +5,7 @@ const getAllUsers = async (req, res) => {
 
     try {
         const users = await getUsers(); 
+        if(!users) res.status(400).json({ message: error.message });
         
         if (users.length === 0) {
             res.status(404).json(responseObj('No se encontraron usuarios.'));
