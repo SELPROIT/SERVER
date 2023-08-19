@@ -27,9 +27,13 @@ module.exports = (sequelize) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		company_name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 		supplier: {
 			type: DataTypes.BOOLEAN,
-			allowNull: false,
+			defaultValue: false,
 		},
 		RUT: {
 			type: DataTypes.FLOAT,
@@ -95,7 +99,10 @@ module.exports = (sequelize) => {
 			type: DataTypes.ARRAY(DataTypes.JSONB), //Array de objetos sujeto a cambios
 			allowNull: true,
 		},
-
+		// favorites: {
+		// 	type: DataTypes.ARRAY(DataTypes.JSONB),
+		// 	allowNull: true,
+		// },
 		deleteFlag: {
 			// no "delete" porque es palabra reservada.
 			type: DataTypes.BOOLEAN,

@@ -1,0 +1,34 @@
+{
+  "provider": {
+    "name": "SelPro Provider 1",
+    "num_ident": 12345678,
+    "user_name": "SelPro_Test_Pr1",
+    "password": "passwordtest1",
+    "company_name": "SelPro_Company_Test1",
+    "RUT_image": "SelPro_RUT_Test1.url",
+    "commerce_chamber": "SelPro_chamber_Test1.url",
+    "legal_ident": "SelPro_Legal_Ident_Test1.url",
+    "commercial_references": "SelPro_Reference_Test1.url",
+    "sector": "SelPro_Sector_Test1",
+    "CIIU": 1234,
+    "phone": "+5493516123456",
+    "email": "usuario1@example.com",
+    "id_subcat": ["AD1", "AD2"],
+    "adress": ["Example City1", ", ", "Example Street1", ", ", 123]
+  },
+
+  "client": {
+    "name": "SelPro Client 2",
+    "num_ident": 23456789,
+    "user_name": "SelPro_Test_Cl1",
+    "password": "passwordtest2",
+    "company_name": "SelPro_Company_Test2",
+    "RUT": 4567890,
+    "sector": "SelPro_Sector_Test2",
+    "CIIU": 5678,
+    "phone": "+5493516234567",
+    "email": "usuario2@example.com",
+    "id_subcat": ["CC1", "AB1"],
+    "adress": ["Example City2", ", ", "Example Street2", ", ", 456]
+  }
+}
