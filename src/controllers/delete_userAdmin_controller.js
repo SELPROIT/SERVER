@@ -1,20 +1,21 @@
-const { Product } = require('../db');
+const { User_admin } = require('../db');
 
-const delete_product = async (id) => {
+const delete_userAdmin = async (id) => {
 
-    const erase = await Product.update(        
+    const erase = await User_admin.update(
         { deleteFlag: true },
         {
             where: {
                 id: id,
                 deleteFlag: false
             }
-        });
+        }
+    );
 
     return erase
 
 }
 
 module.exports = {
-    delete_product,
+    delete_userAdmin,
 }

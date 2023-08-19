@@ -6,7 +6,7 @@ const get_auction_by_id = async (auction_id) => {
     const product = await Product.findByPk(ProductId)
 
     const response = {
-        auction_id: id,
+        id,
         product_id: ProductId,
         name: product.name,
         description: product.description,
