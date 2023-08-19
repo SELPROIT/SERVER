@@ -1,17 +1,23 @@
-const {Product} = require("../db");
+const {Auction, Invert_auction} = require("../db");
 const { Op } = require('sequelize'); 
 
-const productByName = async (name) => {
+const productByName = async (product_name) => {
 
-    name.trim();
+    product_name.trim();
 
-    const product = await Product.findAll({
-        where: { name: {
-            [Op.iLike]: `%${name}%`,
+    const auctions = await Auction.findAll({
+        where: { product_name: {
+            [Op.iLike]: `%${product_name}%`
         }}
     });
     
-    return product;
+    const invert_auctions = await Invert_auction.findAll({
+        where: { product_name: {
+            [Op.iLike]: `%${product_name}%`
+        }}
+    });
+
+    return [ ...auctions, ...invert_auctions];
 };
 
 module.exports = {
