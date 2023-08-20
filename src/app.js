@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/routes.js');
+const multer = require('multer');
 const { requiresAuth } = require('express-openid-connect');
 
 require('./db.js');
@@ -30,6 +31,11 @@ server.get('/', (req, res) => {
 server.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
+
+// ! Configura el almacenamiento de multer para manejar múltiples archivos que vengan del fornt
+const storage = multer.memoryStorage(); // Almacenamiento en memoria, puedes usar el que prefieras
+const upload = multer({ storage: storage });
+server.use('/create/user', upload.any())
 
 server.use('/', routes);
 
