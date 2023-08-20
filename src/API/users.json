@@ -2,13 +2,13 @@
   "provider": {
     "name": "SelPro Provider 1",
     "num_ident": 12345678,
-    "user_name": "SelPro_Test_Pr1",
+    "user_name": "SelPro_Test_Pr3",
     "password": "passwordtest1",
     "company_name": "SelPro_Company_Test1",
-    "RUT_image": "SelPro_RUT_Test1.url",
-    "commerce_chamber": "SelPro_chamber_Test1.url",
-    "legal_ident": "SelPro_Legal_Ident_Test1.url",
-    "commercial_references": "SelPro_Reference_Test1.url",
+    "RUT_image": "https://d500.epimg.net/cincodias/imagenes/2015/05/08/pyme/1431098283_691735_1431098420_noticia_normal.jpg",
+    "commerce_chamber": "https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg",
+    "legal_ident": "https://www.shutterstock.com/shutterstock/photos/709133980/display_1500/stock-vector-vector-design-elements-for-your-company-logo-abstract-blue-icon-modern-logotipe-business-709133980.jpg",
+    "commercial_references": "https://img.freepik.com/vector-premium/logotipo-letra-v-simple_8586-577.jpg",
     "sector": "SelPro_Sector_Test1",
     "CIIU": 1234,
     "phone": "+5493516123456",
@@ -30,5 +30,83 @@
     "email": "usuario2@example.com",
     "id_subcat": ["CC1", "AB1"],
     "adress": ["Example City2", ", ", "Example Street2", ", ", 456]
+  },
+
+  "putuser": {
+    "name": "SelPro Client 5",
+    "user_name": "SelPro_Test_Cl5",
+    "password": "passwordtest5",
+    "company_name": "SelPro_Company_Test5",
+    "suplier": true,
+    "phone": "+5493516234555",
+    "email": "usuario5@example.com",
+    "id_subcat": ["CC5", "AB5"],
+    "adress": ["Example City5", ", ", "Example Street5", ", ", 555],
+    "interaction_history": [
+      {
+        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
+        "brand": "STEELPRO SAFETY",
+        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
+        "description": "Protectores auditivos modelo CM-501 para casco",
+        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
+        "rating": 4.5,
+        "stock": 2000,
+        "price": 500,
+        "ref_subCategory": "AD2"
+      }
+    ],
+    "offers_history": [
+      {
+        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
+        "brand": "STEELPRO SAFETY",
+        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
+        "description": "Protectores auditivos modelo CM-501 para casco",
+        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
+        "rating": 4.5,
+        "stock": 2000,
+        "price": 500,
+        "ref_subCategory": "AD2"
+      }
+    ],
+    "win_history": [
+      {
+        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
+        "brand": "STEELPRO SAFETY",
+        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
+        "description": "Protectores auditivos modelo CM-501 para casco",
+        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
+        "rating": 4.5,
+        "stock": 2000,
+        "price": 500,
+        "ref_subCategory": "AD2"
+      }
+    ],
+    "curr_auc": [
+      {
+        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
+        "brand": "STEELPRO SAFETY",
+        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
+        "description": "Protectores auditivos modelo CM-501 para casco",
+        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
+        "rating": 4.5,
+        "stock": 2000,
+        "price": 500,
+        "ref_subCategory": "AD2"
+      }
+    ],
+    "favorites": [
+      {
+        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
+        "brand": "STEELPRO SAFETY",
+        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
+        "description": "Protectores auditivos modelo CM-501 para casco",
+        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
+        "rating": 4.5,
+        "stock": 2000,
+        "price": 500,
+        "ref_subCategory": "AD2"
+      }
+    ],
+    "deleteFlag": true
   }
 }

@@ -60,7 +60,7 @@ module.exports = (sequelize) => {
 			allowNull: false,
 		},
 		CIIU: {
-			type: DataTypes.FLOAT,
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		phone: {
@@ -80,10 +80,6 @@ module.exports = (sequelize) => {
 			allowNull: false,
 		},
 		interaction_history: {
-			type: DataTypes.ARRAY(DataTypes.JSONB),
-			allowNull: true,
-		},
-		buy_history: {
 			type: DataTypes.ARRAY(DataTypes.JSONB),
 			allowNull: true,
 		},

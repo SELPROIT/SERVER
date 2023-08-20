@@ -6,8 +6,6 @@ const config = require('../configCloud');
 //IMPORTANTE : esta function solo lleva la imagen a la carpeta user-documents de cloudinary!!
 //se utiliza SOLO para funcions de user y user_admin
 const userCloudinaryConfig = async (image, imageURL) => {
-  console.log('image', image)
-  console.log('imageURL', imageURL)
   // se le envia por parametro la imagen (value) de la prop del objeto x ej: newUser.RUT_image (
   //recuerde q newUser es la constante creada en el handler para mandar las props dentro de una palabra, asi el controller post solo recibe está y no todas las props q son muchas)
   cloudinary.config({
@@ -22,13 +20,29 @@ const userCloudinaryConfig = async (image, imageURL) => {
       result = await cloudinary.uploader.upload(image.path, {
         folder: 'selpro/user-documents',
       });
+      // result = await new Promise((resolve, reject) => {
+      //   upload(image, null, (err) => {
+      //     if (err) {
+      //       reject(err);
+      //     } else {
+      //       cloudinary.uploader.upload(image.path, {
+      //         folder: 'selpro/user-documents',
+      //       }, (error, res) => {
+      //         if (error) {
+      //           reject(error);
+      //         } else {
+      //           resolve(res);
+      //         }
+      //       });
+      //     }
+      //   });
+      // });
       return result.secure_url;
     }
     if (imageURL) {
       result = await cloudinary.uploader.upload(imageURL, {
         folder: 'selpro/user-documents',
       });
-      console.log('result', result.secure_url);
       return result.secure_url;
     }
     if (!image && !imageURL) {

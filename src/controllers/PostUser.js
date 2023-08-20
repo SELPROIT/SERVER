@@ -4,14 +4,8 @@ const { userCloudinaryConfig } = require('../utils/userCloudinaryConfig');
 
 const postUser = async (newUser) => {
   // const image = await userCloudinaryConfig('', newUser.image ? newUser.image : '');
-  const RUT_image = await userCloudinaryConfig(null, newUser.RUT_image);
-  const commerce_chamber = await userCloudinaryConfig(null, newUser.commerce_chamber);
-  const legal_ident = await userCloudinaryConfig(null, newUser.legal_ident);
-  const commercial_references = await userCloudinaryConfig(null, newUser.commercial_references);
   const hashedPassword = await bcrypt.hash(newUser.password, 10);
 
-  console.log('RUT_image', RUT_image)
-  console.log('newUser.RUT_image', newUser.RUT_image)
   if (newUser.RUT) {
     const user = await User.create({
       name: newUser.name,
@@ -29,7 +23,6 @@ const postUser = async (newUser) => {
       id_subcat: newUser.id_subcat,
       adress: newUser.adress,
       interaction_history: [],
-      buy_history: [],
       offers_history: [],
       win_history: [],
       curr_auc: [],
@@ -38,6 +31,10 @@ const postUser = async (newUser) => {
     });
     return user;
   }
+  const RUT_image = await userCloudinaryConfig(null, newUser.RUT_image);
+  const commerce_chamber = await userCloudinaryConfig(null, newUser.commerce_chamber);
+  const legal_ident = await userCloudinaryConfig(null, newUser.legal_ident);
+  const commercial_references = await userCloudinaryConfig(null, newUser.commercial_references);
   const provedor = await User.create({
     name: newUser.name,
     // image: image,
@@ -57,7 +54,6 @@ const postUser = async (newUser) => {
     id_subcat: newUser.id_subcat,
     adress: newUser.adress,
     interaction_history: [],
-    buy_history: [],
     offers_history: [],
     win_history: [],
     curr_auc: [],

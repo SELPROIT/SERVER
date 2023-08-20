@@ -6,17 +6,17 @@ const put_user_controller = async (
   image,
   user_name,
   password,
+  company_name,
   supplier,
   phone,
   email,
   id_subcat,
   adress,
   interaction_history,
-  buy_history,
   offers_history,
   win_history,
   curr_auc,
-  favorites,
+  // favorites,
   deleteFlag,
 ) => {
   console.log('id', id)
@@ -36,6 +36,9 @@ const put_user_controller = async (
   if (password) {
     changed_user.password = password
   }
+  if (company_name) {
+    changed_user.company_name = company_name
+  }
   if (supplier) {
     changed_user.supplier = supplier
   }
@@ -52,28 +55,25 @@ const put_user_controller = async (
     changed_user.adress = adress
   }
   if (interaction_history) {
-    changed_user.interaction_history.push(interaction_history)
-  }
-  if (buy_history) {
-    changed_user.buy_history.push(buy_history)
+    changed_user.interaction_history = [...user.interaction_history, interaction_history]
   }
   if (offers_history) {
-    changed_user.offers_history.push(offers_history)
+    changed_user.offers_history = [...user.offers_history, offers_history]
   }
   if (win_history) {
-    changed_user.win_history = win_history
+    changed_user.win_history = [...user.win_history, win_history]
   }
   if (curr_auc) {
-    changed_user.curr_auc.push(curr_auc)
+    changed_user.curr_auc = [...user.curr_auc, curr_auc]
   }
-  if (favorites) {
-    changed_user.favorites.push(favorites)
-  }
+  // if (favorites) {
+  //   changed_user.favorites = [...user.favorites, favorites]
+  // }
   if (deleteFlag) {
     changed_user.deleteFlag = deleteFlag
   }
 
-  const [updatedRows] = await User.update(changed_inv_auction, {
+  const [updatedRows] = await User.update(changed_user, {
     where: {
       id: id
     }
