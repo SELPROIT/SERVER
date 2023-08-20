@@ -27,9 +27,13 @@ module.exports = (sequelize) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		company_name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 		supplier: {
 			type: DataTypes.BOOLEAN,
-			allowNull: false,
+			defaultValue: false,
 		},
 		RUT: {
 			type: DataTypes.FLOAT,
@@ -56,7 +60,7 @@ module.exports = (sequelize) => {
 			allowNull: false,
 		},
 		CIIU: {
-			type: DataTypes.FLOAT,
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		phone: {
@@ -76,10 +80,6 @@ module.exports = (sequelize) => {
 			allowNull: false,
 		},
 		interaction_history: {
-			type: DataTypes.ARRAY(DataTypes.JSONB),
-			allowNull: true,
-		},
-		buy_history: {
 			type: DataTypes.ARRAY(DataTypes.JSONB),
 			allowNull: true,
 		},
