@@ -1,4 +1,4 @@
-const { User } = require('../db')
+const { User } = require('../db');
 
 const put_user_controller = async (
   id,
@@ -16,77 +16,75 @@ const put_user_controller = async (
   offers_history,
   win_history,
   curr_auc,
-  // favorites,
   deleteFlag,
 ) => {
-  console.log('id', id)
-  const user = await User.findOne({ where: { id: id } })
-  if (!user) 'User not found'
+  const user = await User.findOne({ where: { id } });
+  if (!user) {
+    throw new Error('User not found');
+  }
 
-  const changed_user = {}
+  const changedUser = {};
+
   if (name) {
-    changed_user.name = name
+    changedUser.name = name;
   }
   if (image) {
-    changed_user.image = image
+    changedUser.image = image;
   }
   if (user_name) {
-    changed_user.user_name = user_name
+    changedUser.user_name = user_name;
   }
   if (password) {
-    changed_user.password = password
+    changedUser.password = password;
   }
   if (company_name) {
-    changed_user.company_name = company_name
+    changedUser.company_name = company_name;
   }
   if (supplier) {
-    changed_user.supplier = supplier
+    changedUser.supplier = supplier;
   }
   if (phone) {
-    changed_user.phone = phone
+    changedUser.phone = phone;
   }
   if (email) {
-    changed_user.email = email
+    changedUser.email = email;
   }
   if (id_subcat) {
-    changed_user.id_subcat = id_subcat
+    changedUser.id_subcat = id_subcat;
   }
   if (adress) {
-    changed_user.adress = adress
+    changedUser.adress = adress;
   }
   if (interaction_history) {
-    changed_user.interaction_history = [...user.interaction_history, interaction_history]
+    changedUser.interaction_history = [...user.interaction_history, interaction_history];
   }
   if (offers_history) {
-    changed_user.offers_history = [...user.offers_history, offers_history]
+    changedUser.offers_history = [...user.offers_history, offers_history];
   }
   if (win_history) {
-    changed_user.win_history = [...user.win_history, win_history]
+    changedUser.win_history = [...user.win_history, win_history];
   }
   if (curr_auc) {
-    changed_user.curr_auc = [...user.curr_auc, curr_auc]
+    changedUser.curr_auc = [...user.curr_auc, curr_auc];
   }
-  // if (favorites) {
-  //   changed_user.favorites = [...user.favorites, favorites]
-  // }
   if (deleteFlag) {
-    changed_user.deleteFlag = deleteFlag
+    changedUser.deleteFlag = deleteFlag;
   }
 
-  const [updatedRows] = await User.update(changed_user, {
+  const [updatedRows] = await User.update(changedUser, {
     where: {
-      id: id
-    }
+      id,
+    },
   });
 
   if (updatedRows > 0) {
-    await user.reload()
+    await user.reload();
     return user;
   }
-  return 'Unable to update user'
 
-}
+  throw new Error('Unable to update user');
+};
 
 module.exports = {
   put_user_controller,
-}
+};

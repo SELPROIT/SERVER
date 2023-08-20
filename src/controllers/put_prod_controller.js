@@ -1,7 +1,9 @@
-const { Product } = require('../db')
+const { Product } = require('../db');
 
 const put_prod_controller = async (
   id,
+  name,
+  brand,
   image,
   description,
   datasheet,
@@ -9,45 +11,55 @@ const put_prod_controller = async (
   stock,
   price,
 ) => {
-  console.log('id', id)
-  const product = await Product.findOne({ where: { id: id } })
-  if (!product) 'Product not found'
+  const product = await Product.findByPk(id);
+  if (!product) {
+    return 'Product not found';
+  }
 
-  console.log('product', product)
-  const changed_product = {}
-  if (image) {
-    changed_product.image = image
-  }
-  if (description) {
-    changed_product.description = description
-  }
-  if (datasheet) {
-    changed_product.datasheet = datasheet
-  }
-  if (rating) {
-    changed_product.rating = rating
-  }
-  if (stock) {
-    changed_product.stock = stock
-  }
-  if (price) {
-    changed_product.price = price
+  const changed_product = {};
+
+  switch (true) {
+    case !!name:
+      changed_product.name = name;
+      break;
+    case !!brand:
+      changed_product.brand = brand;
+      break;
+    case !!image:
+      changed_product.image = image;
+      break;
+    case !!description:
+      changed_product.description = description;
+      break;
+    case !!datasheet:
+      changed_product.datasheet = datasheet;
+      break;
+    case !!rating:
+      changed_product.rating = rating;
+      break;
+    case !!stock:
+      changed_product.stock = stock;
+      break;
+    case !!price:
+      changed_product.price = price;
+      break;
+    default:
+      break;
   }
 
   const [updatedRows] = await Product.update(changed_product, {
     where: {
-      id: id
-    }
+      id: id,
+    },
   });
 
   if (updatedRows > 0) {
-    await product.reload()
-    return product;
+    const updatedProduct = await Product.findByPk(id);
+    return updatedProduct;
   }
-  return 'Unable to update product'
-
-}
+  return 'Unable to update product';
+};
 
 module.exports = {
   put_prod_controller,
-}
+};
