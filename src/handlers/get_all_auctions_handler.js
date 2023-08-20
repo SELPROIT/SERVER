@@ -2,8 +2,8 @@ const {
   getAuByType,
   sortAuctions,
   paginateAu,
-  getAuByCategoty,
-  getAuBySubCategoty,
+  getAuBySubCategory,
+  getAuByCategory,
 } = require("../controllers/Filtro_orden_paginado");
 const { get_auction } = require("../controllers/get_auction_controller");
 const {
@@ -42,7 +42,8 @@ async function get_all_auctions_handler(req, res) {
     }
 
     if (category) {
-      const auctions = await getAuByCategoty(category, finalResponse);
+      console.log("category: " + category + " final response " + finalResponse);
+      const auctions = await getAuByCategory(category, finalResponse);
       
       if (!auctions) {
         res.status(404).json(responseObj("No se ha encontrado ese producto."));
@@ -61,7 +62,8 @@ async function get_all_auctions_handler(req, res) {
         );
     }
     if (subCategory) {
-      const auctions = await getAuBySubCategoty(subCategory, finalResponse);
+      console.log("subCategory: " + subCategory + " final response " + finalResponse);
+      const auctions = await getAuBySubCategory(subCategory, finalResponse);
       
       if (!auctions) {
         res.status(404).json(responseObj("No se ha encontrado ese producto."));

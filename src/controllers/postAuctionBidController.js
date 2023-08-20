@@ -9,6 +9,10 @@ const createAuctionBid = async (auction_id, proposed_price, total, invert) => {
         
     if(invert){
 
+        // if(proposed_price > Auction.base_price){
+        //     throw new Error(`No se encontró esa subasta inversa.`);
+        // }
+
         let invertAuction = await Invert_auction.findByPk(auction_id);
     
         if (!invertAuction) {

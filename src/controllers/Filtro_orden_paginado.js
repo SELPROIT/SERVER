@@ -18,9 +18,9 @@ const sortAuctions = async (sort, auctions) => {
         (b?.name || '').localeCompare(a?.name || '')
       );
     case 'raitingAsc':
-      return allAuctions.sort((a, b) => a.rating - b.rating);
-    case 'raitingDesc':
       return allAuctions.sort((a, b) => b.rating - a.rating);
+    case 'raitingDesc':
+      return allAuctions.sort((a, b) => a.rating - b.rating);
     case 'ascPrice':
       return allAuctions.sort((a, b) => a.price - b.price);
     case 'descPrice':
@@ -44,27 +44,22 @@ const getAuByType = async (type = 'AU', auctions) => {
   }
 };
 
-const getAuByCategoty = async (category, auctions) => {
-  for (let i = 0; i < auctions.length; i++) {
-    if(auctions.category_id === category){
-      return auctions[i];
-    }
-  }
+const getAuByCategory = (category, auctions) => {
+  console.log("en el getAuByCategory. Las auctions: " + auctions + "La categoría " + category);
+  return auctions.filter(auction => auction.category_id === category);
 }
 
-const getAuBySubCategoty = async (subCategory, auctions) => {
-  for (let i = 0; i < auctions.length; i++) {
-    if(auctions.sub_category_id === subCategory){
-      return auctions[i];
-    }
-  }
+const getAuBySubCategory = (subCategory, auctions) => {
+  console.log("en el getAuBySubCategory. Las auctions: " + auctions + "La subcategoría " + subCategory);
+  return auctions.filter(auction => auction.sub_category_id === subCategory);
 }
+
 
 
 module.exports = {
   paginateAu,
   sortAuctions,
   getAuByType,
-  getAuByCategoty,
-  getAuBySubCategoty
+  getAuByCategory,
+  getAuBySubCategory
 }
