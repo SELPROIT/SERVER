@@ -95,10 +95,6 @@ module.exports = (sequelize) => {
 			type: DataTypes.ARRAY(DataTypes.JSONB), //Array de objetos sujeto a cambios
 			allowNull: true,
 		},
-		// favorites: {
-		// 	type: DataTypes.ARRAY(DataTypes.JSONB),
-		// 	allowNull: true,
-		// },
 		deleteFlag: {
 			// no "delete" porque es palabra reservada.
 			type: DataTypes.BOOLEAN,

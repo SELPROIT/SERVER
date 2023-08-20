@@ -10,8 +10,8 @@ async function delete_auction_handler(req, res) {
         if (!validateUUID(auction_id)) throw new Error("Invalid id")
 
         const response = await delete_auction(auction_id);
-        if (!response) throw new Error("There was a problem erasing this auction")
-        res.status(200).json(responseObj("Auction deleted successfully", response));
+        if (!response[0]) throw new Error("There was a problem erasing this auction")
+        res.status(200).json(responseObj("Auction deleted successfully", response[0]));
 
     } catch (error) {
         if (error.message === 'Missing data') {

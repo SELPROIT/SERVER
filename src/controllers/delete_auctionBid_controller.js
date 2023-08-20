@@ -1,20 +1,21 @@
-const { Product } = require('../db');
+const { Auction_bid } = require('../db');
 
-const delete_product = async (id) => {
+const delete_auctionBid = async (id) => {
 
-    const erase = await Product.update(        
+    const erase = await Auction_bid.update(
         { deleteFlag: true },
         {
             where: {
                 id: id,
                 deleteFlag: false
             }
-        });
+        }
+    );
 
     return erase
 
 }
 
 module.exports = {
-    delete_product,
+    delete_auctionBid,
 }
