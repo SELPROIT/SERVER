@@ -3,13 +3,13 @@ const { responseObj } = require('./response');
 
 async function delete_product_handler(req, res) {
     try {
-        const { id } = req.query
+        const { product_id } = req.query
 
-        if (!id) throw new Error("Missing data")
+        if (!product_id) throw new Error("Missing data")
 
-        const response = await delete_product(id);
-        if (!response) throw new Error("There was a problem erasing this product")
-        res.status(200).json(responseObj("Product deleted successfully", response));
+        const response = await delete_product(product_id);
+        if (!response[0]) throw new Error("There was a problem erasing this product")
+        res.status(200).json(responseObj("Product deleted successfully", response[0]));
 
     } catch (error) {
         if (error.message === 'Missing data') {

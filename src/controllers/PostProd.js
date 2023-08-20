@@ -37,6 +37,8 @@ const postProductC = async ({
 		product.id = `${ref_subCategory}${newID}`;
 	}
 
+	const foundRef = await Sub_category.findByPk(ref_subCategory)
+
 	if (foundRef.id) {
 		const newProd = await Product.create(product);
 		await newProd.setSub_category(foundRef);

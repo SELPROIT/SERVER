@@ -11,8 +11,8 @@ async function delete_invertAuction_handler(req, res) {
         if (!validateUUID(invertAuction_id)) throw new Error("Invalid id")
 
         const response = await delete_invertAuction(invertAuction_id);
-        if (!response) throw new Error("There was a problem erasing this invert auction")
-        res.status(200).json(responseObj("Invert auction deleted successfully", response));
+        if (!response[0]) throw new Error("There was a problem erasing this invert auction")
+        res.status(200).json(responseObj("Invert auction deleted successfully", response[0]));
 
     } catch (error) {
         if (error.message === 'Missing data') {
