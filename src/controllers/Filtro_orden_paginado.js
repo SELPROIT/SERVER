@@ -4,23 +4,33 @@ const paginateAu = (auctions, page, pageSize) => {
   return auctions.slice(startIndex, endIndex);
 }; 
 
-const sortAuByName = async (sort = 'asc', auctions) => {
-  const allAuctions = await auctions
-  const sortedAuctions = allAuctions.slice().sort((a, b) => {
-    let nameA = a.product_name ? a.product_name.toLowerCase() : '';
-    let nameB = b.product_name ? b.product_name.toLowerCase() : '';
+const sortAuctions = async (sort, auctions) => {
+  const allAuctions = await auctions.slice(); // Hacer una copia del array para no modificar el original
+  console.log(allAuctions);
+  // let nameOfProduct = allAuctions.product_name ? allAuctions.product_name.toLowerCase() : '';
 
-
-    if (sort === 'asc') {
-      return nameA.localeCompare(nameB);
-    } else if (sort === 'des') {
-      return nameB.localeCompare(nameA);
-    } else {
+  switch (sort) {
+    case 'asc':
+      return allAuctions.sort((a, b) =>
+        (a?.product_name || '').localeCompare(b?.dataValues?.product_name || '')
+      );
+    case 'des':
+      return allAuctions.sort((a, b) =>
+        (b?.product_name || '').localeCompare(a?.dataValues?.product_name || '')
+      );
+    case 'raitingAsc':
+      return allAuctions.sort((a, b) => a.rating - b.rating);
+    case 'raitingDesc':
+      return allAuctions.sort((a, b) => b.rating - a.rating);
+    case 'ascPrice':
+      return allAuctions.sort((a, b) => a.price - b.price);
+    case 'descPrice':
+      return allAuctions.sort((a, b) => b.price - a.price);
+    default:
       throw new Error('Invalid sort order');
-    }
-  });
-  return sortedAuctions;
+  }
 };
+
 
 const getAuByType = async (type = 'AU', auctions) => {
   const allAuctions = await auctions;
@@ -37,6 +47,6 @@ const getAuByType = async (type = 'AU', auctions) => {
 
 module.exports = {
   paginateAu,
-  sortAuByName,
-  getAuByType,
+  sortAuctions,
+  getAuByType
 }
