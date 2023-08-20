@@ -6,17 +6,16 @@ const paginateAu = (auctions, page, pageSize) => {
 
 const sortAuctions = async (sort, auctions) => {
   const allAuctions = await auctions.slice(); // Hacer una copia del array para no modificar el original
-  console.log(allAuctions);
-  // let nameOfProduct = allAuctions.product_name ? allAuctions.product_name.toLowerCase() : '';
+ 
 
   switch (sort) {
     case 'asc':
       return allAuctions.sort((a, b) =>
-        (a?.product_name || '').localeCompare(b?.dataValues?.product_name || '')
+        (a?.name || '').localeCompare(b?.name || '')
       );
     case 'des':
       return allAuctions.sort((a, b) =>
-        (b?.product_name || '').localeCompare(a?.dataValues?.product_name || '')
+        (b?.name || '').localeCompare(a?.name || '')
       );
     case 'raitingAsc':
       return allAuctions.sort((a, b) => a.rating - b.rating);
@@ -45,8 +44,27 @@ const getAuByType = async (type = 'AU', auctions) => {
   }
 };
 
+const getAuByCategoty = async (category, auctions) => {
+  for (let i = 0; i < auctions.length; i++) {
+    if(auctions.category_id === category){
+      return auctions[i];
+    }
+  }
+}
+
+const getAuBySubCategoty = async (subCategory, auctions) => {
+  for (let i = 0; i < auctions.length; i++) {
+    if(auctions.sub_category_id === subCategory){
+      return auctions[i];
+    }
+  }
+}
+
+
 module.exports = {
   paginateAu,
   sortAuctions,
-  getAuByType
+  getAuByType,
+  getAuByCategoty,
+  getAuBySubCategoty
 }
