@@ -1,22 +1,19 @@
+// Función para paginar un array de subastas
 const paginateAu = (auctions, page, pageSize) => {
   const startIndex = (page - 1) * pageSize;
   const endIndex = page * pageSize;
   return auctions.slice(startIndex, endIndex);
-}; 
+};
 
-const sortAuctions = async (sort, auctions) => {
-  const allAuctions = await auctions.slice(); // Hacer una copia del array para no modificar el original
- 
+// Función para ordenar las subastas
+const sortAuctions = (sort, auctions) => {
+  const allAuctions = auctions.slice(); // Copia del array para no modificar el original
 
   switch (sort) {
     case 'asc':
-      return allAuctions.sort((a, b) =>
-        (a?.name || '').localeCompare(b?.name || '')
-      );
-    case 'des':
-      return allAuctions.sort((a, b) =>
-        (b?.name || '').localeCompare(a?.name || '')
-      );
+      return allAuctions.sort((a, b) => (a?.name || '').localeCompare(b?.name || ''));
+    case 'desc':
+      return allAuctions.sort((a, b) => (b?.name || '').localeCompare(a?.name || ''));
     case 'raitingAsc':
       return allAuctions.sort((a, b) => b.rating - a.rating);
     case 'raitingDesc':
@@ -30,36 +27,43 @@ const sortAuctions = async (sort, auctions) => {
   }
 };
 
+const filterByPrice = (price, auctions) => {
+  
+  console.log("Precio " + price + " auctions " + auctions);
 
-const getAuByType = async (type = 'AU', auctions) => {
-  const allAuctions = await auctions;
-  if (type === 'AU') {
-    const filteredAuctions = allAuctions.filter((a) =>
-      a.type === 'AU');
-    return filteredAuctions;
-  } else if (type === 'IA') {
-    const filteredAuctions = allAuctions.filter((a) =>
-      a.type === 'IA');
-    return filteredAuctions;
+  if(auctions.base_price >= price){
+    const difPrice = auctions.base_price - price;
+
+    const auctionsPrice = auctions.filter(auction => auction.base_price >= difPrice);
   }
+  // const auctionsPrice = auctions.filter(auction => auction.base_price >= price && auction.base_price <= auction.base_price + difPrice)
+    
+  if(!auctionsPrice) return auctions;
+  else return auctionsPrice;
 };
 
+
+// Función para filtrar subastas por tipo (AU o IA)
+const getAuByType = (type, auctions) => {
+  return auctions.filter(auction => auction.type === type);
+};
+
+// Función para filtrar subastas por categoría
 const getAuByCategory = (category, auctions) => {
-  console.log("en el getAuByCategory. Las auctions: " + auctions + "La categoría " + category);
   return auctions.filter(auction => auction.category_id === category);
-}
+};
 
+// Función para filtrar subastas por subcategoría
 const getAuBySubCategory = (subCategory, auctions) => {
-  console.log("en el getAuBySubCategory. Las auctions: " + auctions + "La subcategoría " + subCategory);
   return auctions.filter(auction => auction.sub_category_id === subCategory);
-}
+};
 
-
-
+// Exportar todas las funciones
 module.exports = {
   paginateAu,
   sortAuctions,
   getAuByType,
   getAuByCategory,
-  getAuBySubCategory
-}
+  getAuBySubCategory, 
+  filterByPrice
+};
