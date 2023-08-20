@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
 		},
 		company_name: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		supplier: {
 			type: DataTypes.BOOLEAN,

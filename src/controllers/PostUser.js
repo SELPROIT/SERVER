@@ -3,25 +3,42 @@ const bcrypt = require('bcrypt');
 const { userCloudinaryConfig } = require('../utils/userCloudinaryConfig');
 
 const postUser = async (newUser) => {
-  // const image = await userCloudinaryConfig('', newUser.image ? newUser.image : '');
-  const hashedPassword = await bcrypt.hash(newUser.password, 10);
+  const {
+    name,
+    num_ident,
+    user_name,
+    password,
+    company_name,
+    RUT,
+    sector,
+    CIIU,
+    phone,
+    email,
+    id_subcat,
+    adress,
+    RUT_image,
+    commerce_chamber,
+    legal_ident,
+    commercial_references,
+  } = newUser;
 
-  if (newUser.RUT) {
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  if (RUT) {
     const user = await User.create({
-      name: newUser.name,
-      // image: image,
-      num_ident: newUser.num_ident,
-      user_name: newUser.user_name,
+      name,
+      num_ident,
+      user_name,
       password: hashedPassword,
-      company_name: newUser.company_name,
+      company_name,
       supplier: false,
-      RUT: newUser.RUT,
-      sector: newUser.sector,
-      CIIU: newUser.CIIU,
-      phone: newUser.phone,
-      email: newUser.email,
-      id_subcat: newUser.id_subcat,
-      adress: newUser.adress,
+      RUT,
+      sector,
+      CIIU,
+      phone,
+      email,
+      id_subcat,
+      adress,
       interaction_history: [],
       offers_history: [],
       win_history: [],
@@ -31,28 +48,29 @@ const postUser = async (newUser) => {
     });
     return user;
   }
-  const RUT_image = await userCloudinaryConfig(null, newUser.RUT_image);
-  const commerce_chamber = await userCloudinaryConfig(null, newUser.commerce_chamber);
-  const legal_ident = await userCloudinaryConfig(null, newUser.legal_ident);
-  const commercial_references = await userCloudinaryConfig(null, newUser.commercial_references);
+
+  const RUTImage = await userCloudinaryConfig(null, RUT_image);
+  const commerceChamber = await userCloudinaryConfig(null, commerce_chamber);
+  const legalIdent = await userCloudinaryConfig(null, legal_ident);
+  const commercialReferences = await userCloudinaryConfig(null, commercial_references);
+
   const provedor = await User.create({
-    name: newUser.name,
-    // image: image,
-    num_ident: newUser.num_ident,
-    user_name: newUser.user_name,
+    name,
+    num_ident,
+    user_name,
     password: hashedPassword,
-    company_name: newUser.company_name,
+    company_name,
     supplier: true,
-    RUT_image: RUT_image, // result.secure_url,
-    commerce_chamber: commerce_chamber, //
-    legal_ident: legal_ident, //
-    commercial_references: commercial_references, //
-    sector: newUser.sector,
-    CIIU: newUser.CIIU,
-    phone: newUser.phone,
-    email: newUser.email,
-    id_subcat: newUser.id_subcat,
-    adress: newUser.adress,
+    RUT_image: RUTImage,
+    commerce_chamber: commerceChamber,
+    legal_ident: legalIdent,
+    commercial_references: commercialReferences,
+    sector,
+    CIIU,
+    phone,
+    email,
+    id_subcat,
+    adress,
     interaction_history: [],
     offers_history: [],
     win_history: [],
@@ -60,6 +78,7 @@ const postUser = async (newUser) => {
     favorites: [],
     deleteFlag: false,
   });
+
   return provedor;
 };
 
