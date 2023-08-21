@@ -1,4 +1,4 @@
-const { create_subCategory } = require('../controllers/post_subCategory_controller');
+const { create_subCategory } = require('../controllers/post_sub_cat_controller');
 const { responseObj } = require('./response');
 
 async function post_subCategoty_handler(req, res) {

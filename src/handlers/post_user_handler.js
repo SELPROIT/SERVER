@@ -1,6 +1,6 @@
-const {postUser} = require('../controllers/PostUser');
-const { register } = require('../controllers/authController');
-const { responseObj } = require('../handlers/response');
+const { postUser } = require('../controllers/post_user_controller');
+const { register } = require('../controllers/auth_controller');
+const { responseObj } = require('./response');
 
 const toPostUser = async (req, res) => {
   try {
@@ -23,7 +23,7 @@ const toPostUser = async (req, res) => {
       adress,
     } = req.body;
 
-	const files = req.files
+    const files = req.files
 
     const registrationResult = await register(user_name, password);
 
@@ -48,7 +48,7 @@ const toPostUser = async (req, res) => {
       email,
       id_subcat,
       adress,
-	  files
+      files
     });
 
     res.status(200).json(responseObj('User created successfully', newUser));

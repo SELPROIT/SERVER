@@ -1,4 +1,4 @@
-const { postProductC } = require("../controllers/PostProd");
+const { postProductC } = require("../controllers/post_prod_controller");
 const { responseObj } = require("./response");
 
 const createdProd = async (req, res) => {

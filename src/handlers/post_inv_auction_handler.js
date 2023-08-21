@@ -1,4 +1,4 @@
-const { create_invert_auction } = require('../controllers/post_invertAuction_controller');
+const { create_invert_auction } = require('../controllers/post_inv_auction_controller');
 const { responseObj } = require('./response');
 
 async function post_invert_auction_handler(req, res) {

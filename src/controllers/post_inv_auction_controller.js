@@ -2,9 +2,7 @@ const { Invert_auction, Product } = require('../db');
 
 const create_invert_auction = async (product_id, base_price, target_quantity, total, close_date) => {
     try {
-        const product = await Product.findByPk(product_id, {
-            include: Invert_auction,
-        });
+        const product = await Product.findByPk(product_id);
 
         if (!product) {
             throw new Error('Product not found');
@@ -14,18 +12,19 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
             throw new Error('An auction already exists for this product');
         }
 
-        const new_invert_auction = await Invert_auction.create({
+        const { name } = product;
+
+        const new_invert_auction = await product.createInvert_auction({
             base_price,
             target_quantity,
             total,
             close_date,
             invert: true,
-            product_name: product.name,
+            product_name: name,
             type: 'IA',
         });
 
-        await product.setInvert_auction(new_invert_auction);
-        return product;
+        return new_invert_auction;
     } catch (error) {
         throw new Error('Error creating invert auction.');
     }
