@@ -10,7 +10,7 @@ const get_invert_auction = async () => {
       const sub_category = await Sub_category.findByPk(product.SubCategoryId)
       const category = await Category.findByPk(sub_category.CategoryId)
 
-      if (authorize === true) {
+      // if (authorize === true) {
         const newformat = {
           id,
           product_id: ProductId,
@@ -26,10 +26,10 @@ const get_invert_auction = async () => {
           total,
           base_price,
           close_date,
-          invert,
+          invert
         }
         return newformat
-      }
+      // }
 
 })
   )

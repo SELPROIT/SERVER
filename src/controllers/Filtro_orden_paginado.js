@@ -28,18 +28,27 @@ const sortAuctions = (sort, auctions) => {
 };
 
 const filterByPrice = (price, auctions) => {
+  // console.log(auctions);
+  // if(auctions.base_price >= price){
+  //   return auctions.filter(auction => {
+  //     const difPrice = auction.base_price - price;
+  //     return auction.base_price >= difPrice && auction.base_price <= difPrice;
+  //   });
+  // }
+  // console.log(auctions);
+
+  if(!auctions) throw new Error ("Not auctions were found.");
+
+  if(price === "morePrice"){
   
-  console.log("Precio " + price + " auctions " + auctions);
-
-  if(auctions.base_price >= price){
-    const difPrice = auctions.base_price - price;
-
-    const auctionsPrice = auctions.filter(auction => auction.base_price >= difPrice);
-  }
-  // const auctionsPrice = auctions.filter(auction => auction.base_price >= price && auction.base_price <= auction.base_price + difPrice)
+    return auctions.filter(auction => auction.base_price >= 1000);
     
-  if(!auctionsPrice) return auctions;
-  else return auctionsPrice;
+  }
+  if(price === "lessPrice"){
+    
+    return auctions.filter(auction => auction.base_price <= 1000);
+  }
+
 };
 
 
