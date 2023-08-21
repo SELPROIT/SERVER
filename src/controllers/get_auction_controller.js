@@ -7,18 +7,22 @@ const get_auction = async () => {
     auction.map(async (auction) => {
       const { id, base_price, close_date, ProductId, authorize } = auction
       const product = await Product.findByPk(ProductId)
-      if (authorize === true) {
+      // if (authorize === true) {
         const newformat = {
           id,
           product_id: ProductId,
+          image: product.image,
           name: product.name,
+          brand: product.brand,
           description: product.description,
           brand: product.brand,
           base_price,
-          close_date
+          total: product.stock,
+          close_date,
+          rating: product.rating,
         }
         return newformat
-      }
+      // }
 
     })
   )
