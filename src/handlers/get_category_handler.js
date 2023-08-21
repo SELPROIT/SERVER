@@ -1,6 +1,4 @@
-const { getAllCategory } = require('../controllers/getCategory')
-const responseObj = require('./response.js')
-
+const { getAllCategory } = require('../controllers/get_category_controller');
 
 async function toCategory(req, res) {
     try {
@@ -13,5 +11,5 @@ async function toCategory(req, res) {
 }
 
 module.exports = {
-    toCategory,
+    toCategory
 };

@@ -1,58 +1,90 @@
-const {
-  getAuByType,
-  sortAuctions,
-  paginateAu,
-  getAuBySubCategory,
-  getAuByCategory,
+const {  sortAuctions,
   filterByPrice,
-} = require("../controllers/Filtro_orden_paginado");
+  paginateAu,
+  getAuByType,
+  getAuByCategory,
+  getAuBySubCategory} = require("../controllers/aux_filter_sort_page");
 const { get_auction } = require("../controllers/get_auction_controller");
-const {
-  get_invert_auction,
-} = require("../controllers/get_invertAuction_controller");
+const { get_invert_auction} = require("../controllers/get_invertAuction_controller");
 const { productByName } = require("../controllers/searchProductByName");
-const { responseObj } = require("./response");
 
 async function get_all_auctions_handler(req, res) {
-  const { name, sort, type, page, pageSize, category, subCategory, price } =
-    req.query;
+  const { name, order, filter, page, pageSize, category, subCategory, type, price } = req.query;
+
   try {
     const response = await get_auction();
     const response2 = await get_invert_auction();
 
     let finalResponse = [...response, ...response2];
-    finalResponse = finalResponse.sort(()=> Math.random() - 0.5)
+    
     if (!finalResponse) res.status(400).json({ message: error.message });
 
     if (name) {
       const auctions = await productByName(name);
 
       if (!auctions) {
-        res.status(404).json(responseObj("No se ha encontrado ese producto."));
+        res.status(404).json(("No se ha encontrado ese producto."));
       }
 
       const totalAu = auctions.length;
       const paginatedAu = await paginateAu(auctions, page, pageSize);
 
       return res.status(200).json(
-        responseObj("Data acquire successfully", {
+        ("Data acquire successfully", {
           totalAu: totalAu,
-          paginatedAu,
+          paginatedAu
         })
       );
     }
+    if (filter) {
 
+      const setFilters = filterByPrice(filter, finalResponse);
+
+      if (!setFilters) {
+        return res
+          .status(404)
+          .json(
+            ("No se una subasta cerca de ese rango de precios.")
+          );
+      }
+
+      const totalAu = setFilters.length;
+      const paginatedAu = await paginateAu(setFilters, page, pageSize);
+
+      return res.status(200).json(
+        ("Data acquired successfully", {
+          totalAu,
+          paginatedAu
+        })
+      );
+
+    }
+    if (order) {
+     
+      const auctions = await sortAuctions(order, finalResponse);
+
+      if (!auctions) {
+        res.status(404).json(("No se ha encontrado ese producto."));
+      }
+
+      const totalAu = auctions.length;
+      const paginatedAu = await paginateAu(auctions, page, pageSize);
+
+      return res.status(200).json(
+        ("Data acquire successfully", {
+          totalAu,
+          paginatedAu
+        })
+      );
+    }
     if (price) {
-
-      console.log("Price: " + price + "final response " + finalResponse);
-
       const filterPrice = filterByPrice(price, finalResponse);
 
       if (!filterPrice) {
         return res
           .status(404)
           .json(
-            responseObj("No se una subasta cerca de ese rango de precios.")
+            ("No se una subasta cerca de ese rango de precios.")
           );
       }
 
@@ -60,7 +92,7 @@ async function get_all_auctions_handler(req, res) {
       const paginatedAu = await paginateAu(filterPrice, page, pageSize);
 
       return res.status(200).json(
-        responseObj("Data acquired successfully", {
+        ("Data acquired successfully", {
           totalAu,
           paginatedAu
         })
@@ -73,14 +105,14 @@ async function get_all_auctions_handler(req, res) {
       const auctions = await getAuByCategory(category, finalResponse);
 
       if (!auctions) {
-        res.status(404).json(responseObj("No se ha encontrado ese producto."));
+        res.status(404).json(("No se ha encontrado ese producto."));
       }
 
       const totalAu = auctions.length;
       const paginatedAu = await paginateAu(auctions, page, pageSize);
 
       return res.status(200).json(
-        responseObj("Data acquire successfully", {
+        ("Data acquire successfully", {
           totalAu: totalAu,
           paginatedAu,
         })
@@ -93,19 +125,17 @@ async function get_all_auctions_handler(req, res) {
       const auctions = await getAuBySubCategory(subCategory, finalResponse);
 
       if (!auctions) {
-        res.status(404).json(responseObj("No se ha encontrado ese producto."));
+        res.status(404).json(("No se ha encontrado ese producto."));
       }
       const totalAu = auctions.length;
       const paginatedAu = await paginateAu(auctions, page, pageSize);
       return res.status(200).json(
-        responseObj("Data acquire successfully", {
+        ("Data acquire successfully", {
           totalAu: totalAu,
           paginatedAu,
         })
       );
     }
-
-    if (!finalResponse.length) throw new Error("Empty auctions");
     if (type) {
       console.log("type", type);
       if (type === "AU" || type === "IA") {
@@ -117,31 +147,29 @@ async function get_all_auctions_handler(req, res) {
         throw new Error("Invalid type");
       }
     }
-    if (sort) {
-      finalResponse = await sortAuctions(sort, finalResponse);
-    }
 
     const totalAu = finalResponse.length;
     const paginatedAu = await paginateAu(finalResponse, page, pageSize);
     return res
       .status(200)
       .json(
-        responseObj("Data acquire successfully", {
+        ("Data acquire successfully", {
           totalAu: totalAu,
-          paginatedAu,
+          paginatedAu
         })
       );
   } catch (error) {
     if (error.message === "Missing data") {
-      return res.status(400).json(responseObj({ error: error.message }, {}));
+      return res.status(400).json(({ error: error.message }, {}));
     }
-    res.status(500).json(responseObj({ error: error.message }));
+    res.status(500).json(({ error: error.message }));
   }
 }
 
 module.exports = {
-  get_all_auctions_handler,
+  get_all_auctions_handler
 };
+
 
 // async function get_all_auctions_handler(req, res) {
 //   const data = req.query; // Almacena los valores de la consulta en la variable "data"
