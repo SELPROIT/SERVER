@@ -1,4 +1,4 @@
-const postUserAdmin = require('../controllers/postUserAdmin');
+const postUserAdmin = require('../controllers/post_admin_controller');
 
 const createUserAdmin = async (req, res) => {
     try {

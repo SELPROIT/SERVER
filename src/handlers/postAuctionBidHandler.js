@@ -1,4 +1,4 @@
-const { createAuctionBid } = require("../controllers/postAuctionBidController");
+const { createAuctionBid } = require("../controllers/post_bid_controller");
 const {responseObj} = require("./response");
 const express = require("express");
 const server = express();

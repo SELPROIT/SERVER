@@ -1,4 +1,4 @@
-const {postUser} = require('../controllers/PostUser');
+const {postUser} = require('../controllers/post_user_controller');
 const { register } = require('../controllers/auth_controller');
 const { responseObj } = require('../handlers/response');
 
