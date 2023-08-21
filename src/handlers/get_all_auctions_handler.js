@@ -21,6 +21,7 @@ async function get_all_auctions_handler(req, res) {
     const response2 = await get_invert_auction();
 
     let finalResponse = [...response, ...response2];
+    finalResponse = finalResponse.sort(()=> Math.random() - 0.5)
     if (!finalResponse) res.status(400).json({ message: error.message });
 
     if (name) {
