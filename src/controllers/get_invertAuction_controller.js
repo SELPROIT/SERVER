@@ -17,6 +17,8 @@ const get_invert_auction = async () => {
           sub_category_id: sub_category.id,
           category_id: category.id,
           name: product.name,
+          rating: product.rating,
+          price: product.price,
           image: product.image,
           description: product.description,
           brand: product.brand,
@@ -24,12 +26,12 @@ const get_invert_auction = async () => {
           total,
           base_price,
           close_date,
-          invert,
+          invert
         }
         return newformat
       }
 
-    })
+})
   )
 
   return format
