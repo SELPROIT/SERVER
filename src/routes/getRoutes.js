@@ -1,6 +1,6 @@
-const { toCategory } = require('../handlers/catHandler');
-const { toSubCategory } = require('../handlers/subCatHandler');
-const { getProdHandler } = require('../handlers/getAllProdH');
+const { toCategory } = require('../handlers/get_category_handler');
+const { toSubCategory } = require('../handlers/get_sub_category_handler');
+const { getProdHandler } = require('../handlers/get_products_handler');
 const { getAllUsers } = require('../handlers/getUserHandler');
 const { getAllAuctionBids } = require('../handlers/getAuctionBidHandler');
 const { getUserAdmin } = require('../handlers/getUserAdm');
