@@ -24,6 +24,7 @@ const get_auction = async () => {
           total: product.stock,
           close_date,
           rating: product.rating,
+          type: "AU"
         }
         return newformat
       // }

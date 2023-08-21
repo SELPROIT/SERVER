@@ -26,7 +26,8 @@ const get_invert_auction = async () => {
           total,
           base_price,
           close_date,
-          invert
+          invert,
+          type: "IA"
         }
         return newformat
       // }
