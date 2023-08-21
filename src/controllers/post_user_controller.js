@@ -16,7 +16,7 @@ const postUser = async (newUser) => {
 		email,
 		id_subcat,
 		adress,
-		files,
+		files = [],
 		RUT_image,
 		commerce_chamber,
 		legal_ident,
@@ -25,55 +25,33 @@ const postUser = async (newUser) => {
 
 	const hashedPassword = await bcrypt.hash(password, 10);
 
-	if (!RUT) {
-		const user = await User.create({
-			name,
-			num_ident,
-			user_name,
-			password: hashedPassword,
-			company_name,
-			supplier: false,
-			RUT,
-			sector,
-			CIIU,
-			phone,
-			email,
-			id_subcat,
-			adress,
-			interaction_history: [],
-			offers_history: [],
-			win_history: [],
-			curr_auc: [],
-			favorites: [],
-			deleteFlag: false,
-		});
-		return user;
-	}
+	const fileObjects = [...files];
+
+	if (RUT_image)
+		fileObjects.push({ name: 'RUT_image', value: RUT_image });
+	if (commerce_chamber)
+		fileObjects.push({ name: 'commerce_chamber', value: commerce_chamber });
+	if (legal_ident)
+		fileObjects.push({ name: 'legal_ident', value: legal_ident });
+	if (commercial_references)
+		fileObjects.push({ name: 'commercial_references', value: commercial_references });
 
 	const imagesURL = await Promise.all(
-		files.map(async (file) => {
-			const URL = await userCloudinaryConfig(file.buffer)
-			// const URL = await userCloudinaryConfig(file.buffer || file)
+		fileObjects.map(async (file) => {
+			const URL = await userCloudinaryConfig(file.value)
 			const image = {
-				name: file.fieldname,
+				name: file.name,
 				URL: URL
 			}
 			return image
 		})
 	)
 
-	//   const RUTImage = await userCloudinaryConfig(null, RUT_image);
-	//   const commerceChamber = await userCloudinaryConfig(null, commerce_chamber);
-	//   const legalIdent = await userCloudinaryConfig(null, legal_ident);
-	//   const commercialReferences = await userCloudinaryConfig(null, commercial_references);
-
-	image = imagesURL.filter((image) => image.name === "image")[0]?.URL || "";
-	RUT_image = imagesURL.filter((image) => image.name === "RUT_image")[0]?.URL || "";
-	commerce_chamber = imagesURL.filter((image) => image.name === "commerce_chamber")[0]?.URL || "";
-	legal_ident = imagesURL.filter((image) => image.name === "legal_ident")[0]?.URL || "";
-	commercial_references = imagesURL.filter((image) => image.name === "commercial_references")[0]?.URL || "";
-
-	console.log(image[0].URL);
+	let image = imagesURL.filter((image) => image.name === "image")[0]?.URL || "";
+	let RUT_image_url = imagesURL.filter((image) => image.name === "RUT_image")[0]?.URL || "";
+	let commerce_chamber_url = imagesURL.filter((image) => image.name === "commerce_chamber")[0]?.URL || "";
+	let legal_ident_url = imagesURL.filter((image) => image.name === "legal_ident")[0]?.URL || "";
+	let commercial_references_url = imagesURL.filter((image) => image.name === "commercial_references")[0]?.URL || "";
 
 	const provedor = await User.create({
 		name,
@@ -84,10 +62,10 @@ const postUser = async (newUser) => {
 		company_name,
 		supplier: true,
 		RUT,
-		RUT_image,
-		commerce_chamber,
-		legal_ident,
-		commercial_references,
+		RUT_image: RUT_image_url,
+		commerce_chamber: commerce_chamber_url,
+		legal_ident: legal_ident_url,
+		commercial_references: commercial_references_url,
 		sector,
 		CIIU,
 		phone,
@@ -101,10 +79,10 @@ const postUser = async (newUser) => {
 		favorites: [],
 		deleteFlag: false,
 	});
-
 	return provedor;
 };
 
 module.exports = {
 	postUser
 };
+
