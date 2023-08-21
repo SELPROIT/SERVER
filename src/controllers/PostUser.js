@@ -17,10 +17,10 @@ const postUser = async (newUser) => {
 		id_subcat,
 		adress,
 		files,
-		// RUT_image,
-		// commerce_chamber,
-		// legal_ident,
-		// commercial_references,
+		RUT_image,
+		commerce_chamber,
+		legal_ident,
+		commercial_references,
 	} = newUser;
 
 	const hashedPassword = await bcrypt.hash(password, 10);
@@ -66,11 +66,11 @@ const postUser = async (newUser) => {
 	//   const legalIdent = await userCloudinaryConfig(null, legal_ident);
 	//   const commercialReferences = await userCloudinaryConfig(null, commercial_references);
 
-	const image = imagesURL.filter((image) => image.name === "image")[0]?.URL || "";
-	const RUT_image = imagesURL.filter((image) => image.name === "RUT_image")[0]?.URL || "";
-	const commerce_chamber = imagesURL.filter((image) => image.name === "commerce_chamber")[0]?.URL || "";
-	const legal_ident = imagesURL.filter((image) => image.name === "legal_ident")[0]?.URL || "";
-	const commercial_references = imagesURL.filter((image) => image.name === "commercial_references")[0]?.URL || "";
+	image = imagesURL.filter((image) => image.name === "image")[0]?.URL || "";
+	RUT_image = imagesURL.filter((image) => image.name === "RUT_image")[0]?.URL || "";
+	commerce_chamber = imagesURL.filter((image) => image.name === "commerce_chamber")[0]?.URL || "";
+	legal_ident = imagesURL.filter((image) => image.name === "legal_ident")[0]?.URL || "";
+	commercial_references = imagesURL.filter((image) => image.name === "commercial_references")[0]?.URL || "";
 
 	console.log(image[0].URL);
 

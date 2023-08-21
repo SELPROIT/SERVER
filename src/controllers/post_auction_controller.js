@@ -9,14 +9,12 @@ const create_auction = async (product_id, base_price, close_date) => {
 
         const { name } = product;
 
-        const new_auction = await Auction.create({
+        const new_auction = await product.createAuction({
             base_price,
             close_date,
             product_name: name,
             type: 'AU',
         });
-
-        await product.addAuction(new_auction);
 
         return new_auction;
     } catch (error) {
@@ -27,3 +25,4 @@ const create_auction = async (product_id, base_price, close_date) => {
 module.exports = {
     create_auction,
 };
+

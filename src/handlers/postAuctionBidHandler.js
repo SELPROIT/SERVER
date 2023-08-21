@@ -12,7 +12,7 @@ const postAuction = async (req, res) => {
         if (!newBid) {
             res.status(404).json(responseObj('No se ha encontrado una subasta para esa puja.'));
         } else {
-            res.status(200).json(responseObj('Se ha pujado correctamente.')); 
+            res.send(responseObj('Se ha pujado correctamente.')); 
         }
     } catch (error) {
         res.status(400).json(responseObj(error.message));
