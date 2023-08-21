@@ -1,27 +1,27 @@
-const {Auction_bid, Auction, Invert_auction} = require ("../db");
+const { Auction_bid, Auction, Invert_auction } = require("../db");
 
 const createAuctionBid = async (auction_id, proposed_price, total, invert) => {
-     
+
     const newAuctionBid = await Auction_bid.create({
         proposed_price,
         total
     });
-        
-    if(invert){
+
+    if (invert) {
 
         let invertAuction = await Invert_auction.findByPk(auction_id);
-    
+
         if (!invertAuction) {
-           
+
             throw new Error(`No se encontró esa subasta inversa.`);
         }
-    
+
         await invertAuction.addAuction_bid(newAuctionBid);
-    
+
         return true;
     }
-    
-        
+
+
     let auction = await Auction.findByPk(auction_id); //busco por ID para confirmar que exista esa subasta
 
     if (!auction) {
