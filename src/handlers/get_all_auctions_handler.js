@@ -122,12 +122,14 @@ async function get_all_auctions_handler(req, res) {
 
     const totalAu = finalResponse.length;
     const paginatedAu = await paginateAu(finalResponse, page, pageSize);
-    return res.status(200).json(
-      responseObj("Data acquire successfully", {
-        totalAu: totalAu,
-        paginatedAu,
-      })
-    );
+    return res
+      .status(200)
+      .json(
+        responseObj("Data acquire successfully", {
+          totalAu: totalAu,
+          paginatedAu,
+        })
+      );
   } catch (error) {
     if (error.message === "Missing data") {
       return res.status(400).json(responseObj({ error: error.message }, {}));
@@ -135,6 +137,10 @@ async function get_all_auctions_handler(req, res) {
     res.status(500).json(responseObj({ error: error.message }));
   }
 }
+
+module.exports = {
+  get_all_auctions_handler,
+};
 
 // async function get_all_auctions_handler(req, res) {
 //   const data = req.query; // Almacena los valores de la consulta en la variable "data"
@@ -249,6 +255,6 @@ async function get_all_auctions_handler(req, res) {
 //   }
 // }
 
-module.exports = {
-  get_all_auctions_handler,
-};
+// module.exports = {
+//   get_all_auctions_handler,
+// };
