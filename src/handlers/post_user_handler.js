@@ -1,6 +1,6 @@
 const {postUser} = require('../controllers/post_user_controller');
 const { register } = require('../controllers/auth_controller');
-const { responseObj } = require('../handlers/response');
+const { responseObj } = require('./response');
 
 const toPostUser = async (req, res) => {
   try {
