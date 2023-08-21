@@ -52,3 +52,44 @@ const userCloudinaryConfig = async (imageBuffer, imageURL) => {
 };
 
 module.exports = { userCloudinaryConfig };
+
+// const urlValidator = require('valid-url');
+
+// const userCloudinaryConfig = async (imageInput) => {
+// 	cloudinary.config({
+// 		cloud_name: config.cloud_name,
+// 		api_key: config.api_key,
+// 		api_secret: config.api_secret,
+// 	});
+// 	try {
+// 		let result;
+
+// 		if (urlValidator.isUri(imageInput)) {
+// 			result = await cloudinary.uploader.upload(imageInput, {
+// 				folder: 'selpro/user-documents',
+// 			});
+// 			return result.secure_url;
+// 		} else {
+// 			return new Promise((resolve, reject) => {
+// 				const result = cloudinary.uploader.upload_stream(
+// 					{
+// 						folder: 'selpro/user-documents',
+// 						resource_type: 'auto',
+// 					},
+// 					(error, cloudinaryResult) => {
+// 						if (error) {
+// 							reject(error);
+// 						} else {
+// 							resolve(cloudinaryResult.secure_url);
+// 						}
+// 					}
+// 				);
+// 				const bufferStream = streamifier.createReadStream(imageInput);
+// 				bufferStream.pipe(result);
+// 			});
+// 		}
+// 	} catch (error) {
+// 		throw error;
+// 	}
+// };
+

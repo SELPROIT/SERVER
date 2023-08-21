@@ -53,6 +53,7 @@ const postUser = async (newUser) => {
 	const imagesURL = await Promise.all(
 		files.map(async (file) => {
 			const URL = await userCloudinaryConfig(file.buffer)
+			// const URL = await userCloudinaryConfig(file.buffer || file)
 			const image = {
 				name: file.fieldname,
 				URL: URL

@@ -29,7 +29,8 @@
     "pg": "^8.5.1",
     "sequelize": "^6.3.5",
     "streamifier": "^0.1.1",
-    "uuidv4": "^6.2.13"
+    "uuidv4": "^6.2.13",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "chai": "^4.2.0",
