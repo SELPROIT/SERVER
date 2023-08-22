@@ -10,7 +10,7 @@ const getAllAuctionBids = async (req, res) => {
         if (bids.length === 0) {
             res.status(404).json(responseObj('No se encontró ninguna puja para este producto.'));
         } else {
-            res.status(200).json(responseObj('Estas son las pujas de este producto.', shops)); 
+            res.status(200).json(responseObj('Estas son las pujas de este producto.', bids)); 
         }
     } catch (error) {
         res.status(400).json(responseObj(error.message));
