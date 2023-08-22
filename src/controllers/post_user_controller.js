@@ -23,7 +23,7 @@ const postUser = async (newUser) => {
 		commercial_references,
 	} = newUser;
 	
-	user_name = user_name.trim().toLowerCase(); //para que se guarde en minusculas siempre
+	// user_name = user_name.trim().toLowerCase(); //para que se guarde en minusculas siempre
 
 	const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -54,7 +54,7 @@ const postUser = async (newUser) => {
 	let commerce_chamber_url = imagesURL.filter((image) => image.name === "commerce_chamber")[0]?.URL || "";
 	let legal_ident_url = imagesURL.filter((image) => image.name === "legal_ident")[0]?.URL || "";
 	let commercial_references_url = imagesURL.filter((image) => image.name === "commercial_references")[0]?.URL || "";
-
+console.log('first', newUser)
 	const provedor = await User.create({
 		name,
 		num_ident,
