@@ -1,5 +1,5 @@
 const { delete_auction } = require('../controllers/delete_auction_controller');
-const { responseObj } = require('./response');
+const { responseObj } = require('../response');
 const { validate: validateUUID } = require('uuid');
 
 async function delete_auction_handler(req, res) {
