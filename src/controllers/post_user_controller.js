@@ -22,6 +22,8 @@ const postUser = async (newUser) => {
 		legal_ident,
 		commercial_references,
 	} = newUser;
+	
+	user_name = user_name.trim().toLowerCase(); //para que se guarde en minusculas siempre
 
 	const hashedPassword = await bcrypt.hash(password, 10);
 
