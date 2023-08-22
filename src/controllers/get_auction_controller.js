@@ -18,14 +18,11 @@ const get_auction = async () => {
         product_id: product.id,
         sub_category_id: sub_category.id,
         category_id: category.id,
+        image: product.image,
         name: product.name,
         price: product.price,
-        description: product.description,
-        brand: product.brand,
-        base_price,
-        total: product.stock,
+        base_price,  
         close_date,
-        rating: product.rating,
         type: "AU"
       };
       

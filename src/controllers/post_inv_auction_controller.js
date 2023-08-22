@@ -14,7 +14,7 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
 
         const { name } = product;
 
-        const new_invert_auction = await product.createInvert_auction({
+        const new_invert_auction = await Invert_auction.create({
             base_price,
             target_quantity,
             total,
@@ -22,6 +22,8 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
             invert: true,
             product_name: name,
             type: 'IA',
+        }).catch((error) => {
+            console.log('error', error)
         });
 
         return new_invert_auction;
