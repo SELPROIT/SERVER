@@ -4,7 +4,7 @@ const { Auction, Product, Category, Sub_category } = require('../db');
 const get_auction = async () => {
   
   const auctions = await Auction.findAll({
-    include: Product, // Include related Product
+    include: Product // Include related Product
   });
 
   const format = await Promise.all(
