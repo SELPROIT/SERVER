@@ -1,4 +1,4 @@
-const { auctionByName } = require('../../controllers/get/getAuctionByName');
+const { auctionByName } = require('../../controllers/get/get_auction_by_mame');
 const { get_auction } = require('../../controllers/get/get_auction_controller');
 
 

@@ -1,10 +1,14 @@
 const { Auction_bid } = require("../../db");
 
-const getAuctionBid = async () => {
-  
-  const auction_bids = await Auction_bid.findAll();
-  
-  return auction_bids;
+// Función que obtiene todas las ofertas de subastas utilizando promesas
+const getAuctionBid = () => {
+  return Auction_bid.findAll()
+    .then(auction_bids => {
+      return auction_bids;
+    })
+    .catch(error => {
+      throw error;
+    });
 };
 
 module.exports = {

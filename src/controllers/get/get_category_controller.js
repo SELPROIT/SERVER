@@ -1,11 +1,18 @@
 const { Category, Sub_category } = require('../../db');
 
-const getAllCategory = async () => {
-    const categories = await Category.findAll({
-        include: Sub_category // Include related Sub_categories
+// Función que obtiene todas las categorías y sus subcategorías relacionadas utilizando promesas
+const getAllCategory = () => {
+  return Category.findAll({
+    include: Sub_category // Incluir las subcategorías relacionadas
+  })
+    .then(categories => {
+      return categories;
+    })
+    .catch(error => {
+      throw error;
     });
+};
 
-    return categories;
-}
-
-module.exports = { getAllCategory };
+module.exports = {
+  getAllCategory,
+};

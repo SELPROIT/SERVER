@@ -1,4 +1,4 @@
-const { get_invertAuction_by_id } = require('../../controllers/get/get_invertAuctionById_controller');
+const { get_invertAuction_by_id } = require('../../controllers/get/get_invert_auction_byi_d_controller');
 const { validate: validateUUID } = require('uuid');
 
 async function get_invertAuctionById_handler(req, res) {

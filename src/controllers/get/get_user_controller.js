@@ -1,7 +1,9 @@
 const { User, Product } = require("../../db");
 
-const getUsers = async () => {
-  const users = await User.findAll({
+// Define la función que devuelve una promesa para obtener todos los usuarios
+const getUsers = () => {
+  // Retorna una promesa que resuelve la consulta de usuarios con productos relacionados
+  return User.findAll({
     attributes: { exclude: ['password'] },
     include: [
       {
@@ -10,10 +12,8 @@ const getUsers = async () => {
           attributes: []
         }
       }
-   ]
+    ]
   });
-
-  return users;
 };
 
 module.exports = {
