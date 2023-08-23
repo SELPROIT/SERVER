@@ -1,0 +1,14 @@
+const { User } = require('../../db');
+
+
+async function register(user_name, password) {
+    const existingUser = await User.findOne({ where: { user_name } });
+    if (existingUser) {
+        throw new Error('El nombre de usuario ya está en uso');
+    }
+}
+
+module.exports = { 
+    register 
+};
+
