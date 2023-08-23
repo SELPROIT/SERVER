@@ -1,6 +1,11 @@
 const { Auction_bid, Auction, Invert_auction } = require("../../db");
 
 const createAuctionBid = async (auction_id, proposed_price, total, invert) => {
+    
+    if(!auction_id || !proposed_price || !total || !invert) throw new Error ("Faltan completar campos.");
+    
+    //deleteFlag?
+
     const newAuctionBid = await Auction_bid.create({
         proposed_price,
         total
