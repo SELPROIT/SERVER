@@ -1,5 +1,5 @@
-const {getUsers} = require("../controllers/getUserController");
-const {responseObj} = require("./response")
+const {getUsers} = require("../../controllers/get/getUserController");
+
 
 const getAllUsers = async (req, res) => {
 
@@ -8,12 +8,12 @@ const getAllUsers = async (req, res) => {
         if(!users) res.status(400).json({ message: error.message });
         
         if (users.length === 0) {
-            res.status(404).json(responseObj('No se encontraron usuarios.'));
+            res.status(404).json(('No se encontraron usuarios.'));
         } else {
-            res.status(200).json(responseObj('Estos son los usuarios creados', users)); 
+            res.status(200).json(('Estos son los usuarios creados', users)); 
         }
     } catch (error) {
-        res.status(400).json(responseObj(error.message));
+        res.status(400).json((error.message));
     }
 };
 

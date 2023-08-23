@@ -1,5 +1,5 @@
-const { Product, Sub_category } = require('../db');
-const productCloudinaryConfig = require('../utils/productCloudinaryConfig');
+const { Product, Sub_category } = require('../../db');
+const productCloudinaryConfig = require('../../utils/productCloudinaryConfig');
 
 const postProductC = async ({
   name,

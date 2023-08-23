@@ -1,4 +1,4 @@
-const { Invert_auction, Product, Category, Sub_category } = require('../db');
+const { Invert_auction, Product, Category, Sub_category } = require('../../db');
 
 
 const get_invert_auction = async () => {

@@ -1,7 +1,7 @@
-const { put_auc_handler } = require('../handlers/put_auction_handler')
-const { put_inv_auc_handler } = require('../handlers/put_inv_auction_handler')
-const { put_prod_handler } = require('../handlers/put_prod_handler')
-const { put_user_handler } = require('../handlers/put_user_handler')
+const { put_auc_handler } = require('../handlers/put/put_auction_handler')
+const { put_inv_auc_handler } = require('../handlers/put/put_inv_auction_handler')
+const { put_prod_handler } = require('../handlers/put/put_prod_handler')
+const { put_user_handler } = require('../handlers/put/put_user_handler')
 
 
 const putRoutes = require('express').Router()

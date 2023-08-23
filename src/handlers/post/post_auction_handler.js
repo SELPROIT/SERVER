@@ -1,5 +1,4 @@
-const { create_auction } = require('../controllers/post_auction_controller');
-const { responseObj } = require('./response');
+const { create_auction } = require('../../controllers/post/post_auction_controller');
 
 async function post_auction_handler(req, res) {
     try {
@@ -10,12 +9,12 @@ async function post_auction_handler(req, res) {
 
         const response = await create_auction(product_id, base_price, close_date);
 
-        res.status(200).json(responseObj('Auction created successfully', response));
+        res.status(200).json(('Auction created successfully', response));
     } catch (error) {
         if (error.message === 'Missing required data') {
-            return res.status(400).json(responseObj(error.message));
+            return res.status(400).json((error.message));
         }
-        res.status(500).json(responseObj('Error creating auction'));
+        res.status(500).json(('Error creating auction'));
     }
 }
 

@@ -1,4 +1,4 @@
-const { User_admin } = require('../db');
+const { User_admin } = require('../../db');
 
 const getUsersAdmin = async () => {
     const usersAdmin = await User_admin.findAll();

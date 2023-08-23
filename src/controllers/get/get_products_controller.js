@@ -1,4 +1,4 @@
-const { Product, Sub_category, Auction, Invert_auction } = require('../db');
+const { Product, Sub_category, Auction, Invert_auction } = require('../../db');
 
 const getAllProd = async () => {
     const products = await Product.findAll({

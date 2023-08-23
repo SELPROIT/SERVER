@@ -1,4 +1,4 @@
-const { Auction_bid, Invert_auction, Auction } = require("../db");
+const { Auction_bid } = require("../../db");
 
 const getAuctionBid = async () => {
   

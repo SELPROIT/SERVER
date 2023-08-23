@@ -1,5 +1,4 @@
-const {getAuctionBid} = require("../controllers/getAuctionBidController");
-const {responseObj} = require("./response")
+const {getAuctionBid} = require("../../controllers/get/getAuctionBidController");
 
 const getAllAuctionBids = async (req, res) => {
 
@@ -8,12 +7,12 @@ const getAllAuctionBids = async (req, res) => {
         if(!bids) res.status(400).json({ message: error.message });
 
         if (bids.length === 0) {
-            res.status(404).json(responseObj('No se encontró ninguna puja para este producto.'));
+            res.status(404).json(('No se encontró ninguna puja para este producto.'));
         } else {
-            res.status(200).json(responseObj('Estas son las pujas de este producto.', bids)); 
+            res.status(200).json(('Estas son las pujas de este producto.', bids)); 
         }
     } catch (error) {
-        res.status(400).json(responseObj(error.message));
+        res.status(400).json((error.message));
     }
 };
 

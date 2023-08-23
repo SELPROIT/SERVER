@@ -1,4 +1,4 @@
-const { User_admin } = require('../db');
+const { User_admin } = require('../../db');
 
 const delete_userAdmin = async (id) => {
 

@@ -1,4 +1,4 @@
-const { getUsersAdmin } = require('../controllers/getUserAdmin');
+const { getUsersAdmin } = require('../../controllers/get/getUserAdmin');
 
 const getUserAdmin = async (req, res) => {
     try {

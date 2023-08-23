@@ -1,4 +1,4 @@
-const { User_admin } = require('../db');
+const { User_admin } = require('../../db');
 
 const postUserAdmin = async (newUserAdmin) => {
   const { role, password, name, phone } = newUserAdmin;

@@ -1,11 +1,11 @@
-const { post_category_handler } = require("../handlers/post_category_handler");
-const { post_subCategoty_handler } = require("../handlers/post_sub_cat_handler");
-const { createdProd } = require('../handlers/post_product_handler');
-const { toPostUser } = require('../handlers/post_user_handler');
-const { createUserAdmin } = require('../handlers/post_admin_handler')
-const { postAuction } = require("../handlers/post_bid_handler");
-const { post_auction_handler } = require("../handlers/post_auction_handler");
-const { post_invert_auction_handler } = require("../handlers/post_inv_auction_handler");
+const { post_category_handler } = require("../handlers/post/post_category_handler");
+const { post_subCategoty_handler } = require("../handlers/post/post_sub_cat_handler");
+const { createdProd } = require('../handlers/post/post_product_handler');
+const { toPostUser } = require('../handlers/post/post_user_handler');
+const { createUserAdmin } = require('../handlers/post/post_admin_handler')
+const { postAuction } = require("../handlers/post/post_bid_handler");
+const { post_auction_handler } = require("../handlers/post/post_auction_handler");
+const { post_invert_auction_handler } = require("../handlers/post/post_inv_auction_handler");
 
 
 

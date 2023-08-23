@@ -1,4 +1,4 @@
-const { Product } = require('../db');
+const { Product } = require('../../db');
 
 const put_prod_controller = async (
   id,

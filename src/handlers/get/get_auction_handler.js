@@ -1,5 +1,5 @@
-const { auctionByName } = require('../controllers/getAuctionByName');
-const { get_auction } = require('../controllers/get_auction_controller');
+const { auctionByName } = require('../../controllers/get/getAuctionByName');
+const { get_auction } = require('../../controllers/get/get_auction_controller');
 
 
 function get_auction_handler(req, res) {

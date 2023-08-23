@@ -1,4 +1,4 @@
-const { Invert_auction } = require('../db');
+const { Invert_auction } = require('../../db');
 
 const delete_invertAuction = async (id) => {
 

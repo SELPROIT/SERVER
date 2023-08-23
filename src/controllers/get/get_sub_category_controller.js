@@ -1,4 +1,4 @@
-const { Sub_category, Category, Product } = require("../db");
+const { Sub_category, Category, Product } = require("../../db");
 
 const getAllSubCategories = async () => {
   const subCategories = await Sub_category.findAll({

@@ -3,10 +3,10 @@ const { sortAuctions,
   paginateAu,
   getAuByType,
   getAuByCategory,
-  getAuBySubCategory } = require("../controllers/aux_filter_sort_page");
-const { get_auction } = require("../controllers/get_auction_controller");
-const { get_invert_auction } = require("../controllers/get_invertAuction_controller");
-const { productByName } = require("../controllers/searchProductByName");
+  getAuBySubCategory } = require("../../controllers/get/aux_filter_sort_page");
+const { get_auction } = require("../../controllers/get/get_auction_controller");
+const { get_invert_auction } = require("../../controllers/get/get_invertAuction_controller");
+const { productByName } = require("../../controllers/get/searchProductByName");
 
 async function get_all_auctions_handler(req, res) {
   const { name, order, filter, page, pageSize, category, subCategory, type, price } = req.query;

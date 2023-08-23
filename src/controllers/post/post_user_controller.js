@@ -1,6 +1,6 @@
-const { User } = require('../db');
+const { User } = require('../../db');
 const bcrypt = require('bcrypt');
-const { userCloudinaryConfig } = require('../utils/userCloudinaryConfig');
+const { userCloudinaryConfig } = require('../../utils/userCloudinaryConfig');
 
 const postUser = async (newUser) => {
 	const {

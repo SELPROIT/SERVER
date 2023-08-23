@@ -1,6 +1,5 @@
-const { postUser } = require('../controllers/post_user_controller');
-const { register } = require('../controllers/auth_controller');
-const { responseObj } = require('./response');
+const { postUser } = require('../../controllers/post/post_user_controller');
+const { register } = require('../../controllers/get/auth_controller');
 
 const toPostUser = async (req, res) => {
   try {
@@ -28,7 +27,7 @@ const toPostUser = async (req, res) => {
     const registrationResult = await register(user_name, password);
 
     if (registrationResult) {
-      return res.status(400).json(responseObj('User registration failed'));
+      return res.status(400).json(('User registration failed'));
     }
 
     const newUser = await postUser({
@@ -51,9 +50,9 @@ const toPostUser = async (req, res) => {
       files
     });
 
-    res.status(200).json(responseObj('User created successfully', newUser));
+    res.status(200).json(('User created successfully', newUser));
   } catch (error) {
-    res.status(400).json(responseObj(`Error creating user: ${error.message}`));
+    res.status(400).json((`Error creating user: ${error.message}`));
   }
 };
 

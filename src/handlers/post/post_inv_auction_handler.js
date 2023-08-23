@@ -1,5 +1,5 @@
-const { create_invert_auction } = require('../controllers/post_inv_auction_controller');
-const { responseObj } = require('./response');
+const { create_invert_auction } = require('../../controllers/post/post_inv_auction_controller');
+
 
 async function post_invert_auction_handler(req, res) {
     try {
@@ -11,12 +11,12 @@ async function post_invert_auction_handler(req, res) {
 
         const response = await create_invert_auction(product_id, base_price, target_quantity, total, close_date);
 
-        res.status(200).json(responseObj('Invert auction created successfully', response));
+        res.status(200).json(('Invert auction created successfully', response));
     } catch (error) {
         if (error.message === 'Missing required data') {
-            return res.status(400).json(responseObj(error.message));
+            return res.status(400).json((error.message));
         }
-        res.status(500).json(responseObj('Error creating invert auction'));
+        res.status(500).json(('Error creating invert auction'));
     }
 }
 

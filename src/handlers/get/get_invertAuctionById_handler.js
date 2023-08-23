@@ -1,5 +1,4 @@
-const { get_invertAuction_by_id } = require('../controllers/get_invertAuctionById_controller');
-const { responseObj } = require('./response');
+const { get_invertAuction_by_id } = require('../../controllers/get/get_invertAuctionById_controller');
 const { validate: validateUUID } = require('uuid');
 
 async function get_invertAuctionById_handler(req, res) {
@@ -11,13 +10,13 @@ async function get_invertAuctionById_handler(req, res) {
 
         const response = await get_invertAuction_by_id(invertAuction_id);
         if (!response) throw new Error("There was a problem acquiring this invert auction")
-        res.status(200).json(responseObj("Data acquire successfully", response));
+        res.status(200).json(("Data acquire successfully", response));
 
     } catch (error) {
         if (error.message === 'Missing data') {
-            return res.status(400).json(responseObj(error.message));
+            return res.status(400).json((error.message));
         }
-        res.status(500).json(responseObj(error.message));
+        res.status(500).json((error.message));
     }
 }
 

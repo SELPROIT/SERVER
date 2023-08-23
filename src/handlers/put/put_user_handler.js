@@ -1,4 +1,4 @@
-const { put_user_controller } = require("../controllers/put_user_controller");
+const { put_user_controller } = require("../../controllers/put/put_user_controller");
 
 const put_user_handler = async (req, res) => {
   const { id } = req.params;

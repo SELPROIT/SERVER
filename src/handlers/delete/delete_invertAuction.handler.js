@@ -1,6 +1,5 @@
 
-const { delete_invertAuction } = require('../controllers/delete_invertAuction_controller');
-const { responseObj } = require('./response');
+const { delete_invertAuction } = require('../../controllers/delete/delete_invertAuction_controller');
 const { validate: validateUUID } = require('uuid');
 
 async function delete_invertAuction_handler(req, res) {
@@ -12,13 +11,13 @@ async function delete_invertAuction_handler(req, res) {
 
         const response = await delete_invertAuction(invertAuction_id);
         if (!response[0]) throw new Error("There was a problem erasing this invert auction")
-        res.status(200).json(responseObj("Invert auction deleted successfully", response[0]));
+        res.status(200).json(("Invert auction deleted successfully", response[0]));
 
     } catch (error) {
         if (error.message === 'Missing data') {
-            return res.status(400).json(responseObj(error.message));
+            return res.status(400).json((error.message));
         }
-        res.status(500).json(responseObj(error.message));
+        res.status(500).json((error.message));
     }
 }
 

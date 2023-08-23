@@ -1,4 +1,4 @@
-const { Auction_bid, Auction, Invert_auction } = require("../db");
+const { Auction_bid, Auction, Invert_auction } = require("../../db");
 
 const createAuctionBid = async (auction_id, proposed_price, total, invert) => {
     const newAuctionBid = await Auction_bid.create({

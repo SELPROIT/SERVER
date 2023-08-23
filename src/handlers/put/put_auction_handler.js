@@ -1,4 +1,4 @@
-const { put_auc_controller } = require("../controllers/put_auction_controller");
+const { put_auc_controller } = require("../../controllers/put/put_auction_controller");
 
 const put_auc_handler = async (req, res) => {
   const { id } = req.params;

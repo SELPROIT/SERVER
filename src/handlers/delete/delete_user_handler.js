@@ -1,5 +1,4 @@
-const { delete_user } = require('../controllers/delete_user_controller');
-const { responseObj } = require('./response');
+const { delete_user } = require('../../controllers/delete/delete_user_controller');
 const { validate: validateUUID } = require('uuid');
 
 async function delete_user_handler(req, res) {
@@ -11,16 +10,16 @@ async function delete_user_handler(req, res) {
 
         const response = await delete_user(user_id);
         if (!response[0]) throw new Error("There was a problem erasing this user")
-        res.status(200).json(responseObj("User deleted successfully", response[0]));
+        res.status(200).json(("User deleted successfully", response[0]));
 
     } catch (error) {
         if (error.message === 'Missing data') {
-            return res.status(400).json(responseObj(error.message));
+            return res.status(400).json((error.message));
         }
-        res.status(500).json(responseObj(error.message));
+        res.status(500).json((error.message));
     }
 }
 
 module.exports = {
-    delete_user_handler,
+    delete_user_handler
 }

@@ -1,5 +1,4 @@
-const { createAuctionBid } = require("../controllers/post_bid_controller");
-const {responseObj} = require("./response");
+const { createAuctionBid } = require("../../controllers/post/post_bid_controller");
 const express = require("express");
 const server = express();
 server.use(express.json());
@@ -10,12 +9,12 @@ const postAuction = async (req, res) => {
         const newBid = await createAuctionBid(auction_id, proposed_price, total, invert); 
         
         if (!newBid) {
-            res.status(404).json(responseObj('No se ha encontrado una subasta para esa puja.'));
+            res.status(404).json(('No se ha encontrado una subasta para esa puja.'));
         } else {
-            res.send(responseObj('Se ha pujado correctamente.')); 
+            res.send(('Se ha pujado correctamente.')); 
         }
     } catch (error) {
-        res.status(400).json(responseObj(error.message));
+        res.status(400).json((error.message));
     }
 }
 

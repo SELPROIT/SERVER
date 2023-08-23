@@ -1,4 +1,4 @@
-const { User } = require('../db');
+const { User } = require('../../db');
 
 const put_user_controller = async (
   id,
