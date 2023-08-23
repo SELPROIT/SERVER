@@ -8,21 +8,18 @@ const toPostUser = async (req, res) => {
       num_ident,
       user_name,
       password,
-      company_name,
-      RUT,
-      RUT_image,
-      commerce_chamber,
-      legal_ident,
-      commercial_references,
-      sector,
-      CIIU,
       phone,
       email,
-      id_subcat,
       adress,
+      company_name,
+      NIT,
+      sector,
+      CIIU,
+      id_subcat,
     } = req.body;
 
-    const files = req.files
+    // const files = req.files
+    console.log('req.body', req.body)
 
     const registrationResult = await register(user_name, password);
 
@@ -35,19 +32,14 @@ const toPostUser = async (req, res) => {
       num_ident,
       user_name,
       password,
-      company_name,
-      RUT,
-      RUT_image,
-      commerce_chamber,
-      legal_ident,
-      commercial_references,
-      sector,
-      CIIU,
       phone,
       email,
-      id_subcat,
       adress,
-      files
+      company_name,
+      NIT,
+      sector,
+      CIIU,
+      id_subcat,
     });
 
     res.status(200).json(('User created successfully', newUser));

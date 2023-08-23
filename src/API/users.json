@@ -22,14 +22,14 @@
     "num_ident": 23456789,
     "user_name": "SelPro_Test_Cl1",
     "password": "passwordtest2",
-    "company_name": "SelPro_Company_Test2",
-    "RUT": 4567890,
-    "sector": "SelPro_Sector_Test2",
-    "CIIU": 5678,
     "phone": "+5493516234567",
     "email": "usuario2@example.com",
-    "id_subcat": ["CC1", "AB1"],
-    "adress": ["Example City2", ", ", "Example Street2", ", ", 456]
+    "adress": ["Example City2", "Example Street2", 456],
+    "company_name": "SelPro_Company_Test2",
+    "NIT": 4567890,
+    "sector": "SelPro_Sector_Test2",
+    "CIIU": 5678,
+    "id_subcat": ["CC1", "AB1"]
   },
 
   "putuser": {
