@@ -1,4 +1,4 @@
-const { get_invert_auction } = require('../../controllers/get/get_invertAuction_controller');
+const { get_invert_auction } = require('../../controllers/get/get_invert_auction_controller');
 
 async function get_invertAuction_handler(req, res) {
     try {

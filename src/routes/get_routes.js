@@ -1,9 +1,9 @@
 const { toCategory } = require('../handlers/get/get_category_handler');
 const { toSubCategory } = require('../handlers/get/get_sub_category_handler');
 const { getProdHandler } = require('../handlers/get/get_products_handler');
-const { getAllUsers } = require('../handlers/get/getUserHandler');
-const { getAllAuctionBids } = require('../handlers/get/getAuctionBidHandler');
-const { getUserAdmin } = require('../handlers/get/getUserAdm');
+const { getAllUsers } = require('../handlers/get/get_user_handler');
+const { getAllAuctionBids } = require('../handlers/get/get_auction_bid_handler');
+const { getUserAdmin } = require('../handlers/get/get_user_admin');
 const { get_UserByName } = require('../handlers/get/get_userByUserName_handler');
 const { get_all_auctions_handler } = require("../handlers/get/get_all_auctions_handler");
 const { get_invertAuction_handler } = require("../handlers/get/get_invertAuction.handler");
