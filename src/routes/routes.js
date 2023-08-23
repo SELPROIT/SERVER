@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const getRoutes = require('./delete_routes');
-const postRoutes = require('./put_routes');
+const getRoutes = require('./get_routes');
+const postRoutes = require('./post_routes');
 const deleteRoutes = require('./delete_routes');
 const putRoutes = require('./put_routes');
 

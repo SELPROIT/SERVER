@@ -4,12 +4,12 @@ const { getProdHandler } = require('../handlers/get/get_products_handler');
 const { getAllUsers } = require('../handlers/get/get_user_handler');
 const { getAllAuctionBids } = require('../handlers/get/get_auction_bid_handler');
 const { getUserAdmin } = require('../handlers/get/get_user_admin');
-const { get_UserByName } = require('../handlers/get/get_userByUserName_handler');
+const { get_UserByName } = require('../handlers/get/get_user_by_user_name_handler');
 const { get_all_auctions_handler } = require("../handlers/get/get_all_auctions_handler");
 const { get_invertAuction_handler } = require("../handlers/get/get_invertAuction.handler");
 const { get_auction_handler } = require("../handlers/get/get_auction_handler");
-const { get_AuctionById_handler } = require("../handlers/get/get_auctionById_handler");
-const { get_invertAuctionById_handler } = require("../handlers/get/get_invertAuctionById_handler");
+const { get_AuctionById_handler } = require("../handlers/get/get_auction_by_id_handler");
+const { get_invertAuctionById_handler } = require("../handlers/get/get_invert_auction_by_id_handler");
 
 const getRoutes = require('express').Router()
 
