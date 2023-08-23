@@ -1,19 +1,26 @@
-const {getUsers} = require("../../controllers/get/getUserController");
+const { getUsers } = require("../../controllers/get/get_user_controller");
 
-
+// Manejador para obtener todos los usuarios
 const getAllUsers = async (req, res) => {
-
     try {
+        // Obtiene la lista de usuarios utilizando getUsers()
         const users = await getUsers(); 
-        if(!users) res.status(400).json({ message: error.message });
-        
+
+        // Si no se encuentran usuarios, devuelve una respuesta de error
+        if (!users) {
+            return res.status(400).json({ message: "Error al obtener usuarios." });
+        }
+
+        // Si no se encontraron usuarios, devuelve un mensaje de no encontrado
         if (users.length === 0) {
-            res.status(404).json(('No se encontraron usuarios.'));
+            return res.status(404).json({ message: "No se encontraron usuarios." });
         } else {
-            res.status(200).json(('Estos son los usuarios creados', users)); 
+            // Si hay usuarios, devuelve la lista de usuarios
+            return res.status(200).json({ message: "Estos son los usuarios creados", users });
         }
     } catch (error) {
-        res.status(400).json((error.message));
+        // En caso de error, devuelve un mensaje de error
+        return res.status(400).json({ message: error.message });
     }
 };
 

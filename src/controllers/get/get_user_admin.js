@@ -1,8 +1,8 @@
 const { User_admin } = require('../../db');
 
-const getUsersAdmin = async () => {
-    const usersAdmin = await User_admin.findAll();
-    return usersAdmin;
+// Define la función que devuelve una promesa con la lista de usuarios administradores
+const getUsersAdmin = () => {
+    return User_admin.findAll(); 
 };
 
 module.exports = {
