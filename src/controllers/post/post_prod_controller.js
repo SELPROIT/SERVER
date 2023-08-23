@@ -10,8 +10,13 @@ const postProductC = async ({
   rating,
   stock,
   price,
-  ref_subCategory,
+  ref_subCategory
 }) => {
+  
+  if(!name || !brand || !image || !description || !datasheet || !rating || !stock || !price || !ref_subCategory) throw new Error ("Faltan completar campos.");
+
+  //falta esto?
+
   const [cloudImage, cloudDatasheet] = await Promise.all([
     productCloudinaryConfig(image),
     productCloudinaryConfig(datasheet),

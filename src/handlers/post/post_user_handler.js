@@ -18,8 +18,7 @@ const toPostUser = async (req, res) => {
       id_subcat,
     } = req.body;
 
-    // const files = req.files
-    console.log('req.body', req.body)
+    if(!name || !num_ident || !user_name || !password || !supplier || !sector || !CIIU || !phone || !email || !id_subcat || !adress) throw new Error ("Missing data");
 
     const registrationResult = await register(user_name, password);
 

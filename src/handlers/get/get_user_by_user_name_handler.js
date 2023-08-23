@@ -1,4 +1,4 @@
-const { get_usersByName } = require('../../controllers/get/get_userByUserName_controller');
+const { get_usersByName } = require('../../controllers/get/get_user_by_user_name_controller');
 
 const get_UserByName = async (req, res) => {
     try {
