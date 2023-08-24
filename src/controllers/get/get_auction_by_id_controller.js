@@ -2,15 +2,17 @@ const { Auction, Product } = require('../../db');
 
 
 const get_auction_by_id = async (auction_id) => {
-    const { id, base_price, close_date, ProductId } = await Auction.findByPk(auction_id)
-    const product = await Product.findByPk(ProductId)
+    const { id, image, product_name, brand, description, datasheet, total, base_price, close_date, ProductId } = await Auction.findByPk(auction_id)
 
     const response = {
         id,
         product_id: ProductId,
-        name: product.name,
-        description: product.description,
-        brand: product.brand,
+        image: image,
+        name: product_name,
+        brand: brand,
+        description: description,
+        datasheet: datasheet,
+        total: total,
         base_price,
         close_date
     }
