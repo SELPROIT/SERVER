@@ -15,7 +15,6 @@ function get_auction_handler(req, res) {
         if (!auction) {
           return res.status(404).json(('No se ha encontrado esa subasta.'));
         }
-        return res.status(200).json(("Data acquire successfully", auction));
       }
       let response = await get_auction();
 
