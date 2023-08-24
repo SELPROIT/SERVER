@@ -15,14 +15,18 @@ const get_auction = () => {
                 .then(category => {
                   const newformat = {
                     id,
-                    product_id: product.id,
-                    sub_category_id: sub_category.id,
-                    category_id: category.id,
                     image: product.image,
                     name: product.name,
+                    brand: product.brand,
+                    description: product.description,
+                    datasheet: product.datasheet,
+                    total: product.stock,
                     price: product.price,
                     base_price,
                     close_date,
+                    product_id: product.id,
+                    sub_category_id: sub_category.id,
+                    category_id: category.id,
                     type: "AU"
                   };
                   return newformat;
