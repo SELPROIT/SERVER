@@ -7,6 +7,34 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    product_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    brand: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    datasheet: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    total: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     base_price: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -15,9 +43,9 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    product_name: {
+    subCategory: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     type: {
       type: DataTypes.STRING,
