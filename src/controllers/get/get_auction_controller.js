@@ -8,22 +8,26 @@ const get_auction = () => {
     .then(auctions => {
       return Promise.all(
         auctions.map(auction => {
-          const { id, base_price, close_date, Product: product, authorize } = auction;
+          const { id, base_price, close_date, Product: product, authorize, image, name, brand, description, datasheet, stock, price } = auction;
           return Sub_category.findByPk(product.SubCategoryId)
             .then(sub_category => {
               return Category.findByPk(sub_category.CategoryId)
                 .then(category => {
                   const newformat = {
                     id,
+                    image,
+                    name,
+                    brand,
+                    description,
+                    datasheet,
+                    total: stock,
+                    price: price,
+                    base_price,
+                    close_date,
                     product_id: product.id,
                     sub_category_id: sub_category.id,
                     category_id: category.id,
-                    image: product.image,
-                    name: product.name,
-                    price: product.price,
-                    base_price,
-                    close_date,
-                    type: "AU"
+                    type
                   };
                   return newformat;
                 });

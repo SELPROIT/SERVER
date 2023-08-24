@@ -10,12 +10,19 @@ const create_auction = async (product_id, base_price, close_date) => {
             throw new Error('Product not found');
         }
 
-        const { name } = product;
+        const { name, image, brand, description, datasheet, stock, price } = product;
 
         const new_auction = await product.createAuction({
+            image: image,
+            product_name: name,
+            brand: brand,
+            description: description,
+            datasheet: datasheet,
+            total: stock,
+            price: price,
             base_price,
             close_date,
-            product_name: name,
+
             type: 'AU',
         });
 

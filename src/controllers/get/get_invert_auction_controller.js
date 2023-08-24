@@ -15,16 +15,20 @@ const get_invert_auction = () => {
                 .then(category => {
                   const newformat = {
                     id,
-                    product_id: product.id,
-                    sub_category_id: sub_category.id,
-                    category_id: category.id,
                     image: product.image,
                     name: product.name,
+                    brand: product.brand,
+                    desription: product.description,
+                    datasheet: product.datasheet,
+                    total: product.total,
                     price: product.price,
                     target_quantity,
                     base_price,
                     close_date,
                     invert,
+                    product_id: product.id,
+                    sub_category_id: sub_category.id,
+                    category_id: category.id,
                     type
                   };
                   // Puedes agregar aquí una lógica de autorización si es necesario
