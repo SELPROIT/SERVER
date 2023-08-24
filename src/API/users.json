@@ -1,112 +1,42 @@
 {
-  "provider": {
-    "name": "SelPro Provider 1",
-    "num_ident": 12345678,
-    "user_name": "SelPro_Test_Pr3",
-    "password": "passwordtest1",
-    "company_name": "SelPro_Company_Test1",
-    "RUT_image": "https://d500.epimg.net/cincodias/imagenes/2015/05/08/pyme/1431098283_691735_1431098420_noticia_normal.jpg",
-    "commerce_chamber": "https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg",
-    "legal_ident": "https://www.shutterstock.com/shutterstock/photos/709133980/display_1500/stock-vector-vector-design-elements-for-your-company-logo-abstract-blue-icon-modern-logotipe-business-709133980.jpg",
-    "commercial_references": "https://img.freepik.com/vector-premium/logotipo-letra-v-simple_8586-577.jpg",
-    "sector": "SelPro_Sector_Test1",
-    "CIIU": 1234,
-    "phone": "+5493516123456",
-    "email": "usuario1@example.com",
-    "id_subcat": ["AD1", "AD2"],
-    "adress": ["Example City1", ", ", "Example Street1", ", ", 123]
-  },
-
   "client": {
-    "name": "SelPro Client 2",
-    "num_ident": 23456789,
-    "user_name": "SelPro_Test_Cl1",
+    "name": "SelPro Client 1",
+    "num_ident": "123456789-0",
+    "user_name": "SelPro_Test_Cl2",
     "password": "passwordtest2",
-    "company_name": "SelPro_Company_Test2",
-    "RUT": 4567890,
+    "phone": "+5493516234565",
+    "email": "usuario1@example.com",
+    "adress": ["Example City2", "Example Street2", 452],
+    "company_name": "SelPro_Company_Test5",
+    "NIT": "123456789-0",
     "sector": "SelPro_Sector_Test2",
     "CIIU": 5678,
-    "phone": "+5493516234567",
-    "email": "usuario2@example.com",
-    "id_subcat": ["CC1", "AB1"],
-    "adress": ["Example City2", ", ", "Example Street2", ", ", 456]
+    "id_subcat": ["CC1", "AB1"]
   },
-
-  "putuser": {
-    "name": "SelPro Client 5",
-    "user_name": "SelPro_Test_Cl5",
-    "password": "passwordtest5",
-    "company_name": "SelPro_Company_Test5",
-    "suplier": true,
-    "phone": "+5493516234555",
-    "email": "usuario5@example.com",
-    "id_subcat": ["CC5", "AB5"],
-    "adress": ["Example City5", ", ", "Example Street5", ", ", 555],
-    "interaction_history": [
-      {
-        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
-        "brand": "STEELPRO SAFETY",
-        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
-        "description": "Protectores auditivos modelo CM-501 para casco",
-        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
-        "rating": 4.5,
-        "stock": 2000,
-        "price": 500,
-        "ref_subCategory": "AD2"
-      }
-    ],
-    "offers_history": [
-      {
-        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
-        "brand": "STEELPRO SAFETY",
-        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
-        "description": "Protectores auditivos modelo CM-501 para casco",
-        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
-        "rating": 4.5,
-        "stock": 2000,
-        "price": 500,
-        "ref_subCategory": "AD2"
-      }
-    ],
-    "win_history": [
-      {
-        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
-        "brand": "STEELPRO SAFETY",
-        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
-        "description": "Protectores auditivos modelo CM-501 para casco",
-        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
-        "rating": 4.5,
-        "stock": 2000,
-        "price": 500,
-        "ref_subCategory": "AD2"
-      }
-    ],
-    "curr_auc": [
-      {
-        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
-        "brand": "STEELPRO SAFETY",
-        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
-        "description": "Protectores auditivos modelo CM-501 para casco",
-        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
-        "rating": 4.5,
-        "stock": 2000,
-        "price": 500,
-        "ref_subCategory": "AD2"
-      }
-    ],
-    "favorites": [
-      {
-        "name": "FONO STEELPRO CM 501 ISP NRR 23DB",
-        "brand": "STEELPRO SAFETY",
-        "image": "https://drive.google.com/file/d/1iCsI0_lsMhF-0JyN-yV_zMdcGrgI2zEK/view?usp=drive_link",
-        "description": "Protectores auditivos modelo CM-501 para casco",
-        "datasheet": "https://drive.google.com/file/d/1k8BW8h3mKEuLI-MBALLeSI7IUpepD1Qk/view?usp=drive_link",
-        "rating": 4.5,
-        "stock": 2000,
-        "price": 500,
-        "ref_subCategory": "AD2"
-      }
-    ],
+  "putroute": {
+    "name": "Paula Raquel Arce",
+    "num_ident": "123456779-0",
+    "user_name": "raquelita99",
+    "password": "raquelita99",
+    "phone": "+5493515123456",
+    "email": "paularaquel@usuario.com",
+    "adress": ["Grand Line", "Dressrosa", "Flower Street", 550],
+    "company_name": "Zorojuro S.R.L.",
+    "NIT": "123456789-0",
+    "sector": "Information Technology",
+    "CIIU": 6201,
+    "id_subcat": ["OT5", "CC1"],
+    "image": "https://w7.pngwing.com/pngs/270/122/png-transparent-corporation-business-brand-public-relations-subscribe-icon-public-relations-logo-business.png",
+    "RUT_image": "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/NJ3EJRASSZCZ7JUESG3R5BIXEU.jpg",
+    "commerce_chamber": "https://redlad.org/wp-content/uploads/2018/11/Copia-de-Certificado-C%C3%A1mara-de-Comercio-REDLAD-Colombia-pdf.jpg",
+    "legal_ident": "https://visasencolombia.com/wp-content/uploads/2021/12/cedula-de-extranjeria-residente-colombia.jpg",
+    "commercial_references": "https://i.pinimg.com/originals/90/69/bd/9069bdd14b12e147575e3d57ec1f4594.jpg",
+    "interaction_history": "db6a3244-a3a7-4651-bdc2-a124a5f8459b",
+    "offers_history": "54d9fc6e-f3ef-4ff9-bd2c-627f60203c12",
+    "win_history": "db6a3244-a3a7-4651-bdc2-a124a5f8459b",
+    "curr_auc": "db6a3244-a3a7-4651-bdc2-a124a5f8459b",
+    "favorites": "db6a3244-a3a7-4651-bdc2-a124a5f8459b",
+    "supplier": true,
     "deleteFlag": true
   }
 }

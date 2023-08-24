@@ -8,24 +8,17 @@ const toPostUser = async (req, res) => {
       num_ident,
       user_name,
       password,
-      company_name,
-      RUT,
-      RUT_image,
-      commerce_chamber,
-      legal_ident,
-      commercial_references,
-      sector,
-      CIIU,
       phone,
       email,
-      id_subcat,
       adress,
+      company_name,
+      NIT,
+      sector,
+      CIIU,
+      id_subcat,
     } = req.body;
 
-
-    if(!name || !num_ident || !user_name || !password || !supplier || !sector || !CIIU || !phone || !email || !id_subcat || !adress) throw new Error ("Missing data");
-
-    const files = req.files
+    if(!name || !num_ident || !user_name || !password || !phone || !email || !adress || !company_name || !NIT || !sector || !CIIU || !id_subcat) throw new Error ("Missing data");
 
     const registrationResult = await register(user_name, password);
 
@@ -38,20 +31,16 @@ const toPostUser = async (req, res) => {
       num_ident,
       user_name,
       password,
-      company_name,
-      RUT,
-      RUT_image,
-      commerce_chamber,
-      legal_ident,
-      commercial_references,
-      sector,
-      CIIU,
       phone,
       email,
-      id_subcat,
       adress,
-      files
+      company_name,
+      NIT,
+      sector,
+      CIIU,
+      id_subcat,
     });
+    console.log('newUser', newUser)
 
     res.status(200).json(('User created successfully', newUser));
   } catch (error) {
