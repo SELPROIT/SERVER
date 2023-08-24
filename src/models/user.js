@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
 			allowNull: false,
 		},
 		num_ident: {
-			type: DataTypes.FLOAT,
+			type: DataTypes.STRING,
 			allowNull: false,
 			unique: true,
 		},
@@ -46,7 +46,7 @@ module.exports = (sequelize) => {
 			unique: true,
 		},
 		NIT: {
-			type: DataTypes.FLOAT,
+			type: DataTypes.STRING,
 			allowNull: true,
 			unique: true,
 		},
@@ -83,19 +83,19 @@ module.exports = (sequelize) => {
 			allowNull: true,
 		},
 		interaction_history: {
-			type: DataTypes.ARRAY(DataTypes.JSONB),
+			type: DataTypes.ARRAY(DataTypes.STRING),
 			allowNull: true,
 		},
 		offers_history: {
-			type: DataTypes.ARRAY(DataTypes.JSONB),
+			type: DataTypes.ARRAY(DataTypes.STRING),
 			allowNull: true,
 		},
 		win_history: {
-			type: DataTypes.ARRAY(DataTypes.JSONB),
+			type: DataTypes.ARRAY(DataTypes.STRING),
 			allowNull: true,
 		},
 		curr_auc: {
-			type: DataTypes.ARRAY(DataTypes.JSONB), //Array de objetos sujeto a cambios
+			type: DataTypes.ARRAY(DataTypes.STRING), //Array de objetos sujeto a cambios
 			allowNull: true,
 		},
 		supplier: {

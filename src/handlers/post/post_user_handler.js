@@ -18,7 +18,7 @@ const toPostUser = async (req, res) => {
       id_subcat,
     } = req.body;
 
-    if(!name || !num_ident || !user_name || !password || !supplier || !sector || !CIIU || !phone || !email || !id_subcat || !adress) throw new Error ("Missing data");
+    if(!name || !num_ident || !user_name || !password || !phone || !email || !adress || !company_name || !NIT || !sector || !CIIU || !id_subcat) throw new Error ("Missing data");
 
     const registrationResult = await register(user_name, password);
 
@@ -40,6 +40,7 @@ const toPostUser = async (req, res) => {
       CIIU,
       id_subcat,
     });
+    console.log('newUser', newUser)
 
     res.status(200).json(('User created successfully', newUser));
   } catch (error) {

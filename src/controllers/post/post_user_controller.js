@@ -26,7 +26,6 @@ const postUser = async (newUser) => {
 	// user_name = user_name.trim().toLowerCase(); //para que se guarde en minusculas siempre
 
 	const hashedPassword = await bcrypt.hash(password, 10);
-
 	// const fileObjects = [...files];
 
 	// if (RUT_image)
