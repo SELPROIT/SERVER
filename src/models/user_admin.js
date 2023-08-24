@@ -23,6 +23,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        admin: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
         deleteFlag: {
 			// no "delete" porque es palabra reservada.
 			type: DataTypes.BOOLEAN,

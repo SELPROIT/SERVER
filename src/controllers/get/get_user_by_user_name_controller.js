@@ -2,14 +2,42 @@ const { User } = require('../../db');
 const { Op } = require('sequelize');
 
 const get_usersByName = async (user) => {
-    
+
     // user = user.trim().toLowerCase();
-    
-    const response = await User.findOne({
+
+    let response = await User.findOne({
         where: {
             user_name: user
         },
     });
+    if (!response) {
+        response = await User.findOne({
+            where: {
+                email: user
+            }
+        })
+    }
+    if (!response) {
+        response = await User.findOne({
+            where: {
+                phone: user
+            }
+        })
+    }
+    if (!response) {
+        response = await User.findOne({
+            where: {
+                company_name: user
+            }
+        })
+    }
+    if (!response) {
+        response = await User.findOne({
+            where: {
+                num_ident: user
+            }
+        })
+    }
 
     return response
 };
