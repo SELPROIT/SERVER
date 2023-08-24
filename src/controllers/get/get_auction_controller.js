@@ -8,7 +8,7 @@ const get_auction = () => {
     .then(auctions => {
       return Promise.all(
         auctions.map(auction => {
-          const { id, base_price, close_date, Product: product, authorize, image, name, brand, description, datasheet, stock, price } = auction;
+          const { id, base_price, close_date, Product: product, authorize, image, name, brand, description, datasheet, stock, price, type } = auction;
           return Sub_category.findByPk(product.SubCategoryId)
             .then(sub_category => {
               return Category.findByPk(sub_category.CategoryId)
