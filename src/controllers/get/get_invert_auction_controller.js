@@ -13,6 +13,9 @@ const get_invert_auction = () => {
             .then(sub_category => {
               return Category.findByPk(sub_category.CategoryId)
                 .then(category => {
+
+                  const formatted_close_date = handle_date(close_date);
+
                   const newformat = {
                     id,
                     image: product.image,
@@ -24,7 +27,7 @@ const get_invert_auction = () => {
                     price: product.price,
                     target_quantity,
                     base_price,
-                    close_date,
+                    close_date: formatted_close_date,
                     invert,
                     product_id: product.id,
                     sub_category_id: sub_category.id,

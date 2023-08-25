@@ -1,4 +1,5 @@
 const { Auction, Product, Category, Sub_category } = require('../../db');
+const { handle_date } = require('./handle_date');
 
 // Función que obtiene información de subastas y productos relacionados utilizando promesas
 const get_auction = () => {
@@ -13,6 +14,9 @@ const get_auction = () => {
             .then(sub_category => {
               return Category.findByPk(sub_category.CategoryId)
                 .then(category => {
+
+                  const formatted_close_date = handle_date(close_date);
+
                   const newformat = {
                     id,
                     image,
@@ -23,7 +27,7 @@ const get_auction = () => {
                     total: stock,
                     price: price,
                     base_price,
-                    close_date,
+                    close_date: formatted_close_date,
                     product_id: product.id,
                     sub_category_id: sub_category.id,
                     category_id: category.id,
