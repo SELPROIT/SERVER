@@ -15,7 +15,7 @@ const postRoutes = require('express').Router()
 postRoutes.post("/category", post_category_handler);
 postRoutes.post("/subcategory", post_subCategoty_handler);
 postRoutes.post('/product', createdProd);
-postRoutes.post('/admin', createUserAdmin) // no va al front
+postRoutes.post('/admin', createUserAdmin)
 postRoutes.post('/user', toPostUser);
 postRoutes.post('/bid', postAuction);
 postRoutes.post("/auction", post_auction_handler)
