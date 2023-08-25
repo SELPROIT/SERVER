@@ -3,7 +3,6 @@ const { Invert_auction, Product } = require('../../db');
 const create_invert_auction = async (product_id, base_price, target_quantity, total, close_date) => {
 
     if (!product_id || !base_price || !target_quantity || !total || !close_date) throw new Error("Faltan completar campos.");
-    //deleteFlag, authorize falta esto
     try {
         const product = await Product.findByPk(product_id);
 
