@@ -74,34 +74,37 @@ module.exports = (sequelize) => {
 		RUT_image: {
 			type: DataTypes.STRING,
 			allowNull: true,
+			defaultValue: ''
 		},
 		commerce_chamber: {
 			type: DataTypes.STRING,
 			allowNull: true,
+			defaultValue: ''
 		},
 		legal_ident: {
 			type: DataTypes.STRING,
 			allowNull: true,
+			defaultValue: ''
 		},
 		commercial_references: {
 			type: DataTypes.STRING,
 			allowNull: true,
+			defaultValue: ''
 		},
 		interaction_history: {
 			type: DataTypes.ARRAY(DataTypes.STRING),
 			allowNull: true,
+			defaultValue: []
 		},
-		offers_history: {
+		created_history: {
 			type: DataTypes.ARRAY(DataTypes.STRING),
 			allowNull: true,
+			defaultValue: []
 		},
-		win_history: {
+		favorites: {
 			type: DataTypes.ARRAY(DataTypes.STRING),
 			allowNull: true,
-		},
-		curr_auc: {
-			type: DataTypes.ARRAY(DataTypes.STRING), //Array de objetos sujeto a cambios
-			allowNull: true,
+			defaultValue: []
 		},
 		supplier: {
 			type: DataTypes.BOOLEAN,

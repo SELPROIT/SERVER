@@ -64,10 +64,24 @@ Auction_bid.belongsTo(Auction);
 Invert_auction.hasMany(Auction_bid);
 Auction_bid.belongsTo(Invert_auction);
 
+User.hasMany(Auction);
+
+User.hasMany(Invert_auction);
+
+User.hasMany(Auction_bid);
+Auction_bid.belongsTo(User);
+
 
 //Relaciones n*m
-Product.belongsToMany(User, { through: 'favorites' });
-User.belongsToMany(Product, { through: 'favorites' });
+Auction.belongsToMany(User, { through: 'favorites' });
+User.belongsToMany(Auction, { through: 'favorites' });
+
+Invert_auction.belongsToMany(User, { through: 'favorites' });
+User.belongsToMany(Invert_auction, { through: 'favorites' });
+
+Auction.belongsToMany(User, {through: 'UserAuctions'});
+
+Invert_auction.belongsToMany(User, {through: 'UserInvAuctions'});
 
 
 

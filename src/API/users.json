@@ -40,17 +40,14 @@
     "sector": "Information Technology",
     "CIIU": 6201,
     "id_subcat": ["OT5", "CC1"],
-    "image": "https://w7.pngwing.com/pngs/270/122/png-transparent-corporation-business-brand-public-relations-subscribe-icon-public-relations-logo-business.png",
-    "RUT_image": "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/NJ3EJRASSZCZ7JUESG3R5BIXEU.jpg",
-    "commerce_chamber": "https://redlad.org/wp-content/uploads/2018/11/Copia-de-Certificado-C%C3%A1mara-de-Comercio-REDLAD-Colombia-pdf.jpg",
-    "legal_ident": "https://visasencolombia.com/wp-content/uploads/2021/12/cedula-de-extranjeria-residente-colombia.jpg",
-    "commercial_references": "https://i.pinimg.com/originals/90/69/bd/9069bdd14b12e147575e3d57ec1f4594.jpg",
-    "interaction_history": "db6a3244-a3a7-4651-bdc2-a124a5f8459b",
-    "offers_history": "54d9fc6e-f3ef-4ff9-bd2c-627f60203c12",
-    "win_history": "db6a3244-a3a7-4651-bdc2-a124a5f8459b",
-    "curr_auc": "db6a3244-a3a7-4651-bdc2-a124a5f8459b",
+    "image": "https://cdn.discordapp.com/attachments/1138194511974105088/1144689227435610152/empresa-imagen.png",
+    "RUT_image": "https://cdn.discordapp.com/attachments/1138194511974105088/1144687076839788656/rut.pdf",
+    "commerce_chamber": "https://cdn.discordapp.com/attachments/1138194511974105088/1144687102190174358/Formulario_rues_2020_2.pdf",
+    "legal_ident": "https://cdn.discordapp.com/attachments/1138194511974105088/1144687112562679808/Criterio-de-Interpretacion-01-19-Datos-de-identificacion-del-representante-o-apoderado-legal.pdf",
+    "commercial_references": "https://cdn.discordapp.com/attachments/1138194511974105088/1144687125464371260/formulario-9_cerca_perimetral_edificio-1013-referencia_comercial.pdf",
+    "interaction_history": "1628a3a0-c615-417b-9a9e-3dab6c374cd7",
+    "created_history": "54d9fc6e-f3ef-4ff9-bd2c-627f60203c12",
     "favorites": "db6a3244-a3a7-4651-bdc2-a124a5f8459b",
-    "supplier": true,
-    "deleteFlag": true
+    "supplier": true
   }
 }
