@@ -1,6 +1,7 @@
 const { User, Auction, Invert_auction, Auction_bid } = require('../../db');
 const bcrypt = require('bcrypt')
-const { userCloudinaryConfig } = require('../../utils/userCloudinaryConfig');
+const { uploadImage } = require('../../utils/userCloudinaryConfig');
+const { uploadFile } = require('../../utils/PDFCloudinaryConfig');
 
 const put_user_controller = async (
   id,
@@ -21,50 +22,18 @@ const put_user_controller = async (
   commerce_chamber,
   legal_ident,
   commercial_references,
-  files = [],
   interaction_history,
-  offers_history,
-  win_history,
-  curr_auc,
+  created_history,
   favorites,
   supplier,
   deleteFlag,
 
 ) => {
   const user = await User.findOne({ where: { id } });
-
-  const fileObjects = [...files];
-
-	if (RUT_image)
-		fileObjects.push({ name: 'RUT_image', value: RUT_image });
-	if (commerce_chamber)
-		fileObjects.push({ name: 'commerce_chamber', value: commerce_chamber });
-	if (legal_ident)
-		fileObjects.push({ name: 'legal_ident', value: legal_ident });
-	if (commercial_references)
-		fileObjects.push({ name: 'commercial_references', value: commercial_references });
-
-	const imagesURL = await Promise.all(
-		fileObjects.map(async (file) => {
-			const URL = await userCloudinaryConfig(file.value)
-			const image = {
-				name: file.name,
-				URL: URL
-			}
-			return image
-		})
-	)
-
-    let image_url = imagesURL.filter((image) => image.name === "image")[0]?.URL || "";
-		let RUT_image_url = imagesURL.filter((image) => image.name === "RUT_image")[0]?.URL || "";
-		let commerce_chamber_url = imagesURL.filter((image) => image.name === "commerce_chamber")[0]?.URL || "";
-		let legal_ident_url = imagesURL.filter((image) => image.name === "legal_ident")[0]?.URL || "";
-		let commercial_references_url = imagesURL.filter((image) => image.name === "commercial_references")[0]?.URL || "";
-
   if (!user) {
     throw new Error('User not found');
   }
-
+  console.log('created_history', created_history)
   const changedUser = {};
 
   if (!!name) {
@@ -105,55 +74,46 @@ const put_user_controller = async (
     changedUser.id_subcat = id_subcat;
   }
   if (!!image) {
-    changedUser.image = image_url;
+    const cloudImage = await uploadImage(image)
+    changedUser.image = cloudImage;
   }
   if (!!RUT_image) {
-    changedUser.RUT_image = RUT_image_url;
+    let cloudDatasheet = await uploadFile(RUT_image)
+    changedUser.RUT_image = cloudDatasheet;
   }
   if (!!commerce_chamber) {
-    changedUser.commerce_chamber = commerce_chamber_url;
+    let cloudDatasheet = await uploadFile(commerce_chamber)
+    changedUser.commerce_chamber = cloudDatasheet;
   }
   if (!!legal_ident) {
-    changedUser.legal_ident = legal_ident_url;
+    let cloudDatasheet = await uploadFile(legal_ident)
+    changedUser.legal_ident = cloudDatasheet;
   }
   if (!!commercial_references) {
-    changedUser.commercial_references = commercial_references_url;
+    let cloudDatasheet = await uploadFile(commercial_references)
+    changedUser.commercial_references = cloudDatasheet;
   }
-  // console.log('interaction_history', interaction_history)
-  // if (!!interaction_history) {
-  //   let auc_id = await Auction.findOne({where: {id: interaction_history}})
-  //   if(!auc_id) {
-  //     auc_id = await Invert_auction.findByPk(interaction_history)
+  if (!!interaction_history) {
+    let bid_id = await Auction_bid.findByPk(interaction_history)
+    if (bid_id) {
+      changedUser.interaction_history = [...user.interaction_history, bid_id]
+    };
+  }
+  // console.log('created_history', created_history)
+  // if (!!created_history) {
+  //   let auc_id = await Auction.findByPk(created_history)
+  //   if (!auc_id) {
+  //     auc_id = await Invert_auction.findByPk(created_history)
   //   }
-  //   if(auc_id) {
-  //     changedUser.interaction_history = [...user.interaction_history, interaction_history];
-  //   }
+  //   changedUser.created_history = [...user.created_history, auc_id];
   // }
-  // if (!!offers_history) {
-  //   let bid_id = await Auction_bid.findByPk(offers_history)
-  //   changedUser.offers_history = [...user.offers_history, bid_id];
-  // }
-  // if (!!win_history) {
-  //   let auc_id = await Auction.findByPk(interaction_history)
-  //   if(!auc_id) {
-  //     auc_id = await Invert_auction.findByPk(interaction_history)
-  //   }
-  //   changedUser.win_history = [...user.win_history, auc_id];
-  // }
-  // if (!!curr_auc) {
-  //   let auc_id = await Auction.findByPk(interaction_history)
-  //   if(!auc_id) {
-  //     auc_id = await Invert_auction.findByPk(interaction_history)
-  //   }
-  //   changedUser.curr_auc = [...user.curr_auc, auc_id];
-  // }
-  // if (!!favorites) {
-  //   let auc_id = await Auction.findByPk(interaction_history)
-  //   if(!auc_id) {
-  //     auc_id = await Invert_auction.findByPk(interaction_history)
-  //   }
-  //   changedUser.favorites = [...user.favorites, auc_id];
-  // }
+  if (!!favorites) {
+    let auc_id = await Auction.findByPk(favorites_history)
+    if(!auc_id) {
+      auc_id = await Invert_auction.findByPk(favorites_history)
+    }
+    changedUser.favorites = [...user.favorites, auc_id];
+  }
   if (supplier !== undefined || supplier !== null) {
     changedUser.supplier = supplier;
   }

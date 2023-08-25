@@ -1,9 +1,9 @@
 {
   "name": "Test_Product1",
   "brand": "Test_Brand1",
-  "image": "https://cdn.discordapp.com/attachments/1140681987556921457/1142679579929104464/image.png",
+  "image": "https://cdn.discordapp.com/attachments/1138194511974105088/1144642918112563302/FOTO_ARMADURA_ARNES_DIELECTRICO_A-0350D.JPG",
   "description": "Este es un producto de prueba, mas precisamente el 1",
-  "datasheet": "https://cdn.discordapp.com/attachments/1140681987556921457/1142679053388763166/image.png",
+  "datasheet": "https://cdn.discordapp.com/attachments/1138194511974105088/1144642944721244170/FICHA_ARMADURA_ARNES_DIELECTRICO_A-0350D.PDF",
   "rating": 4.5,
   "stock": 2000,
   "price": 500,

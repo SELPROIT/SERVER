@@ -1,4 +1,6 @@
 const { Product } = require('../../db');
+const { uploadFile } = require('../../utils/PDFCloudinaryConfig');
+const { uploadProd } = require('../../utils/productCloudinaryConfig');
 
 const put_prod_controller = async (
   id,
@@ -16,6 +18,11 @@ const put_prod_controller = async (
     return 'Product not found';
   }
 
+  const [cloudImage, cloudDatasheet] = await Promise.all([
+    uploadProd(image),
+    uploadFile(datasheet),
+  ]);
+
   const changed_product = {};
 
   if (!!name) {
@@ -25,13 +32,13 @@ const put_prod_controller = async (
     changed_product.brand = brand;
   }
   if (!!image) {
-    changed_product.image = image;
+    changed_product.image = cloudImage;
   }
   if (!!description) {
     changed_product.description = description;
   }
   if (!!datasheet) {
-    changed_product.datasheet = datasheet;
+    changed_product.datasheet = cloudDatasheet;
   }
   if (!!rating) {
     changed_product.rating = rating;
