@@ -1,6 +1,7 @@
 const { User, Auction, Invert_auction, Auction_bid } = require('../../db');
 const bcrypt = require('bcrypt')
-const { userCloudinaryConfig } = require('../../utils/userCloudinaryConfig');
+const { uploadImage } = require('../../utils/userCloudinaryConfig');
+const { uploadFile } = require('../../utils/PDFCloudinaryConfig');
 
 const put_user_controller = async (
   id,
@@ -33,33 +34,13 @@ const put_user_controller = async (
 ) => {
   const user = await User.findOne({ where: { id } });
 
-  const fileObjects = [...files];
-
-	if (RUT_image)
-		fileObjects.push({ name: 'RUT_image', value: RUT_image });
-	if (commerce_chamber)
-		fileObjects.push({ name: 'commerce_chamber', value: commerce_chamber });
-	if (legal_ident)
-		fileObjects.push({ name: 'legal_ident', value: legal_ident });
-	if (commercial_references)
-		fileObjects.push({ name: 'commercial_references', value: commercial_references });
-
-	const imagesURL = await Promise.all(
-		fileObjects.map(async (file) => {
-			const URL = await userCloudinaryConfig(file.value)
-			const image = {
-				name: file.name,
-				URL: URL
-			}
-			return image
-		})
-	)
-
-    let image_url = imagesURL.filter((image) => image.name === "image")[0]?.URL || "";
-		let RUT_image_url = imagesURL.filter((image) => image.name === "RUT_image")[0]?.URL || "";
-		let commerce_chamber_url = imagesURL.filter((image) => image.name === "commerce_chamber")[0]?.URL || "";
-		let legal_ident_url = imagesURL.filter((image) => image.name === "legal_ident")[0]?.URL || "";
-		let commercial_references_url = imagesURL.filter((image) => image.name === "commercial_references")[0]?.URL || "";
+  const [cloudImage, cloudDatasheet] = await Promise.all([
+    uploadImage(image),
+    uploadFile(RUT_image),
+    uploadFile(commerce_chamber),
+    uploadFile(legal_ident),
+    uploadFile(commercial_references),
+  ]);
 
   if (!user) {
     throw new Error('User not found');
@@ -105,19 +86,19 @@ const put_user_controller = async (
     changedUser.id_subcat = id_subcat;
   }
   if (!!image) {
-    changedUser.image = image_url;
+    changedUser.image = cloudImage;
   }
   if (!!RUT_image) {
-    changedUser.RUT_image = RUT_image_url;
+    changedUser.RUT_image = cloudDatasheet;
   }
   if (!!commerce_chamber) {
-    changedUser.commerce_chamber = commerce_chamber_url;
+    changedUser.commerce_chamber = cloudDatasheet;
   }
   if (!!legal_ident) {
-    changedUser.legal_ident = legal_ident_url;
+    changedUser.legal_ident = cloudDatasheet;
   }
   if (!!commercial_references) {
-    changedUser.commercial_references = commercial_references_url;
+    changedUser.commercial_references = cloudDatasheet;
   }
   // console.log('interaction_history', interaction_history)
   // if (!!interaction_history) {

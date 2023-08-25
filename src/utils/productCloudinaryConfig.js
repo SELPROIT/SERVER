@@ -1,25 +1,46 @@
 const cloudinary = require('cloudinary').v2;
-const multer = require('multer');
-const upload = multer().single('image');
 const config = require('../configCloud');
+const streamifier = require('streamifier');
 //IMPORTANTE : esta function solo lleva la imagen a la carpeta PRODUCTS de cloudinary!!
 //se utiliza SOLO para funcion POST PRODUCT
-const productCloudinaryConfig = async (imageURL) => {
-    // se le envia por parametro la imagen (value) de la prop del objeto x ej: newUser.RUT_image (
-    //recuerde q newUser es la constante creada en el handler para mandar las props dentro de una palabra, asi el controller post solo recibe está y no todas las props q son muchas)
-    cloudinary.config({
-        cloud_name: config.cloud_name,
-        api_key: config.api_key,
-        api_secret: config.api_secret,
-    });
+cloudinary.config({
+    cloud_name: config.cloud_name,
+    api_key: config.api_key,
+    api_secret: config.api_secret,
+});
 
+const uploadProd = async (imageInput) => {
     try {
-        const result = await cloudinary.uploader.upload(imageURL, {
-            folder: 'selpro/Products',
-        });
-        return result.secure_url;
+        let result;
+
+        if (typeof imageInput === 'string') {
+            console.log('imageInput', imageInput)
+            result = await cloudinary.uploader.upload(imageInput, {
+                folder: 'selpro/Products',
+                resource_type: 'auto'
+            });
+            return result.secure_url;
+        } else {
+            return new Promise((resolve, reject) => {
+                const result = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'selpro/Products',
+                        resource_type: 'auto',
+                    },
+                    (error, cloudinaryResult) => {
+                        if (error) {
+                            reject(error);
+                        } else {
+                            resolve(cloudinaryResult.secure_url);
+                        }
+                    }
+                );
+                const bufferStream = streamifier.createReadStream(imageInput);
+                bufferStream.pipe(result);
+            });
+        }
     } catch (error) {
         throw error;
     }
 };
-module.exports = productCloudinaryConfig;
+module.exports = { uploadProd };

@@ -1,5 +1,6 @@
 const { Product, Sub_category } = require('../../db');
-const productCloudinaryConfig = require('../../utils/productCloudinaryConfig');
+const { uploadFile } = require('../../utils/PDFCloudinaryConfig');
+const { uploadProd } = require('../../utils/productCloudinaryConfig');
 
 const postProductC = async ({
   name,
@@ -18,8 +19,8 @@ const postProductC = async ({
   //falta esto?
 
   const [cloudImage, cloudDatasheet] = await Promise.all([
-    productCloudinaryConfig(image),
-    productCloudinaryConfig(datasheet),
+    uploadProd(image),
+    uploadFile(datasheet),
   ]);
 
   const foundRef = await Sub_category.findOne({ where: { id: ref_subCategory } });
