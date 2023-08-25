@@ -1,27 +1,42 @@
-const handle_date = (close_date) => {
+const { handle_finish_auction } = require("./handle_finish_auction");
+
+const handle_date = (status, close_date) => {
     const targetDate = new Date(close_date);
     const currentDate = new Date();
 
-    const timeDifference = targetDate - currentDate;
+    let timer = setInterval(() => {
+        const timeDifference = targetDate - currentDate;
+         
+        console.log(status);
+        if (timeDifference <= 0) {
+            clearInterval(timer);
+            status = "Terminada";
+            console.log(status);
+            return status;
+        }
 
-    if (timeDifference <= 0) {
-        return "Countdown expired!";
-    }
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        // console.log(hours + minutes);
 
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        console.log(`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`);
 
-    console.log(`${days} ${hours} : ${minutes} : ${seconds} `);
-    return `${days} ${hours} : ${minutes} : ${seconds} `;
+        currentDate.setSeconds(currentDate.getSeconds() + 1);
+
+        // return `${days} ${hours} : ${minutes} : ${seconds} `;
+    }, 1000);
 };
 
-handle_date("2023-08-18T03:52:00.000Z");
+handle_date("Activa", "2023-08-25T20:51:00.000Z");
 
 module.exports = {
     handle_date
 };
+
+
+
 
 
 // const handle_date = (close_date) => {
