@@ -12,18 +12,21 @@ const create_auction = async (product_id, base_price, close_date) => {
 
         const { name, image, brand, description, datasheet, stock, price, SubCategoryId } = product;
 
+       
+
         const new_auction = await product.createAuction({
             image: image,
-            product_name: name,
             brand: brand,
             description: description,
             datasheet: datasheet,
+            product_name: name,
             total: stock,
             price: price,
             base_price,
             close_date,
             subCategory: SubCategoryId,
             type: 'AU',
+            // status: //guardar lo que me devuelva el switch
         });
 
         return new_auction;
