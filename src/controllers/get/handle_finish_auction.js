@@ -1,7 +1,8 @@
-const handle_finish_auction = (idClient, auction, authorize, status) => {
-  if (authorize == true) {
-  }
 
+
+const handle_finish_auction = (idClient, type, status) => {
+  
+   
   
 };
 
