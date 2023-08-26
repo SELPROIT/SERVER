@@ -4,26 +4,28 @@ const { User } = require('../../db')
 const getUserEmail = async (userId) => {
 
     const user = await User.findOne({ where: { id: userId } });
-    return user.email;
+    if(!!user) return user.email;
+    console.log('user.email', user.email)
 };
 
 const sendEmail = async (userId) => {
     const recipientEmail = await getUserEmail(userId);
+    console.log('recipientEmail', recipientEmail)
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'egdeprada@gmail.com',
-            pass: 'ekipipwmqvgnejfn',
+            user: 'selpro.informacion@gmail.com',
+            pass: 'vldobrtpfiygddwg',
         },
     });
 
     const mailOptions = {
-        from: 'egdeprada@gmail.com',
+        from: 'selpro.informacion@gmail.com',
         to: recipientEmail,
         subject: 'Bienvenido!',
         text: 'Su cuenta ha sido creada exitosamente!.',
-        html: '<h1>Si usted recive este email, es probable que sea especial</h1>',
+        html: '<h1>Si usted recive este email, es porque usted tiene un problema con la cocaina, por favor dejela</h1>',
     };
 
     try {
