@@ -1,9 +1,7 @@
+const handle_finish_auction = (idClient, type, status, price) => {
+  if (type === "AU") {
 
-
-const handle_finish_auction = (idClient, type, status) => {
-  
-   
-  
+  }
 };
 
 module.exports = {
