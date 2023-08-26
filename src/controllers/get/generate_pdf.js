@@ -10,49 +10,53 @@ async function generatePDF() {
 
     // Define the table headers
     const headers = [
-        'ID',
-        'ID ref',
+        'Ref',
         'Nombre',
-        'Numero de Identificacion',
-        'Nombre de Usuario',
+        'ID Num',
         'Telefono',
         'Email',
         'Dirección',
-        'Nombre de la Empresa',
+        'Empresa',
         'NIT',
-        'Sector',
         'CIIU',
-        'Subcategorias',
-        'RUT',
-        'Camara de Comercio',
-        'Identificacion de Representante Legal',
-        'Referencias Comerciales'
+        'Sector',
     ];
 
     // Set the initial y-coordinate for the table
-    let y = 50;
+    let y = 30;
+
+    // Define the custom x-coordinates for each header
+const customXCoordinates = [30, 52, 108, 145, 194, 285, 420, 480, 520, 540];
 
     // Draw the table headers
-    headers.forEach(header => {
+    headers.forEach((header, index) => {
+        const x = customXCoordinates[index];
+
         doc
-            .fontSize(12)
-            .text(header, 50, y)
+            .fontSize(8)
+            .text(header, x, y)
             .moveDown(0.5);
     });
 
     // Set the font size for the table content
-    doc.fontSize(10);
+    doc.fontSize(6);
 
     // Draw the table rows
     users.forEach(user => {
-        y += 20; // Adjust the row height as needed
+        y += 10; // Adjust the row height as needed
 
         doc
-            .text(user.id.toString(), 50, y)
-            .text(user.user_id.toString(), 100, y)
-            .text(user.name, 150, y)
-            // Add more text calls for other table columns
-            .moveDown(0.5);
+            .text(user.user_id.toString(), 30, y)
+            .text(user.name, 52, y)
+            .text(user.num_ident, 108, y)
+            .text(user.phone, 145, y)
+            .text(user.email, 194, y)
+            .text(user.adress.join(', '), 285, y)
+            .text(user.company_name, 420, y)
+            .text(user.NIT, 480, y)
+            .text(user.CIIU, 520, y)
+            .text(user.sector, 540, y)
+            // .moveDown(0.1);
     });
 
     // Save the PDF file
