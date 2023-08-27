@@ -30,7 +30,14 @@ const createAuctionBid = (auction_id, proposed_price, total, invert, user_id) =>
                                         reject(new Error(`No se encontró esa subasta inversa.`));
                                         return;
                                     }
-
+                                    if(proposed_price > invertAuction.base_price){
+                                        reject(new Error(`No se puede crear una puja con un precio mayor al de base.`));
+                                        return;
+                                    }
+                                    if(proposed_price <= 0){
+                                        reject(new Error(`La puja no puede ser 0 o un número negativo.`));
+                                        return;
+                                    }
                                     invertAuction.addAuction_bid(newAuctionBid)
                                         .then(() => {
                                             resolve(true);
@@ -47,6 +54,14 @@ const createAuctionBid = (auction_id, proposed_price, total, invert, user_id) =>
                                 .then(auction => {
                                     if (!auction) {
                                         reject(new Error(`No se encontró esa subasta.`));
+                                        return;
+                                    }
+                                    if(proposed_price < auction.base_price){
+                                        reject(new Error(`No se puede crear una puja con un precio menor al de base.`));
+                                        return;
+                                    }
+                                    if(proposed_price <= 0){
+                                        reject(new Error(`La puja no puede ser 0 o un número negativo.`));
                                         return;
                                     }
 
