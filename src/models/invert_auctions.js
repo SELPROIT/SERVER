@@ -7,53 +7,37 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    image: {
+    image: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    brand: {
+    brand: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    description: {
+    description: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    datasheet: {
+    datasheet: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    total: {
+    product_name: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    total: { 
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    base_price: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    target_quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    total: {
+    base_price: { //precio base 
       type: DataTypes.INTEGER,
       allowNull: false,
     },
     close_date: {
       type: DataTypes.DATE,
       allowNull: false,
-    },
-    invert: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    product_name: {
-      type: DataTypes.STRING,
-      allowNull: true
     },
     subCategory: {
       type: DataTypes.STRING,
@@ -63,6 +47,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true
     },
+    status:{
+      type: DataTypes.ENUM("Pendiente", "Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
+      defaultValue: "Pendiente"
+    },
     deleteFlag: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
@@ -70,6 +58,14 @@ module.exports = (sequelize) => {
     authorize: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    }, 
+    target_quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    invert: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     }
   },
     {

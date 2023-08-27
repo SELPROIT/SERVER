@@ -1,45 +1,80 @@
-const { Auction, Product, Category, Sub_category } = require('../../db');
+const { Auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db'); // Asegúrate de importar sequelize
+const { handle_date } = require('./handle_date');
 
-// Función que obtiene información de subastas y productos relacionados utilizando promesas
-const get_auction = () => {
-  return Auction.findAll({
-    include: Product // Incluir el Producto relacionado
-  })
-    .then(auctions => {
-      return Promise.all(
-        auctions.map(auction => {
-          const { id, base_price, close_date, Product: product, authorize, image, product_name, brand, description, datasheet, stock, price, type } = auction;
-          return Sub_category.findByPk(product.SubCategoryId)
-            .then(sub_category => {
-              return Category.findByPk(sub_category.CategoryId)
-                .then(category => {
-                  const newformat = {
-                    id,
-                    image,
-                    product_name,
-                    brand,
-                    description,
-                    datasheet,
-                    total: stock,
-                    price: price,
-                    base_price,
-                    close_date,
-                    product_id: product.id,
-                    sub_category_id: sub_category.id,
-                    category_id: category.id,
-                    type
-                  };
-                  return newformat;
-                });
-            });
-        })
-      );
-    })
-    .catch(error => {
-      throw error;
+const get_auction = async () => {
+  try {
+    const auctions = await Auction.findAll({
+      include: [
+        {
+          model: Product,
+          include: [
+            { model: Sub_category, include: Category }
+          ]
+        },
+        {
+          model: User,
+          attributes: ['id', 'favorites', 'created_history']
+        },
+        {
+          model: Auction_bid
+        }
+      ]
     });
+
+    const formattedAuctions = await Promise.all(
+      auctions.map(async auction => {
+        const {
+          id,
+          base_price,
+          close_date,
+          Product: product,
+          User: user,
+          authorize,
+          image,
+          name,
+          brand,
+          description,
+          datasheet,
+          total,
+          status,
+          type,
+          Auction_bids // Access the associated Auction_bids here
+        } = auction;
+
+        const formattedAuctionBids = Auction_bids.map(bid => ({
+          bid_id: bid.id,
+          proposed_price: bid.proposed_price,
+          total: bid.total,
+          // Include other relevant properties from Auction_bid if needed
+        }));
+
+        return {
+          id,
+          base_price,
+          close_date,
+          product,
+          user,
+          authorize,
+          image,
+          name,
+          brand,
+          description,
+          datasheet,
+          status,
+          total,
+          type,
+          auction_bids: formattedAuctionBids // Include the formatted Auction_bids
+        };
+      })
+    );
+
+    return formattedAuctions;
+
+  } catch (error) {
+    throw error;
+  }
 };
 
 module.exports = {
-  get_auction,
+  get_auction
 };

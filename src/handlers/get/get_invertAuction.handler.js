@@ -1,4 +1,4 @@
-const { filterByPrice, sortAuctions, getAuByCategory, getAuBySubCategory, paginateAu } = require('../../controllers/get/aux_filter_sort_page');
+const { sortAuctions, getAuByCategory, getAuBySubCategory, paginateAu } = require('../../controllers/get/aux_filter_sort_page');
 const { auctionByName } = require('../../controllers/get/get_auction_by_mame');
 const { get_invert_auction } = require('../../controllers/get/get_invert_auction_controller');
 
@@ -22,12 +22,12 @@ function get_invertAuction_handler(req, res) {
             if (!response.length) {
                 return res.status(404).json(('No se han encontrado subastas.'));
             }
-            if (filter) {
-                response = await filterByPrice(filter, response)
-                if (!response.length) {
-                    return res.status(404).json(('No se han encontrado subastas.'));
-                }
-            }
+            // if (filter) {
+            //     response = await filterByPrice(filter, response)
+            //     if (!response.length) {
+            //         return res.status(404).json(('No se han encontrado subastas.'));
+            //     }
+            // }
             if (order) {
                 response = await sortAuctions(order, response)
                 if (!response.length) {
