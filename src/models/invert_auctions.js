@@ -31,10 +31,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    price: {//precio actual, el más bajo
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     base_price: { //precio base 
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -51,10 +47,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    // status:{
-    //   type: DataTypes.ENUM("Pendiente", "Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
-    //   defaultValue: "Pendiente"
-    // },
+    status:{
+      type: DataTypes.ENUM("Pendiente", "Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
+      defaultValue: "Pendiente"
+    },
     deleteFlag: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

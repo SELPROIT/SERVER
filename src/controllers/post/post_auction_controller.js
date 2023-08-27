@@ -4,8 +4,6 @@ const create_auction = async (product_id, base_price, close_date) => {
 
     if(!product_id || !base_price || !close_date) throw new Error ("Faltan completar campos.");
     //deleteFlag, authorize falta esto?
-    
-    console.log(product_id, base_price, close_date);
     try {
         const product = await Product.findByPk(product_id);
         if (!product) {
@@ -13,7 +11,7 @@ const create_auction = async (product_id, base_price, close_date) => {
         }
 
         const { name, image, brand, description, datasheet, stock, SubCategoryId } = product;
-
+        
         const new_auction = await product.createAuction({
             image: image,
             product_name: name,
@@ -34,5 +32,5 @@ const create_auction = async (product_id, base_price, close_date) => {
 };
 
 module.exports = {
-    create_auction
+    create_auction,
 };

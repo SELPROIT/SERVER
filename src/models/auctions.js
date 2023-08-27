@@ -31,10 +31,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    price: { //precio actual, el más alto
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     base_price: {
       type: DataTypes.INTEGER,
       allowNull: false,

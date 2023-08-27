@@ -6,9 +6,9 @@ async function post_auction_handler(req, res) {
         if (!product_id || !base_price || !close_date) {
             throw new Error('Missing required data');
         }
-        console.log(product_id, base_price, close_date);
+
         const response = await create_auction(product_id, base_price, close_date);
-        console.log(response);
+
         res.status(200).json(('Auction created successfully', response));
     } catch (error) {
         if (error.message === 'Missing required data') {

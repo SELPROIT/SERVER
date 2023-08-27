@@ -1,4 +1,4 @@
-const { Invert_auction, Product, Category, Sub_category, User } = require('../../db'); // Asegúrate de importar sequelize
+const { Invert_auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db'); // Asegúrate de importar sequelize
 const { handle_date } = require('./handle_date');
 
 const get_invert_auction = async () => {
@@ -14,6 +14,9 @@ const get_invert_auction = async () => {
         {
           model: User, // Incluir el Usuario relacionado
           attributes: ['id', 'favorites', 'created_history'] // Incluir solo las propiedades relevantes
+        },
+        {
+          model:Auction_bid
         }
       ]
     });

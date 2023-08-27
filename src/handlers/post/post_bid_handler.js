@@ -9,15 +9,16 @@ function postAuction(req, res) {
     createAuctionBid(auction_id, proposed_price, total, invert, user_id)
         .then(newBid => {
             if (!newBid) {
-                res.status(404).json('No se ha encontrado una subasta para esa puja.');
+                res.status(404).json({ message: 'No se ha encontrado una subasta para esa puja.' });
             } else {
-                res.send('Se ha pujado correctamente.', newBid);
+                res.status(200).json({ message: 'Se ha pujado correctamente.', newBid });
             }
         })
         .catch(error => {
-            res.status(400).json(error.message);
+            res.status(400).json({ message: error.message });
         });
 }
+
 
 module.exports = {
     postAuction
