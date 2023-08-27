@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
 			// no "delete" porque es palabra reservada.
 			type: DataTypes.BOOLEAN,
 			defaultValue: false,
-		},
+		}
     },
         {
             timestamps: false,

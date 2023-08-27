@@ -1,8 +1,8 @@
 const { Invert_auction, Product } = require('../../db');
 
-const create_invert_auction = async (product_id, base_price, target_quantity, total, close_date) => {
+const create_invert_auction = async (product_id, base_price, target_quantity, close_date) => {
 
-    if (!product_id || !base_price || !target_quantity || !total || !close_date) throw new Error("Faltan completar campos.");
+    if (!product_id || !base_price || !target_quantity || !close_date) throw new Error("Faltan completar campos.");
     try {
         const product = await Product.findByPk(product_id);
 
@@ -14,7 +14,7 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
             throw new Error('An auction already exists for this product');
         }
 
-        const { name, image, brand, description, datasheet, price, SubCategoryId } = product;
+        const { name, image, brand, description, datasheet, stock, SubCategoryId } = product;
 
         const new_invert_auction = await product.createInvert_auction({
             image: image,
@@ -22,8 +22,7 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
             brand: brand,
             description: description,
             datasheet: datasheet,
-            total,
-            price: price,
+            total: stock,
             target_quantity,
             base_price,
             close_date,

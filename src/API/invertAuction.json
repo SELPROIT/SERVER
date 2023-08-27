@@ -1,7 +1,7 @@
 {
-    "product_id": "AD21",
-    "base_price": "8000",
-    "target_quantity": "1000",
-    "total": "100",
-    "close_date": "2023-08-18"
+	"product_id": "CC11",
+	"target_quantity": 1000,
+	"base_price": 500,
+	"close_date": "2023-08-18T00:00:00.000Z",
+	"invert": true
 }

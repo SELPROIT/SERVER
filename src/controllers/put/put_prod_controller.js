@@ -10,8 +10,7 @@ const put_prod_controller = async (
   description,
   datasheet,
   rating,
-  stock,
-  price,
+  stock
 ) => {
   const product = await Product.findByPk(id);
   if (!product) {
@@ -45,9 +44,6 @@ const put_prod_controller = async (
   }
   if (!!stock) {
     changed_product.stock = stock;
-  }
-  if (!!price) {
-    changed_product.price = price;
   }
 
   const [updatedRows] = await Product.update(changed_product, {

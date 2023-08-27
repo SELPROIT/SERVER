@@ -20,15 +20,15 @@ const sortAuctions = (sort, auctions) => {
   ) {
     throw new Error("Invalid sort order");
   }
-
+console.log(sort, auctions);
   // Definir las funciones de ordenación para cada criterio
   const sortingFunctions = {
     asc: (a, b) => (a.name || "").localeCompare(b.name || ""),
     desc: (a, b) => (b.name || "").localeCompare(a.name || ""),
     raitingAsc: (a, b) => b.rating - a.rating,
     raitingDesc: (a, b) => a.rating - b.rating,
-    ascPrice: (a, b) => a.price - b.price,
-    descPrice: (a, b) => b.price - a.price,
+    ascPrice: (a, b) => a.proposed_price - b.proposed_price,
+    descPrice: (a, b) => b.proposed_price - a.proposed_price,
   };
 
   // Obtener la función de ordenación correspondiente al criterio
@@ -42,23 +42,23 @@ const sortAuctions = (sort, auctions) => {
 };
 
 // Función para filtrar subastas por precio
-const filterByPrice = (filter, auctions) => {
-  // Verificar si se han proporcionado subastas
-  if (!auctions) {
-    throw new Error("No auctions were found.");
-  }
+// const filterByPrice = (filter, auctions) => {
+//   // Verificar si se han proporcionado subastas
+//   if (!auctions) {
+//     throw new Error("No auctions were found.");
+//   }
 
-  // Filtrar subastas
+//   // Filtrar subastas
 
-  switch (filter) {
-    case "morePrice":
-      return auctions.filter((auction) => auction.base_price >= 1000);
-    case "lessPrice":
-      return auctions.filter((auction) => auction.base_price <= 1000);
-    default:
-      throw new Error("Filtros incorrerrectos.");
-  }
-}
+//   switch (filter) {
+//     case "morePrice":
+//       return auctions.filter((auction) => auction.base_price >= 1000);
+//     case "lessPrice":
+//       return auctions.filter((auction) => auction.base_price <= 1000);
+//     default:
+//       throw new Error("Filtros incorrerrectos.");
+//   }
+// }
 
   
 // Función para filtrar subastas por tipo (AU o IA)
@@ -80,7 +80,7 @@ const getAuBySubCategory = (subCategory, auctions) => {
 // Exportar las funciones de ordenación y filtrado
 module.exports = {
   sortAuctions,
-  filterByPrice,
+  // filterByPrice,
   paginateAu,
   getAuByType,
   getAuByCategory,

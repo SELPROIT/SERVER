@@ -1,5 +1,5 @@
 const { sortAuctions,
-    filterByPrice,
+    // filterByPrice,
     paginateAu,
     getAuByType,
     getAuByCategory,
@@ -44,13 +44,13 @@ async function get_all_auctions_handler(req, res) {
             });
         }
 
-        if (filter) {
-            finalResponse = filterByPrice(filter, finalResponse);
+        // if (filter) {
+        //     finalResponse = filterByPrice(filter, finalResponse);
 
-            if (!finalResponse) {
-                return res.status(404).json({ message: "No se encontró ninguna subasta en ese rango de precios." });
-            }
-        }
+        //     if (!finalResponse) {
+        //         return res.status(404).json({ message: "No se encontró ninguna subasta en ese rango de precios." });
+        //     }
+        // }
 
         if (order) {
             finalResponse = await sortAuctions(order, finalResponse);

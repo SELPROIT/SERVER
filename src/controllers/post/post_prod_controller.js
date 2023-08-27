@@ -1,8 +1,7 @@
-const { Product, Sub_category } = require('../../db');
-const { uploadFile } = require('../../utils/PDFCloudinaryConfig');
-const { uploadProd } = require('../../utils/productCloudinaryConfig');
+const { Product, Sub_category, Auction, Invert_auction, Auction_bid } = require('../../db');
+const productCloudinaryConfig = require('../../utils/productCloudinaryConfig');
 
-const postProductC = async ({
+const postProductC = ({
   name,
   brand,
   image,
@@ -10,47 +9,69 @@ const postProductC = async ({
   datasheet,
   rating,
   stock,
-  price,
   ref_subCategory
 }) => {
-  
-  if(!name || !brand || !image || !description || !datasheet || !rating || !stock || !price || !ref_subCategory) throw new Error ("Faltan completar campos.");
+  return new Promise((resolve, reject) => {
+    if (!name || !brand || !image || !description || !datasheet || !rating || !stock || !ref_subCategory) {
+      reject(new Error("Faltan completar campos."));
+      return;
+    }
 
-  //falta esto?
+    Promise.all([
+      productCloudinaryConfig(image),
+      productCloudinaryConfig(datasheet),
+    ])
+    .then(([cloudImage, cloudDatasheet]) => {
+      Sub_category.findOne({ where: { id: ref_subCategory } })
+        .then(foundRef => {
+          if (!foundRef) {
+            console.error("Could not find Sub-Category");
+            resolve(null);
+            return;
+          }
 
-  const [cloudImage, cloudDatasheet] = await Promise.all([
-    uploadProd(image),
-    uploadFile(datasheet),
-  ]);
+          Product.count({ where: { SubCategoryId: ref_subCategory } })
+            .then(prodCount => {
+              const newID = prodCount + 1;
 
-  const foundRef = await Sub_category.findOne({ where: { id: ref_subCategory } });
+              const products = [{
+                id: `${ref_subCategory}${newID}`,
+                name,
+                brand,
+                image: cloudImage,
+                description,
+                datasheet: cloudDatasheet,
+                rating,
+                stock,
+                SubCategoryId: ref_subCategory,
+              }];
 
-  if (!foundRef) {
-    console.error("Could not find Sub-Category");
-    return null;
-  }
-
-  const prodCount = await Product.count({ where: { SubCategoryId: ref_subCategory } });
-  const newID = prodCount + 1;
-
-  const products = [{
-    id: `${ref_subCategory}${newID}`,
-    name,
-    brand,
-    image: cloudImage,
-    description,
-    datasheet: cloudDatasheet,
-    rating,
-    stock,
-    price,
-    SubCategoryId: ref_subCategory,
-  }];
-
-  const newProds = await Product.bulkCreate(products, { returning: true });
-
-  await Promise.all(newProds.map((newProd) => newProd.setSub_category(foundRef)));
-
-  return newProds;
+              Product.bulkCreate(products, { returning: true })
+                .then(newProds => {
+                  Promise.all(newProds.map(newProd => newProd.setSub_category(foundRef)))
+                    .then(() => {
+                      resolve(newProds);
+                    })
+                    .catch(error => {
+                      reject(new Error(`Error setting sub-category for products: ${error.message}`));
+                    });
+                })
+                .catch(error => {
+                  reject(new Error(`Error creating products: ${error.message}`));
+                });
+            })
+            .catch(error => {
+              reject(new Error(`Error counting products: ${error.message}`));
+            });
+        })
+        .catch(error => {
+          reject(new Error(`Error finding sub-category: ${error.message}`));
+        });
+    })
+    .catch(error => {
+      reject(new Error(`Error configuring Cloudinary: ${error.message}`));
+    });
+  });
 };
 
 module.exports = { postProductC };

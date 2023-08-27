@@ -10,6 +10,7 @@ const { get_invertAuction_handler } = require("../handlers/get/get_invertAuction
 const { get_auction_handler } = require("../handlers/get/get_auction_handler");
 const { get_AuctionById_handler } = require("../handlers/get/get_auction_by_id_handler");
 const { get_invertAuctionById_handler } = require("../handlers/get/get_invert_auction_by_id_handler");
+const { PDFgenerate } = require('../handlers/get/generate_pdf_handler');
 
 const getRoutes = require('express').Router()
 
@@ -25,5 +26,6 @@ getRoutes.get("/invertAuction", get_invertAuction_handler)
 getRoutes.get("/auction", get_auction_handler)
 getRoutes.get("/auction/:auction_id", get_AuctionById_handler)
 getRoutes.get("/invertAuction/:invertAuction_id", get_invertAuctionById_handler)
+getRoutes.get("/file", PDFgenerate)
 
 module.exports = getRoutes

@@ -7,31 +7,27 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    image: {
+    image: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    product_name: {
+    brand: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    brand: {
+    description: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    description: {
+    datasheet: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    datasheet: {
+    product_name: { //del producto
       type: DataTypes.STRING,
       allowNull: false
     },
-    total: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    price: {
+    total: { 
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -50,6 +46,10 @@ module.exports = (sequelize) => {
     type: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    status:{
+      type: DataTypes.ENUM("Pendiente", "Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
+      defaultValue: "Pendiente"
     },
     deleteFlag: {
       type: DataTypes.BOOLEAN,
