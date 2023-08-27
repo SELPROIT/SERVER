@@ -35,12 +35,12 @@
     "sequelize": "^6.3.5",
     "streamifier": "^0.1.1",
     "uuidv4": "^6.2.13",
+    "nodemon": "^2.0.6",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^10.2.0",
-    "nodemon": "^2.0.6",
     "supertest": "^6.0.1",
     "supertest-session": "^4.1.0"
   }
