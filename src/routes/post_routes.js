@@ -6,6 +6,9 @@ const { createUserAdmin } = require('../handlers/post/post_admin_handler')
 const { postAuction } = require("../handlers/post/post_bid_handler");
 const { post_auction_handler } = require("../handlers/post/post_auction_handler");
 const { post_invert_auction_handler } = require("../handlers/post/post_inv_auction_handler");
+const { emailSend } = require("../handlers/post/email_service_handler");
+const { mercado_pago_handler } = require("../handlers/post/mercado_pago_handler");
+const { weebhook_handler } = require("../handlers/post/mercado_pago_webhook_handler");
 
 
 
@@ -20,5 +23,9 @@ postRoutes.post('/user', toPostUser);
 postRoutes.post('/bid', postAuction);
 postRoutes.post("/auction", post_auction_handler)
 postRoutes.post("/invertAuction", post_invert_auction_handler)
+postRoutes.post("/email", emailSend)
+postRoutes.post("/payment", mercado_pago_handler)
+postRoutes.post("/webhook", weebhook_handler)
+
 
 module.exports = postRoutes

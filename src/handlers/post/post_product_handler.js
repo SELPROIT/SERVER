@@ -1,14 +1,15 @@
+
 const { postProductC } = require("../../controllers/post/post_prod_controller");
 
+function createdProd(req, res) {
+  const productData = req.body; // Assuming you're parsing the request body properly
+  postProductC(productData)
+    .then(newProducts => {
+      res.status(201).json(newProducts); // Use a proper HTTP status code and send JSON response
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message }); // Use proper status code and send error message as JSON
+    });
+}
 
-const createdProd = async (req, res) => {
-  const newProduct = req.body;
-  try {
-    const prodCreated = await postProductC(newProduct);
-    res.json(('Product created successfully', prodCreated));
-  } catch (error) {
-    res.json(({error: error.message}, {}));
-  }
-};
-
-module.exports = { createdProd }
+module.exports = { createdProd };

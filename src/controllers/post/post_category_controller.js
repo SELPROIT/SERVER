@@ -1,3 +1,8 @@
+
+
+
+
+
 const { Category } = require('../../db');
 
 const create_category = async (type, data) => {
@@ -22,9 +27,9 @@ const create_category = async (type, data) => {
         })
     )
 
-    return true
+    return true;
 }
 
 module.exports = {
-    create_category,
+    create_category
 };

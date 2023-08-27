@@ -1,4 +1,4 @@
-const { filterByPrice, sortAuctions, getAuByCategory, getAuBySubCategory, paginateAu } = require('../../controllers/get/aux_filter_sort_page');
+const { sortAuctions, getAuByCategory, getAuBySubCategory, paginateAu } = require('../../controllers/get/aux_filter_sort_page');
 const { auctionByName } = require('../../controllers/get/get_auction_by_mame');
 const { get_auction } = require('../../controllers/get/get_auction_controller');
 
@@ -9,22 +9,16 @@ function get_auction_handler(req, res) {
   // Maneja las consultas y respuestas utilizando promesas
   Promise.resolve()
     .then(async () => {
-      if (name) {
-        const type = "AU"
-        const auction = await auctionByName(type, name);
-        if (!auction) {
-          return res.status(404).json(('No se ha encontrado esa subasta.'));
-        }
-      }
       let response = await get_auction();
-
+      
       if (!response.length) {
         return res.status(404).json(('No se han encontrado subastas.'));
       }
-      if (filter) {
-        response = await filterByPrice(filter, response)
-        if (!response.length) {
-          return res.status(404).json(('No se han encontrado subastas.'));
+      if (name) {
+        const type = "AU"
+        response = await auctionByName(type, name);
+        if (!response) {
+          return res.status(404).json(('No se ha encontrado esa subasta.'));
         }
       }
       if (order) {
