@@ -1,5 +1,7 @@
 const { User } = require('../../db');
 const bcrypt = require('bcrypt');
+const { get_usersByName } = require('../get/get_user_by_user_name_controller');
+const { sendEmail } = require('./email_service');
 
 const postUser = async (newUser) => {
 	const {
@@ -62,6 +64,10 @@ const postUser = async (newUser) => {
 		supplier: false,
 		deleteFlag: false,
 	});
+
+	const usuario = await get_usersByName(num_ident)
+	const userId = usuario.id
+	await sendEmail(userId)
 	return user;
 };
 

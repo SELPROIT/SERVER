@@ -38,31 +38,44 @@ const get_auction = async () => {
 
         // const formatted_close_date = handle_date(close_date);
 
-        return {
-          id,
-          image,
-          name,
-          brand,
-          description,
-          datasheet,
-          total,
-          base_price,
-          close_date,
-          product_id: product.id,
-          sub_category_id: product.SubCategoryId,
-          category_id: product.Sub_category.CategoryId,
-          type,
-          user_id: user.id,
-          favorites: user.favorites,
-          created_history: user.created_history
-        };
-      })
-    );
-
-    return formattedAuctions;
-  } catch (error) {
-    throw error;
-  }
+// Función que obtiene información de subastas y productos relacionados utilizando promesas
+const get_auction = () => {
+  return Auction.findAll({
+    include: Product // Incluir el Producto relacionado
+  })
+    .then(auctions => {
+      return Promise.all(
+        auctions.map(auction => {
+          const { id, base_price, close_date, Product: product, authorize, image, product_name, brand, description, datasheet, stock, price, type } = auction;
+          return Sub_category.findByPk(product.SubCategoryId)
+            .then(sub_category => {
+              return Category.findByPk(sub_category.CategoryId)
+                .then(category => {
+                  const newformat = {
+                    id,
+                    image,
+                    product_name,
+                    brand,
+                    description,
+                    datasheet,
+                    total: stock,
+                    price: price,
+                    base_price,
+                    close_date,
+                    product_id: product.id,
+                    sub_category_id: sub_category.id,
+                    category_id: category.id,
+                    type
+                  };
+                  return newformat;
+                });
+            });
+        })
+      );
+    })
+    .catch(error => {
+      throw error;
+    });
 };
 
 module.exports = {

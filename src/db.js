@@ -71,6 +71,9 @@ Auction_bid.belongsTo(Invert_auction);
 User.hasMany(Auction_bid);
 Auction_bid.belongsTo(User);
 
+User.hasMany(Product);
+Product.belongsTo(User);
+
 
 //Relaciones n*m
 // User.belongsToMany(Auction, { through: 'favorites' });
