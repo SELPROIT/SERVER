@@ -51,10 +51,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true
     },
-    status:{
-      type: DataTypes.ENUM("Pendiente", "Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
-      defaultValue: "Pendiente"
-    },
+    // status:{
+    //   type: DataTypes.ENUM("Pendiente", "Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
+    //   defaultValue: "Pendiente"
+    // },
     deleteFlag: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

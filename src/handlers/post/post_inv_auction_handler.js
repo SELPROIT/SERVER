@@ -1,23 +1,23 @@
 const { create_invert_auction } = require('../../controllers/post/post_inv_auction_controller');
 
-function post_invert_auction_handler(req, res) {
-    const { product_id, base_price, target_quantity, total, close_date, user_id } = req.body;
 
-    if (!product_id || !base_price || !target_quantity || !total || !close_date || !user_id) {
-        return res.status(400).json('Missing required data');
+async function post_invert_auction_handler(req, res) {
+    try {
+        const { product_id, base_price, target_quantity, total, close_date } = req.body;
+
+        if (!product_id || !base_price || !target_quantity || !total || !close_date) {
+            throw new Error('Missing required data');
+        }
+
+        const response = await create_invert_auction(product_id, base_price, target_quantity, total, close_date);
+
+        res.status(200).json(('Invert auction created successfully', response));
+    } catch (error) {
+        if (error.message === 'Missing required data') {
+            return res.status(400).json((error.message));
+        }
+        res.status(500).json(('Error creating invert auction'));
     }
-
-    create_invert_auction(product_id, base_price, target_quantity, total, close_date, user_id)
-        .then(response => {
-            res.status(200).json('Invert auction created successfully', response);
-        })
-        .catch(error => {
-            if (error.message === 'Missing required data') {
-                res.status(400).json(error.message);
-            } else {
-                res.status(500).json('Error creating invert auction');
-            }
-        });
 }
 
 module.exports = {

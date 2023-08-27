@@ -1,6 +1,9 @@
-const { Invert_auction, Product, Auction_bid, User } = require('../../db');
+const { Invert_auction, Product } = require('../../db');
 
-const create_invert_auction = async (product_id, base_price, target_quantity, total, close_date, user_id) => {
+const create_invert_auction = async (product_id, base_price, target_quantity, total, close_date) => {
+
+    if (!product_id || !base_price || !target_quantity || !total || !close_date) throw new Error("Faltan completar campos.");
+    //deleteFlag, authorize falta esto
     try {
         const product = await Product.findByPk(product_id);
 
@@ -8,12 +11,11 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
             throw new Error('Product not found');
         }
 
-        const { name, image, brand, description, datasheet, price, SubCategoryId } = product;
-
-        const user = await User.findByPk(user_id);
-        if (!user) {
-            throw new Error('User not found');
+        if (product.Invert_auction) {
+            throw new Error('An auction already exists for this product');
         }
+
+        const { name, image, brand, description, datasheet, SubCategoryId } = product;
 
         const new_invert_auction = await product.createInvert_auction({
             image: image,
@@ -22,18 +24,15 @@ const create_invert_auction = async (product_id, base_price, target_quantity, to
             description: description,
             datasheet: datasheet,
             total,
-            price: price,
-            target_quantity, //llegar a lo pedido por el cliente
+            target_quantity,
             base_price,
             close_date,
             invert: true,
             subCategory: SubCategoryId,
             type: 'IA',
-            user_id,
-            //status
+        }).catch((error) => {
+            console.log('error', error)
         });
-
-        await new_invert_auction.setUser(user); // Associate the user with the invert auction
 
         return new_invert_auction;
     } catch (error) {

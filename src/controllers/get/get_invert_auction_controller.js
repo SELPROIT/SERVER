@@ -1,7 +1,7 @@
 const { Invert_auction, Product, Category, Sub_category, User } = require('../../db'); // Asegúrate de importar sequelize
 const { handle_date } = require('./handle_date');
 
-const get_auction = async () => {
+const get_invert_auction = async () => {
   try {
     const invert_auctions = await Invert_auction.findAll({
       include: [
@@ -33,14 +33,13 @@ const get_auction = async () => {
           description,
           datasheet,
           total,
-          price,
           target_quantity,
           invert,
           // status,
           type
         } = auction;
 
-        const formatted_close_date = handle_date(close_date);
+        // const formatted_close_date = handle_date(close_date);
 
         return {
           id,
@@ -50,12 +49,11 @@ const get_auction = async () => {
           description,
           datasheet,
           total,
-          price,
           target_quantity,
           invert,
           // status,
           base_price,
-          close_date: formatted_close_date,
+          close_date,
           product_id: product.id,
           sub_category_id: product.SubCategoryId,
           category_id: product.Sub_category.CategoryId,
@@ -74,5 +72,5 @@ const get_auction = async () => {
 };
 
 module.exports = {
-  get_auction,
+  get_invert_auction
 };

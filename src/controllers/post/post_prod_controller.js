@@ -9,11 +9,10 @@ const postProductC = ({
   datasheet,
   rating,
   stock,
-  price,
   ref_subCategory
 }) => {
   return new Promise((resolve, reject) => {
-    if (!name || !brand || !image || !description || !datasheet || !rating || !stock || !price || !ref_subCategory) {
+    if (!name || !brand || !image || !description || !datasheet || !rating || !stock || !ref_subCategory) {
       reject(new Error("Faltan completar campos."));
       return;
     }
@@ -44,7 +43,6 @@ const postProductC = ({
                 datasheet: cloudDatasheet,
                 rating,
                 stock,
-                price,
                 SubCategoryId: ref_subCategory,
               }];
 

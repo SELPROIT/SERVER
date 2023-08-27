@@ -33,7 +33,6 @@ const get_auction = async () => {
           description,
           datasheet,
           total,
-          price,
           type
         } = auction;
 
@@ -47,9 +46,8 @@ const get_auction = async () => {
           description,
           datasheet,
           total,
-          price,
           base_price,
-          close_date: formatted_close_date,
+          close_date,
           product_id: product.id,
           sub_category_id: product.SubCategoryId,
           category_id: product.Sub_category.CategoryId,
