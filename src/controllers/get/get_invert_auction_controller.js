@@ -52,25 +52,22 @@ const get_invert_auction = async () => {
 
         return {
           id,
+          base_price,
+          close_date,
+          product,
+          user,
+          authorize,
           image,
           name,
           brand,
           description,
           datasheet,
-          total,
-          target_quantity,
-          invert,
           status,
-          base_price,
-          close_date,
-          product_id: product.id,
-          sub_category_id: product.SubCategoryId,
-          category_id: product.Sub_category.CategoryId,
+          total,
           type,
-          user_id: user.id,
-          favorites: user.favorites,
-          created_history: user.created_history,
-          auction_bids: formattedAuctionBids // Include the formatted Auction_bids
+          auction_bids: formattedAuctionBids, // Include the formatted Auction_bids
+          target_quantity,
+          invert
         };
       })
     );

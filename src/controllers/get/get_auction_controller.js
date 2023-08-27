@@ -36,6 +36,7 @@ const get_auction = async () => {
           description,
           datasheet,
           total,
+          status,
           type,
           Auction_bids // Access the associated Auction_bids here
         } = auction;
@@ -59,6 +60,7 @@ const get_auction = async () => {
           brand,
           description,
           datasheet,
+          status,
           total,
           type,
           auction_bids: formattedAuctionBids // Include the formatted Auction_bids
