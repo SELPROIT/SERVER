@@ -1,4 +1,4 @@
-const mercado_pago = require('../../controllers/post/mercado_pago_controller');
+const {mercado_pago, receiveWebhook} = require('../../controllers/post/mercado_pago_controller');
 
 async function mercado_pago_handler(req, res) {
     try {
@@ -9,7 +9,7 @@ async function mercado_pago_handler(req, res) {
         const response = await mercado_pago(req.body);
 
         if (!response) throw new Error()
-        res.status(200).json(("Category created successfully", response));
+        res.status(200).json((response));
 
     } catch (error) {
         if (error.message === 'Missing data') {
