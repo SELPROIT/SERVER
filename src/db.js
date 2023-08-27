@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const pg = require('pg')
 
 const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
@@ -12,7 +13,8 @@ const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${
 		ssl: {
 			rejectUnauthorized: false,
 		},
-	}
+	},
+	dialectModule: pg,
 });
 // const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
@@ -80,10 +82,10 @@ Product.belongsTo(User);
 
 // Invert_auction.belongsToMany(User, { through: 'favorites' });
 
-Auction.belongsToMany(User, {through: 'UserAuctions'});
+Auction.belongsToMany(User, { through: 'UserAuctions' });
 Auction.belongsToMany(User, { through: 'UserAuctions' });
 
-Invert_auction.belongsToMany(User, {through: 'UserInvAuctions'});
+Invert_auction.belongsToMany(User, { through: 'UserInvAuctions' });
 User.belongsToMany(Invert_auction, { through: 'UserInvAuctions' });
 
 
