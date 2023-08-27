@@ -6,14 +6,14 @@ const get_auction = async () => {
     const auctions = await Auction.findAll({
       include: [
         {
-          model: Product, // Incluir el Producto relacionado
+          model: Product,
           include: [
-            { model: Sub_category, include: Category } // Incluir Subcategoría y Categoría
+            { model: Sub_category, include: Category }
           ]
         },
         {
-          model: User, // Incluir el Usuario relacionado
-          attributes: ['id', 'favorites', 'created_history'] // Incluir solo las propiedades relevantes
+          model: User,
+          attributes: ['id', 'favorites', 'created_history']
         },
         {
           model: Auction_bid
@@ -36,12 +36,16 @@ const get_auction = async () => {
           description,
           datasheet,
           total,
-          type
+          type,
+          Auction_bids // Access the associated Auction_bids here
         } = auction;
 
-        // const formatted_close_date = handle_date(close_date);
-        
-        // Realizar alguna manipulación o formateo de datos aquí si es necesario
+        const formattedAuctionBids = Auction_bids.map(bid => ({
+          bid_id: bid.id,
+          proposed_price: bid.proposed_price,
+          total: bid.total,
+          // Include other relevant properties from Auction_bid if needed
+        }));
 
         return {
           id,
@@ -56,11 +60,12 @@ const get_auction = async () => {
           description,
           datasheet,
           total,
-          type
+          type,
+          auction_bids: formattedAuctionBids // Include the formatted Auction_bids
         };
       })
     );
-    
+
     return formattedAuctions;
 
   } catch (error) {

@@ -6,17 +6,17 @@ const get_invert_auction = async () => {
     const invert_auctions = await Invert_auction.findAll({
       include: [
         {
-          model: Product, // Incluir el Producto relacionado
+          model: Product,
           include: [
-            { model: Sub_category, include: Category } // Incluir Subcategoría y Categoría
+            { model: Sub_category, include: Category }
           ]
         },
         {
-          model: User, // Incluir el Usuario relacionado
-          attributes: ['id', 'favorites', 'created_history'] // Incluir solo las propiedades relevantes
+          model: User,
+          attributes: ['id', 'favorites', 'created_history']
         },
         {
-          model:Auction_bid
+          model: Auction_bid // Include the Auction_bid model here
         }
       ]
     });
@@ -38,11 +38,17 @@ const get_invert_auction = async () => {
           total,
           target_quantity,
           invert,
-          // status,
-          type
+          status,
+          type,
+          Auction_bids // Access the associated Auction_bids here
         } = auction;
 
-        // const formatted_close_date = handle_date(close_date);
+        const formattedAuctionBids = Auction_bids.map(bid => ({
+          bid_id: bid.id,
+          proposed_price: bid.proposed_price,
+          total: bid.total,
+          // Include other relevant properties from Auction_bid if needed
+        }));
 
         return {
           id,
@@ -54,7 +60,7 @@ const get_invert_auction = async () => {
           total,
           target_quantity,
           invert,
-          // status,
+          status,
           base_price,
           close_date,
           product_id: product.id,
@@ -63,7 +69,8 @@ const get_invert_auction = async () => {
           type,
           user_id: user.id,
           favorites: user.favorites,
-          created_history: user.created_history
+          created_history: user.created_history,
+          auction_bids: formattedAuctionBids // Include the formatted Auction_bids
         };
       })
     );
@@ -77,3 +84,4 @@ const get_invert_auction = async () => {
 module.exports = {
   get_invert_auction
 };
+
