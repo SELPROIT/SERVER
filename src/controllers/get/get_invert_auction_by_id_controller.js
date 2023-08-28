@@ -1,57 +1,41 @@
-const { Invert_auction, Product, Category, Sub_category } = require('../../db');
+const { Invert_auction } = require("../../db");
 
 // Función que obtiene información de una subasta invertida por su ID utilizando promesas
 const get_invertAuction_by_id = (invertAuction_id) => {
   return Invert_auction.findByPk(invertAuction_id)
-    .then(invertAuction => {
+    .then((invertAuction) => {
       if (!invertAuction) {
-        throw new Error('Invert auction not found');
+        throw new Error("Invert auction not found");
       }
-      
-      return Product.findByPk(invertAuction.ProductId)
-        .then(product => {
-          if (!product) {
-            throw new Error('Product not found');
-          }
-          
-          return Sub_category.findByPk(product.SubCategoryId)
-            .then(sub_category => {
-              if (!sub_category) {
-                throw new Error('Sub category not found');
-              }
-              
-              return Category.findByPk(sub_category.CategoryId)
-                .then(category => {
-                  if (!category) {
-                    throw new Error('Category not found');
-                  }
-                  
-                  const response = {
-                    id: invertAuction.id,
-                    product_id: invertAuction.ProductId,
-                    sub_category_id: sub_category.id,
-                    category_id: category.id,
-                    name: product.name,
-                    image: product.image,
-                    description: product.description,
-                    brand: product.brand,
-                    target_quantity: invertAuction.target_quantity,
-                    total: invertAuction.total,
-                    base_price: invertAuction.base_price,
-                    close_date: invertAuction.close_date,
-                    invert: invertAuction.invert,
-                  };
-                  
-                  return response;
-                });
-            });
-        });
+
+      const response = {
+        id: invertAuction.id,
+        product: invertAuction.product,
+        product_name: invertAuction.product_name,
+        image: invertAuction.image,
+        description: invertAuction.description,
+        brand: invertAuction.brand,
+        target_quantity: invertAuction.target_quantity,
+        total: invertAuction.total,
+        base_price: invertAuction.base_price,
+        close_date: invertAuction.close_date,
+        invert: invertAuction.invert,
+        user: invertAuction.user,
+        authorize: invertAuction.authorize,
+        datasheet: invertAuction.datasheet,
+        status: invertAuction.status,
+        type: invertAuction.type,
+        auction_bids: invertAuction.auction_bids, // Include the formatted Auction_bids
+      };
+
+      return response;
     })
-    .catch(error => {
+    .catch((error) => {
       throw error;
     });
 };
 
+
 module.exports = {
-  get_invertAuction_by_id,
+  get_invertAuction_by_id
 };
