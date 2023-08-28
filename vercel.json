@@ -11,6 +11,17 @@
         "src": "./(.*)",
         "dest": "index.js"
       },
-      { "src": "/category", "dest": "/" }
+      { "src": "/category", "dest": "/" },
+      { "src": "/subcategory", "dest": "/" },
+      { "src": "/product", "dest": "/" },
+      { "src": "/allUsers", "dest": "/" },
+      { "src": "/user/:name", "dest": "/" },
+      { "src": "/bid", "dest": "/" },
+      { "src": "/admins", "dest": "/" },
+      { "src": "/allAuctions", "dest": "/" },
+      { "src": "/invertAuction", "dest": "/" },
+      { "src": "/auction", "dest": "/" },
+      { "src": "/auction/:auction_id", "dest": "/" },
+      { "src": "/invertAuction/:invertAuction_id", "dest": "/" }
     ]
   }
