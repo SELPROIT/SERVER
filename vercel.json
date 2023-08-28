@@ -21,7 +21,7 @@
       { "src": "/allAuctions", "dest": "/" },
       { "src": "/invertAuction", "dest": "/" },
       { "src": "/auction", "dest": "/" },
-      { "src": "/auction/:auction_id+", "dest": "/api/auction" },
+      { "src": "/auction/:auction_id([^/]+)", "dest": "/api/auction" },
       { "src": "/invertAuction/:invertAuction_id", "dest": "/" },
       { "src": "/create/product", "dest": "/" },
       { "src": "/create/user", "dest": "/" },
