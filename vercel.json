@@ -30,5 +30,11 @@
       { "src": "/create/invertAuction", "dest": "/" },
       { "src": "/create/payment", "dest": "/" },
       { "src": "/create/webhook", "dest": "/" }
+    ],
+    "rewrites": [
+      {
+        "source": "/auction/:id",
+        "destination": "/api/auction/:id"
+      }
     ]
   }
