@@ -15,7 +15,7 @@
       { "src": "/subcategory", "dest": "/" },
       { "src": "/product", "dest": "/" },
       { "src": "/allUsers", "dest": "/" },
-      { "src": "/user/:name", "dest": "/" },
+      { "src": "/user", "dest": "/" },
       { "src": "/bid", "dest": "/" },
       { "src": "/admins", "dest": "/" },
       { "src": "/allAuctions", "dest": "/" },

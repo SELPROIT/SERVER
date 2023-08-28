@@ -18,7 +18,7 @@ getRoutes.get('/category', toCategory);
 getRoutes.get('/subcategory', toSubCategory);
 getRoutes.get('/product', getProdHandler);
 getRoutes.get('/allUsers', getAllUsers);
-getRoutes.get('/user/:name', get_UserByName)
+getRoutes.get('/user', get_UserByName)
 getRoutes.get('/bid', getAllAuctionBids);
 getRoutes.get('/admins', getUserAdmin);
 getRoutes.get("/allAuctions", get_all_auctions_handler)
