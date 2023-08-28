@@ -20,7 +20,7 @@ const sortAuctions = (sort, auctions) => {
   ) {
     throw new Error("Invalid sort order");
   }
-console.log(sort, auctions);
+
   // Definir las funciones de ordenación para cada criterio
   const sortingFunctions = {
     asc: (a, b) => (a.name || "").localeCompare(b.name || ""),
