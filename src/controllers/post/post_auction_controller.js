@@ -1,4 +1,4 @@
-const { Auction, Product } = require('../../db');
+const { Auction, Product, Sub_category } = require('../../db');
 
 const create_auction = async (product_id, base_price, close_date) => {
 
