@@ -73,7 +73,7 @@ const getAuByCategory = (category, auctions) => {
 
 // Función para filtrar subastas por subcategoría
 const getAuBySubCategory = (subCategory, auctions) => {
-  return auctions.filter(auction => auction.sub_category_id === subCategory);
+  return auctions.filter(auction => auction.subCategory === subCategory);
 };
 
 
