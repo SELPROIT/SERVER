@@ -12,7 +12,7 @@ const sortAuctions = (sort, auctions) => {
     ![
       "asc",
       "desc",
-      "raitingAsc",
+      "raitingAsc",//debería sacarlo
       "raitingDesc",
       "ascPrice",
       "descPrice",

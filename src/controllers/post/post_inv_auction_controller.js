@@ -17,6 +17,8 @@ const create_invert_auction = async (product_id, base_price, target_quantity, cl
         }
 
 
+        //validaciones de taget quantitito
+        //sacar el tock de producto
         const { name, image, brand, description, datasheet, stock, SubCategoryId } = product;
 
         const new_invert_auction = await product.createInvert_auction({
@@ -24,8 +26,8 @@ const create_invert_auction = async (product_id, base_price, target_quantity, cl
             product_name: name,
             brand: brand,
             description: description,
-            datasheet: datasheet,
-            total: stock,
+            datasheet: datasheet, //cambiarlo acá, y dejar stock para las auctions normales
+            total: stock,//default 0, se agrega con el total de la bid || target_accumulated
             target_quantity,
             base_price,
             close_date,

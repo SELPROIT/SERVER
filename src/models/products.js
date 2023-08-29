@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
 
-        rating: {
+        rating: {///sacar el raiting, eso es para página
             type: DataTypes.FLOAT,
             allowNull: false,
         },
