@@ -23,8 +23,8 @@ const sortAuctions = (sort, auctions) => {
 console.log(sort, auctions);
   // Definir las funciones de ordenación para cada criterio
   const sortingFunctions = {
-    asc: (a, b) => (a.name || "").localeCompare(b.name || ""),
-    desc: (a, b) => (b.name || "").localeCompare(a.name || ""),
+    asc: (a, b) => (a.product_name || "").localeCompare(b.product_name || ""),
+    desc: (a, b) => (b.product_name || "").localeCompare(a.product_name || ""),
     raitingAsc: (a, b) => b.rating - a.rating,
     raitingDesc: (a, b) => a.rating - b.rating,
     ascPrice: (a, b) => a.proposed_price - b.proposed_price,
