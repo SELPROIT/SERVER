@@ -27,8 +27,8 @@ console.log(sort, auctions);
     desc: (a, b) => (b.product_name || "").localeCompare(a.product_name || ""),
     raitingAsc: (a, b) => b.rating - a.rating,
     raitingDesc: (a, b) => a.rating - b.rating,
-    ascPrice: (a, b) => a.proposed_price - b.proposed_price,
-    descPrice: (a, b) => b.proposed_price - a.proposed_price,
+    ascPrice: (a, b) => a.base_price - b.base_price,
+    descPrice: (a, b) => b.base_price - a.base_price
   };
 
   // Obtener la función de ordenación correspondiente al criterio
