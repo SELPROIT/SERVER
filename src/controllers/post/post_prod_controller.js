@@ -9,10 +9,11 @@ const postProductC = ({
   datasheet,
   rating,
   stock,
-  ref_subCategory
+  ref_subCategory,
+  user_id
 }) => {
   return new Promise((resolve, reject) => {
-    if (!name || !brand || !image || !description || !datasheet || !rating || !stock || !ref_subCategory) {
+    if (!name || !brand || !image || !description || !datasheet || !rating || !stock || !ref_subCategory || !user_id) {
       reject(new Error("Faltan completar campos."));
       return;
     }
@@ -30,38 +31,51 @@ const postProductC = ({
             return;
           }
 
-          Product.count({ where: { SubCategoryId: ref_subCategory } })
-            .then(prodCount => {
-              const newID = prodCount + 1;
+          User.findOne({ where: { id: user_id } })
+            .then(foundUser => {
+              if (!foundUser) {
+                console.error("Could not find User");
+                resolve(null);
+                return;
+              }
 
-              const products = [{
-                id: `${ref_subCategory}${newID}`,
-                name,
-                brand,
-                image: cloudImage,
-                description,
-                datasheet: cloudDatasheet,
-                rating,
-                stock,
-                SubCategoryId: ref_subCategory,
-              }];
+              Product.count({ where: { SubCategoryId: ref_subCategory } })
+                .then(prodCount => {
+                  const newID = prodCount + 1;
 
-              Product.bulkCreate(products, { returning: true })
-                .then(newProds => {
-                  Promise.all(newProds.map(newProd => newProd.setSub_category(foundRef)))
-                    .then(() => {
-                      resolve(newProds);
+                  const products = [{
+                    id: `${ref_subCategory}${newID}`,
+                    name,
+                    brand,
+                    image: cloudImage,
+                    description,
+                    datasheet: cloudDatasheet,
+                    rating,
+                    stock,
+                    SubCategoryId: ref_subCategory,
+                    UserId: user_id, // Set the user ID
+                  }];
+
+                  Product.bulkCreate(products, { returning: true })
+                    .then(newProds => {
+                      Promise.all(newProds.map(newProd => newProd.setSub_category(foundRef)))
+                        .then(() => {
+                          resolve(newProds);
+                        })
+                        .catch(error => {
+                          reject(new Error(`Error setting sub-category for products: ${error.message}`));
+                        });
                     })
                     .catch(error => {
-                      reject(new Error(`Error setting sub-category for products: ${error.message}`));
+                      reject(new Error(`Error creating products: ${error.message}`));
                     });
                 })
                 .catch(error => {
-                  reject(new Error(`Error creating products: ${error.message}`));
+                  reject(new Error(`Error counting products: ${error.message}`));
                 });
             })
             .catch(error => {
-              reject(new Error(`Error counting products: ${error.message}`));
+              reject(new Error(`Error finding user: ${error.message}`));
             });
         })
         .catch(error => {
@@ -73,5 +87,6 @@ const postProductC = ({
     });
   });
 };
+
 
 module.exports = { postProductC };

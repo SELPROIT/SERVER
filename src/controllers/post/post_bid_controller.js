@@ -22,7 +22,7 @@ const createAuctionBid = (auction_id, proposed_price, total, invert, user_id) =>
                 })
                     .then(newAuctionBid => {
                         let auctionPromise = null;
-
+                        //cuando creo una bid, con el user id, tengo que agregarlo al interaction_history del usuario
                         if (invert) {
                             Invert_auction.findByPk(auction_id)
                                 .then(invertAuction => {

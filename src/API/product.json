@@ -1,10 +1,11 @@
 {
   "name": "Test Name",
-  "brand": "Test Brand",
-  "image": "https://cdn.discordapp.com/attachments/1138194511974105088/1144642918112563302/FOTO_ARMADURA_ARNES_DIELECTRICO_A-0350D.JPG",
-  "description": "Este es un producto de prueba, mas precisamente el 1",
-  "datasheet": "https://cdn.discordapp.com/attachments/1138194511974105088/1144642944721244170/FICHA_ARMADURA_ARNES_DIELECTRICO_A-0350D.PDF",
-  "rating": 2,
-  "stock": 540,
-  "ref_subCategory": "CC1"
+ "brand": "Test Brand",
+ "image": "https://cdn.discordapp.com/attachments/1138194511974105088/1144642918112563302/FOTO_ARMADURA_ARNES_DIELECTRICO_A-0350D.JPG",
+ "description": "Este es un producto de prueba, mas precisamente el 1",
+ "datasheet": "https://cdn.discordapp.com/attachments/1138194511974105088/1144642944721244170/FICHA_ARMADURA_ARNES_DIELECTRICO_A-0350D.PDF",
+ "rating": 2,
+ "stock": 540,
+ "ref_subCategory": "CC1",
+ "user_id":"784460e3-7aa6-4de4-9a8f-b4f78fc87cd6"
 }

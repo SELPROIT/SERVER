@@ -8,7 +8,6 @@ const put_user_controller = async (
   name,
   num_ident,
   user_name,
-  password,
   phone,
   email,
   adress,
@@ -44,10 +43,6 @@ const put_user_controller = async (
   }
   if (!!user_name) {
     changedUser.user_name = user_name;
-  }
-  if (!!password) {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    changedUser.password = hashedPassword;
   }
   if (!!phone) {
     changedUser.phone = phone;

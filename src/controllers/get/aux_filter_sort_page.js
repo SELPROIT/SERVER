@@ -20,7 +20,7 @@ const sortAuctions = (sort, auctions) => {
   ) {
     throw new Error("Invalid sort order");
   }
-console.log(sort, auctions);
+
   // Definir las funciones de ordenación para cada criterio
   const sortingFunctions = {
     asc: (a, b) => (a.product_name || "").localeCompare(b.product_name || ""),
@@ -28,7 +28,7 @@ console.log(sort, auctions);
     raitingAsc: (a, b) => b.rating - a.rating,
     raitingDesc: (a, b) => a.rating - b.rating,
     ascPrice: (a, b) => a.base_price - b.base_price,
-    descPrice: (a, b) => b.base_price - a.base_price
+    descPrice: (a, b) => b.base_price - a.base_price,
   };
 
   // Obtener la función de ordenación correspondiente al criterio

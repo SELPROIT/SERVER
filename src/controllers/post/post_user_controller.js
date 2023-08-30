@@ -8,7 +8,6 @@ const postUser = async (newUser) => {
 		name,
 		num_ident,
 		user_name,
-		password,
 		phone,
 		email,
 		adress,
@@ -19,11 +18,8 @@ const postUser = async (newUser) => {
 		id_subcat,
 	} = newUser;
 
-	const hashedPassword = await bcrypt.hash(password, 10);
 
-
-
-	if(!name, !num_ident, !user_name, !password, !company_name, !NIT, !sector, !CIIU, !phone, !email, !id_subcat, !adress) {
+	if(!name, !num_ident, !user_name, !company_name, !NIT, !sector, !CIIU, !phone, !email, !id_subcat, !adress) {
 		throw new Error ('Missing data');
 	};
 	let user_id = Math.floor(100000 + Math.random() * 900000);
@@ -42,7 +38,6 @@ const postUser = async (newUser) => {
 		name,
 		num_ident,
 		user_name,
-		password: hashedPassword,
 		phone,
 		email,
 		adress,
