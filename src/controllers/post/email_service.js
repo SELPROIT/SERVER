@@ -25,7 +25,7 @@ const sendEmail = async (userId) => {
         to: recipientEmail,
         subject: 'Bienvenido!',
         text: 'Su cuenta ha sido creada exitosamente!.',
-        html: '<h1>Si usted recive este email, es porque usted tiene un problema con la cocaina, por favor dejela</h1>',
+        html: '<h1>Le damos la bienvenida a SELPRO Soluciones, esperamos verlo con nosotros y que crezcamos juntos!</h1>',
     };
 
     try {

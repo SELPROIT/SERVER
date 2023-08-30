@@ -2,8 +2,8 @@ const { register } = require('../../controllers/get/auth_controller')
 
 async function toRegister(req, res) {
     try {
-        const { user_name, password } = req.body;
-        const result = await register(user_name, password);
+        const { user_name } = req.body;
+        const result = await register(user_name);
         if(!result) res.status(400).json({ message: error.message });
 
         res.json(result);

@@ -20,15 +20,15 @@ const sortAuctions = (sort, auctions) => {
   ) {
     throw new Error("Invalid sort order");
   }
-console.log(sort, auctions);
+
   // Definir las funciones de ordenación para cada criterio
   const sortingFunctions = {
-    asc: (a, b) => (a.name || "").localeCompare(b.name || ""),
-    desc: (a, b) => (b.name || "").localeCompare(a.name || ""),
+    asc: (a, b) => (a.product_name || "").localeCompare(b.product_name || ""),
+    desc: (a, b) => (b.product_name || "").localeCompare(a.product_name || ""),
     raitingAsc: (a, b) => b.rating - a.rating,
     raitingDesc: (a, b) => a.rating - b.rating,
-    ascPrice: (a, b) => a.proposed_price - b.proposed_price,
-    descPrice: (a, b) => b.proposed_price - a.proposed_price,
+    ascPrice: (a, b) => a.base_price - b.base_price,
+    descPrice: (a, b) => b.base_price - a.base_price,
   };
 
   // Obtener la función de ordenación correspondiente al criterio
@@ -68,12 +68,12 @@ const getAuByType = (type, auctions) => {
 
 // Función para filtrar subastas por categoría
 const getAuByCategory = (category, auctions) => {
-  return auctions.filter(auction => auction.category_id === category);
+  return auctions.filter(auction => auction.category === category);
 };
 
 // Función para filtrar subastas por subcategoría
 const getAuBySubCategory = (subCategory, auctions) => {
-  return auctions.filter(auction => auction.sub_category_id === subCategory);
+  return auctions.filter(auction => auction.subCategory === subCategory);
 };
 
 

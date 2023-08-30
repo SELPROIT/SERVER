@@ -16,6 +16,12 @@ const productCloudinaryConfig = async (imageURL) => {
     try {
         const result = await cloudinary.uploader.upload(imageURL, {
             folder: 'selpro/Products',
+            transformation: [
+                {
+                    width: 192, // Define el ancho deseado aquí
+                    crop: 'scale', // Escala la imagen para que se ajuste al ancho especificado
+                },
+            ],
         });
         return result.secure_url;
     } catch (error) {
