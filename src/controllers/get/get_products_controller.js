@@ -1,4 +1,4 @@
-const { Product, Sub_category, Auction, Invert_auction } = require('../../db,js');
+const { Product, Sub_category, Auction, Invert_auction } = require('../../db.js');
 
 // Función que obtiene todos los productos con subcategorías, subastas y subastas invertidas relacionadas utilizando promesas
 const getAllProd = () => {
