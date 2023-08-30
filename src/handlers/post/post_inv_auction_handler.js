@@ -1,4 +1,4 @@
-const { create_invert_auction } = require('../../controllers/post/post_inv_auction_controller');
+const { create_invert_auction } = require('../../controllers/post/post_inv_auction_controller.js');
 // const express = require("express");
 // const server = express();
 // server.use(express.json());

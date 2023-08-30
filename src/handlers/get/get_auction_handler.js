@@ -1,6 +1,6 @@
-const { sortAuctions, getAuByCategory, getAuBySubCategory, paginateAu } = require('../../controllers/get/aux_filter_sort_page');
-const { auctionByName } = require('../../controllers/get/get_auction_by_mame');
-const { get_auction } = require('../../controllers/get/get_auction_controller');
+const { sortAuctions, getAuByCategory, getAuBySubCategory, paginateAu } = require('../../controllers/get/aux_filter_sort_page.js');
+const { auctionByName } = require('../../controllers/get/get_auction_by_mame.js');
+const { get_auction } = require('../../controllers/get/get_auction_controller.js');
 
 
 function get_auction_handler(req, res) {

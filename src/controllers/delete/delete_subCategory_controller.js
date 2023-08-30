@@ -1,4 +1,4 @@
-const { Sub_category } = require('../../db');
+const { Sub_category } = require('../../db.js');
 
 const delete_subCategory = async (id) => {
 

@@ -1,4 +1,4 @@
-const { User, Auction, Invert_auction, Product, Auction_bid } = require("../../db");
+const { User, Auction, Invert_auction, Product, Auction_bid } = require("../../db.js");
 
 // Define la función que devuelve una promesa para obtener todos los usuarios
 const getUsers = () => {

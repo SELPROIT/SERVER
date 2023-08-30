@@ -1,4 +1,4 @@
-const { getUsers } = require("../../controllers/get/get_user_controller");
+const { getUsers } = require("../../controllers/get/get_user_controller.js");
 
 // Manejador para obtener todos los usuarios
 const getAllUsers = async (req, res) => {

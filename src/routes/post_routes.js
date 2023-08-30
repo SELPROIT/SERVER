@@ -1,14 +1,14 @@
-const { post_category_handler } = require("../handlers/post/post_category_handler");
-const { post_subCategoty_handler } = require("../handlers/post/post_sub_cat_handler");
-const { createdProd } = require('../handlers/post/post_product_handler');
-const { toPostUser } = require('../handlers/post/post_user_handler');
-const { createUserAdmin } = require('../handlers/post/post_admin_handler')
-const { postAuction } = require("../handlers/post/post_bid_handler");
-const { post_auction_handler } = require("../handlers/post/post_auction_handler");
-const { post_invert_auction_handler } = require("../handlers/post/post_inv_auction_handler");
-const { emailSend } = require("../handlers/post/email_service_handler");
-const { mercado_pago_handler } = require("../handlers/post/mercado_pago_handler");
-const { weebhook_handler } = require("../handlers/post/mercado_pago_webhook_handler");
+const { post_category_handler } = require("../handlers/post/post_category_handler.js");
+const { post_subCategoty_handler } = require("../handlers/post/post_sub_cat_handler.js");
+const { createdProd } = require('../handlers/post/post_product_handler.js');
+const { toPostUser } = require('../handlers/post/post_user_handler.js');
+const { createUserAdmin } = require('../handlers/post/post_admin_handler.js')
+const { postAuction } = require("../handlers/post/post_bid_handler.js");
+const { post_auction_handler } = require("../handlers/post/post_auction_handler.js");
+const { post_invert_auction_handler } = require("../handlers/post/post_inv_auction_handler.js");
+const { emailSend } = require("../handlers/post/email_service_handler.js");
+const { mercado_pago_handler } = require("../handlers/post/mercado_pago_handler.js");
+const { weebhook_handler } = require("../handlers/post/mercado_pago_webhook_handler.js");
 
 
 

@@ -1,4 +1,4 @@
-const { Category } = require('../../db');
+const { Category } = require('../../db.js');
 
 const delete_category = async (id) => {
 

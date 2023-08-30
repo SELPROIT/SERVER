@@ -1,7 +1,7 @@
-const { User, Auction, Invert_auction, Auction_bid } = require('../../db');
+const { User, Auction, Invert_auction, Auction_bid } = require('../../db.js');
 const bcrypt = require('bcrypt')
-const { uploadImage } = require('../../utils/userCloudinaryConfig');
-const { uploadFile } = require('../../utils/PDFCloudinaryConfig');
+const { uploadImage } = require('../../utils/userCloudinaryConfig.js');
+const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
 
 const put_user_controller = async (
   id,

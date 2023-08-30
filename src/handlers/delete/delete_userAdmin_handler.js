@@ -1,4 +1,4 @@
-const { delete_userAdmin } = require('../../controllers/delete/delete_userAdmin_controller');
+const { delete_userAdmin } = require('../../controllers/delete/delete_userAdmin_controller.js');
 const { validate: validateUUID } = require('uuid');
 
 async function delete_userAdmin_handler(req, res) {

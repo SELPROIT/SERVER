@@ -1,4 +1,4 @@
-const { Category, Sub_category } = require('../../db');
+const { Category, Sub_category } = require('../../db.js');
 const { Op } = require("sequelize");
 
 const create_subCategory = (type, data) => {

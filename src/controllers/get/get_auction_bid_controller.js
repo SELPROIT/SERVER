@@ -1,4 +1,4 @@
-const { Auction_bid } = require("../../db");
+const { Auction_bid } = require("../../db.js");
 
 // Función que obtiene todas las ofertas de subastas utilizando promesas
 const getAuctionBid = () => {

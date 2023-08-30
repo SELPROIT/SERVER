@@ -1,4 +1,4 @@
-const { get_auction_by_id } = require('../../controllers/get/get_auction_by_id_controller');
+const { get_auction_by_id } = require('../../controllers/get/get_auction_by_id_controller.js');
 const { validate: validateUUID } = require('uuid');
 
 async function get_AuctionById_handler(req, res) {

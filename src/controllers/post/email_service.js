@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const { User } = require('../../db')
+const { User } = require('../../db.js')
 
 const getUserEmail = async (userId) => {
 

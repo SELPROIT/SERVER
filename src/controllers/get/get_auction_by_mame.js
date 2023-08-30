@@ -1,4 +1,4 @@
-const { Auction, Invert_auction } = require("../../db");
+const { Auction, Invert_auction } = require("../../db.js");
 const { Op } = require('sequelize');
 
 const auctionByName = async (type, product_name) => {
