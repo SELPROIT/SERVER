@@ -1,4 +1,4 @@
-const { Auction } = require('../../db');
+const { Auction } = require('../../db.js');
 
 const delete_auction = async (id) => {
 

@@ -1,7 +1,7 @@
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 const upload = multer().single('image');
-const config = require('../configCloud');
+const config = require('../configCloud.js');
 //IMPORTANTE : esta function solo lleva la imagen a la carpeta PRODUCTS de cloudinary!!
 //se utiliza SOLO para funcion POST PRODUCT
 const productCloudinaryConfig = async (imageURL) => {

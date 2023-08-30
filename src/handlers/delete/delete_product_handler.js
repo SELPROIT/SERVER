@@ -1,4 +1,4 @@
-const { delete_product } = require('../../controllers/delete/delete_product_controller');
+const { delete_product } = require('../../controllers/delete/delete_product_controller.js');
 
 
 async function delete_product_handler(req, res) {

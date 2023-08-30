@@ -1,4 +1,4 @@
-const { put_user_controller } = require("../../controllers/put/put_user_controller");
+const { put_user_controller } = require("../../controllers/put/put_user_controller.js");
 
 const put_user_handler = async (req, res) => {
   const { id } = req.params;
@@ -6,7 +6,6 @@ const put_user_handler = async (req, res) => {
     name,
     num_ident,
     user_name,
-    password,
     phone,
     email,
     adress,
@@ -35,7 +34,6 @@ const put_user_handler = async (req, res) => {
       name,
       num_ident,
       user_name,
-      password,
       phone,
       email,
       adress,

@@ -1,4 +1,4 @@
-const { handle_finish_auction } = require("./handle_finish_auction");
+const { handle_finish_auction } = require("./handle_finish_auction.js");
 
 const handle_date = (status, close_date) => {
     const targetDate = new Date(close_date);
@@ -7,11 +7,11 @@ const handle_date = (status, close_date) => {
     let timer = setInterval(() => {
         const timeDifference = targetDate - currentDate;
          
-        console.log(status);
+        // console.log(status);
         if (timeDifference <= 0) {
             clearInterval(timer);
             status = "Terminada";
-            console.log(status);
+            // console.log(status);
             return status;
         }
 
@@ -29,7 +29,7 @@ const handle_date = (status, close_date) => {
     }, 1000);
 };
 
-handle_date("Activa", "2023-08-25T20:51:00.000Z");
+// handle_date("Activa", "2023-08-25T20:51:00.000Z");
 
 module.exports = {
     handle_date

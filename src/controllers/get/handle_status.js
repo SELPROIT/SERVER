@@ -1,5 +1,5 @@
-const { handle_date } = require("./handle_date");
-const { handle_finish_auction } = require("./handle_finish_auction");
+const { handle_date } = require("./handle_date.js");
+const { handle_finish_auction } = require("./handle_finish_auction.js");
 
 const handle_status = (status, close_date, type) => {
 

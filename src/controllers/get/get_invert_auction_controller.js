@@ -1,5 +1,5 @@
-const { Invert_auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db'); // Asegúrate de importar sequelize
-const { handle_date } = require('./handle_date');
+const { Invert_auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db.js'); // Asegúrate de importar sequelize
+const { handle_date } = require('./handle_date.js');
 
 const get_invert_auction = async () => {
   try {

@@ -1,4 +1,4 @@
-const { Invert_auction } = require("../../db");
+const { Invert_auction } = require("../../db.js");
 
 // Función que obtiene información de una subasta invertida por su ID utilizando promesas
 const get_invertAuction_by_id = (invertAuction_id) => {
