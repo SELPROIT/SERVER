@@ -9,9 +9,7 @@ const { post_invert_auction_handler } = require("../handlers/post/post_inv_aucti
 const { emailSend } = require("../handlers/post/email_service_handler");
 const { mercado_pago_handler } = require("../handlers/post/mercado_pago_handler");
 const { weebhook_handler } = require("../handlers/post/mercado_pago_webhook_handler");
-
-
-
+const { toPostPreUser } = require("../handlers/post/post_pre_user_handler");
 
 const postRoutes = require('express').Router()
 
@@ -20,6 +18,7 @@ postRoutes.post("/subcategory", post_subCategoty_handler);
 postRoutes.post('/product', createdProd);
 postRoutes.post('/admin', createUserAdmin)
 postRoutes.post('/user', toPostUser);
+postRoutes.post('/preUser', toPostPreUser);
 postRoutes.post('/bid', postAuction);
 postRoutes.post("/auction", post_auction_handler)
 postRoutes.post("/invertAuction", post_invert_auction_handler)
