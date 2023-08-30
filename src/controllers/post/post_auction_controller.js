@@ -1,13 +1,13 @@
 const { Auction, Product, User } = require('../../db');
 
-const create_auction = async (product_id, base_price, close_date, user_id) => {
+const create_auction = async (product_id, base_price, close_date, user_id ,stock ) => {
 
-    if(!product_id || !base_price || !close_date || !user_id) throw new Error ("Faltan completar campos.");
+    if(!product_id || !base_price || !close_date || !user_id || !stock) throw new Error ("Faltan completar campos.");
     //deleteFlag, authorize falta esto?
     try {
         const product = await Product.findByPk(product_id);
         if (!product) {
-            throw new Error('Product not found');
+            throw new Error('Producto no encontrado');
         }
         if (product.Auction) {
             throw new Error('Ya existe una subasta para ese producto.');
@@ -18,9 +18,13 @@ const create_auction = async (product_id, base_price, close_date, user_id) => {
             throw new Error('Usuario no encontrado.');
         }
 
+        let sale_price;
+        sale_price = Math.ceil(base_price * 1.75); //le agrego un 1.75 para agregarle un porcentaje al precio de venta
+         //preguntarle el porcentaje a steven, o que se haga en base al valor inicial, y después poner la posibilidad a modificarlo en el put
+
         // const {user_name} = user;
         //guardar la subasta en created_history, hacerle eun update 
-        const { name, image, brand, description, datasheet, stock, SubCategoryId } = product;
+        const { name, image, brand, description, datasheet, SubCategoryId } = product;
         
         const new_auction = await product.createAuction({
             image: image,
@@ -28,11 +32,12 @@ const create_auction = async (product_id, base_price, close_date, user_id) => {
             brand: brand,
             description: description,
             datasheet: datasheet,
-            total: stock,
+            stock,
             base_price,
             close_date,
-            subCategory: SubCategoryId,
-            type: 'AU'
+            sale_price, 
+            type: 'AU',
+            subCategory: SubCategoryId
         });
 
         await new_auction.setUser(user);

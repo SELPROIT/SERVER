@@ -6,39 +6,24 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             primaryKey: true,
         },
-
         name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         brand: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         image: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         description: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         datasheet: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-
-        rating: {///sacar el raiting, eso es para página
-            type: DataTypes.FLOAT,
-            allowNull: false,
-        },
-
-        stock: {
-            type: DataTypes.INTEGER,
             allowNull: false,
         },
         deleteFlag: {

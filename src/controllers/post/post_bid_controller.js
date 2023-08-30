@@ -1,9 +1,9 @@
 const { Auction_bid, Auction, Invert_auction, User } = require("../../db");
 
 
-const createAuctionBid = (auction_id, proposed_price, total, invert, user_id) => {
+const createAuctionBid = (auction_id, proposed_price, target_accumulated, invert, user_id) => {
     return new Promise((resolve, reject) => {
-        if (!auction_id || !proposed_price || !total || !user_id) {
+        if (!auction_id || !proposed_price || !target_accumulated || !user_id) {
             reject(new Error("Faltan completar campos."));
             return;
         }
@@ -17,11 +17,10 @@ const createAuctionBid = (auction_id, proposed_price, total, invert, user_id) =>
 
                 Auction_bid.create({
                     proposed_price,
-                    total,
+                    target_accumulated,
                     UserId: user_id  // Assign the User ID to the bid
                 })
                     .then(newAuctionBid => {
-                        let auctionPromise = null;
                         //cuando creo una bid, con el user id, tengo que agregarlo al interaction_history del usuario
                         if (invert) {
                             Invert_auction.findByPk(auction_id)
@@ -38,13 +37,17 @@ const createAuctionBid = (auction_id, proposed_price, total, invert, user_id) =>
                                         reject(new Error(`La puja no puede ser 0 o un número negativo.`));
                                         return;
                                     }
+                                    if(target_accumulated >= invertAuction.target_quantity){
+                                        reject(new Error(`La cantidad de productos ofrecidos no pueden ser mayor al la cantidad de productos solicitados. La cantidad de los meta es: ${target_quantity}`));
+                                        return;
+                                    }
                                     invertAuction.addAuction_bid(newAuctionBid)
-                                        .then(() => {
-                                            resolve(true);
-                                        })
-                                        .catch(error => {
-                                            reject(new Error(`Error añadiendo oferta a subasta inversa: ${error.message}`));
-                                        });
+                                    .then(() => {
+                                        return resolve(true);
+                                    })
+                                    .catch(error => {
+                                        reject(new Error(`Error añadiendo oferta a subasta inversa: ${error.message}`));
+                                    });
                                 })
                                 .catch(error => {
                                     reject(new Error(`Error encontrando subasta inversa: ${error.message}`));
@@ -57,7 +60,7 @@ const createAuctionBid = (auction_id, proposed_price, total, invert, user_id) =>
                                         return;
                                     }
                                     if(proposed_price < auction.base_price){
-                                        reject(new Error(`No se puede crear una puja con un precio menor al de base.`));
+                                        reject(new Error(`No se puede crear una puja con un precio menor al de base. Precio base: ${auction.base_price}`));
                                         return;
                                     }
                                     if(proposed_price <= 0){
@@ -66,9 +69,9 @@ const createAuctionBid = (auction_id, proposed_price, total, invert, user_id) =>
                                     }
 
                                     auction.addAuction_bid(newAuctionBid)
-                                        .then(() => {
-                                            resolve(true);
-                                        })
+                                    .then(() => {
+                                       return resolve(true);
+                                    })
                                         .catch(error => {
                                             reject(new Error(`Error añadiendo oferta a subasta: ${error.message}`));
                                         });

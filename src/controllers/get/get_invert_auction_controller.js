@@ -13,7 +13,7 @@ const get_invert_auction = async () => {
         },
         {
           model: User,
-          attributes: ['id', 'favorites', 'created_history']
+          attributes: ['user_id', 'favorites']
         },
         {
           model: Auction_bid // Include the Auction_bid model here
@@ -25,9 +25,9 @@ const get_invert_auction = async () => {
       invert_auctions.map(async auction => {
         const {
           id,
-          base_price,
+          desired_price,
           close_date,
-          Product: product,
+          // Product: product,
           User: user,
           authorize,
           image,
@@ -35,7 +35,7 @@ const get_invert_auction = async () => {
           brand,
           description,
           datasheet,
-          total,
+          stock,
           target_quantity,
           invert,
           status,
@@ -52,9 +52,9 @@ const get_invert_auction = async () => {
 
         return {
           id,
-          base_price,
+          desired_price,
           close_date,
-          product,
+          // product,
           user,
           authorize,
           image,
@@ -63,11 +63,11 @@ const get_invert_auction = async () => {
           description,
           datasheet,
           status,
-          total,
+          stock,
           type,
-          auction_bids: formattedAuctionBids, // Include the formatted Auction_bids
           target_quantity,
-          invert
+          invert,
+          auction_bids: formattedAuctionBids // Include the formatted Auction_bids
         };
       })
     );

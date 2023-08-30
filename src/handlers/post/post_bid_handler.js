@@ -1,13 +1,9 @@
 const { createAuctionBid } = require("../../controllers/post/post_bid_controller");
-const express = require("express");
-const server = express();
-server.use(express.json());
-
  
 function postAuction(req, res) {
-    const { auction_id, proposed_price, total, invert, user_id } = req.body;
+    const { auction_id, proposed_price, target_accumulated, invert, user_id } = req.body;
 
-    createAuctionBid(auction_id, proposed_price, total, invert, user_id)
+    createAuctionBid(auction_id, proposed_price, target_accumulated, invert, user_id)
         .then(newBid => {
             if (!newBid) {
                 res.status(404).json({ message: 'No se ha encontrado una subasta para esa puja.' });
