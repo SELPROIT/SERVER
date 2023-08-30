@@ -13,7 +13,7 @@ const create_auction = async (product_id, base_price, close_date, user_id) => {
         if (product.Auction) {
             throw new Error('Ya existe una subasta para ese producto.');
         }
-        const user = await User.findByPk(user_id);
+        const user = await User.findByPk(user_id); 
 
         if (!user) {
             throw new Error('Usuario no encontrado.');
