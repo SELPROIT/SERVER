@@ -28,30 +28,13 @@ async function get_all_auctions_handler(req, res) {
         }
 
         if (name) {
-            const auctions = await productByName(name);
+            finalResponse = await productByName(name);
 
-            if (!auctions) {
+            if (!finalResponse) {
                 return res.status(404).json({ message: "No se ha encontrado ese producto." });
             }
 
-            const totalAu = auctions.length;
-            const paginatedAu = await paginateAu(auctions, page, pageSize);
-
-            return res.status(200).json({
-                message: "Datos adquiridos exitosamente",
-                totalAu: totalAu,
-                paginatedAu
-            });
         }
-
-        // if (filter) {
-        //     finalResponse = filterByPrice(filter, finalResponse);
-
-        //     if (!finalResponse) {
-        //         return res.status(404).json({ message: "No se encontró ninguna subasta en ese rango de precios." });
-        //     }
-        // }
-
         if (order) {
             finalResponse = await sortAuctions(order, finalResponse);
 

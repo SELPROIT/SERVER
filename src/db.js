@@ -9,7 +9,8 @@ const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 // const { PGR_USERNAME, PGR_DATABASE, PGR_HOST, PGR_PASSWORD } = process.env
 
 //postgres://${PGR_USERNAME}:${PGR_PASSWORD}@${PGR_HOST}/${PGR_DATABASE}
-//
+
+// const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`, {
 	logging: false,
@@ -29,7 +30,7 @@ const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${
 // 		logging: false,
 // 		native: false,
 // 	}
-// );
+// });
 
 const basename = path.basename(__filename);
 const modelDefiners = [];
