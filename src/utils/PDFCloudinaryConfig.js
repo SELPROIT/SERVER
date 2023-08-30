@@ -18,12 +18,14 @@ const uploadFile = async (file) => {
             result = await cloudinary.uploader.upload(file, {
                 folder: 'selpro/files',
                 resource_type: 'auto',
+                format: 'pdf',
             });
         } else {
             // En caso de que se suba un archivo desde la PC
             result = await cloudinary.uploader.upload(file.path, {
                 folder: 'selpro/files',
                 resource_type: 'auto',
+                format: 'pdf',
             });
         }
         console.log('result.secure_url', result.secure_url)

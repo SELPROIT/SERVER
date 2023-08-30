@@ -40,6 +40,8 @@ const get_invert_auction = async () => {
           invert,
           status,
           type,
+          subCategory,
+          category,
           Auction_bids // Access the associated Auction_bids here
         } = auction;
 
@@ -65,6 +67,8 @@ const get_invert_auction = async () => {
           status,
           total,
           type,
+          subCategory,
+          category: product.Sub_category.CategoryId,
           auction_bids: formattedAuctionBids, // Include the formatted Auction_bids
           target_quantity,
           invert
