@@ -1,4 +1,4 @@
-const { createAuctionBid } = require("../../controllers/post/post_bid_controller");
+const { createAuctionBid } = require("../../controllers/post/post_bid_controller.js");
  
 function postAuction(req, res) {
     const { auction_id, proposed_price, target_accumulated, invert, user_id } = req.body;

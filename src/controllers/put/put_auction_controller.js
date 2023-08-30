@@ -1,4 +1,4 @@
-const { Auction } = require('../../db');
+const { Auction } = require('../../db.js');
 
 const put_auc_controller = async (
   id,

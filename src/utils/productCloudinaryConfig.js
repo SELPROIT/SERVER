@@ -1,7 +1,7 @@
 const cloudinary = require('cloudinary').v2;
 const multer = require('multer');
 const upload = multer().single('image');
-const config = require('../configCloud');
+const config = require('../configCloud.js');
 //IMPORTANTE : esta function solo lleva la imagen a la carpeta PRODUCTS de cloudinary!!
 //se utiliza SOLO para funcion POST PRODUCT
 const productCloudinaryConfig = async (imageURL) => {
@@ -16,6 +16,12 @@ const productCloudinaryConfig = async (imageURL) => {
     try {
         const result = await cloudinary.uploader.upload(imageURL, {
             folder: 'selpro/Products',
+            transformation: [
+                {
+                    width: 192, // Define el ancho deseado aquí
+                    crop: 'scale', // Escala la imagen para que se ajuste al ancho especificado
+                },
+            ],
         });
         return result.secure_url;
     } catch (error) {

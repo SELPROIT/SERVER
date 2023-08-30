@@ -1,4 +1,4 @@
-const { getAllProd } = require('../../controllers/get/get_products_controller');
+const { getAllProd } = require('../../controllers/get/get_products_controller.js');
 
 const getProdHandler = (req, res) => {
     getAllProd()

@@ -1,14 +1,13 @@
-const { User, Auction, Invert_auction, Auction_bid } = require('../../db');
+const { User, Auction, Invert_auction, Auction_bid } = require('../../db.js');
 const bcrypt = require('bcrypt')
-const { uploadImage } = require('../../utils/userCloudinaryConfig');
-const { uploadFile } = require('../../utils/PDFCloudinaryConfig');
+const { uploadImage } = require('../../utils/userCloudinaryConfig.js');
+const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
 
 const put_user_controller = async (
   id,
   name,
   num_ident,
   user_name,
-  password,
   phone,
   email,
   adress,
@@ -44,10 +43,6 @@ const put_user_controller = async (
   }
   if (!!user_name) {
     changedUser.user_name = user_name;
-  }
-  if (!!password) {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    changedUser.password = hashedPassword;
   }
   if (!!phone) {
     changedUser.phone = phone;

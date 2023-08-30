@@ -1,6 +1,6 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
-const { User } = require('../../db');
+const { User } = require('../../db.js');
 
 async function generatePDF() {
     const doc = new PDFDocument();

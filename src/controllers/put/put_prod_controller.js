@@ -1,6 +1,6 @@
-const { Product } = require('../../db');
-const { uploadFile } = require('../../utils/PDFCloudinaryConfig');
-const { uploadProd } = require('../../utils/productCloudinaryConfig');
+const { Product } = require('../../db.js');
+const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
+const { uploadProd } = require('../../utils/productCloudinaryConfig.js');
 
 const put_prod_controller = async (
   id,

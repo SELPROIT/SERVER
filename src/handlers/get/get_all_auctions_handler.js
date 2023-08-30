@@ -3,10 +3,10 @@ const { sortAuctions,
     paginateAu,
     getAuByType,
     getAuByCategory,
-    getAuBySubCategory } = require("../../controllers/get/aux_filter_sort_page");
-const { get_auction } = require("../../controllers/get/get_auction_controller");
-const { get_invert_auction } = require("../../controllers/get/get_invert_auction_controller");
-const { productByName } = require("../../controllers/get/search_auction_by_name");
+    getAuBySubCategory } = require("../../controllers/get/aux_filter_sort_page.js");
+const { get_auction } = require("../../controllers/get/get_auction_controller.js");
+const { get_invert_auction } = require("../../controllers/get/get_invert_auction_controller.js");
+const { productByName } = require("../../controllers/get/search_auction_by_name.js");
 
 async function get_all_auctions_handler(req, res) {
     const { name, order, filter, page, pageSize, category, subCategory, type, price } = req.query;
@@ -28,30 +28,13 @@ async function get_all_auctions_handler(req, res) {
         }
 
         if (name) {
-            const auctions = await productByName(name);
+            finalResponse = await productByName(name);
 
-            if (!auctions) {
+            if (!finalResponse) {
                 return res.status(404).json({ message: "No se ha encontrado ese producto." });
             }
 
-            const totalAu = auctions.length;
-            const paginatedAu = await paginateAu(auctions, page, pageSize);
-
-            return res.status(200).json({
-                message: "Datos adquiridos exitosamente",
-                totalAu: totalAu,
-                paginatedAu
-            });
         }
-
-        // if (filter) {
-        //     finalResponse = filterByPrice(filter, finalResponse);
-
-        //     if (!finalResponse) {
-        //         return res.status(404).json({ message: "No se encontró ninguna subasta en ese rango de precios." });
-        //     }
-        // }
-
         if (order) {
             finalResponse = await sortAuctions(order, finalResponse);
 

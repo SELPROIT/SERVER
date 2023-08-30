@@ -1,5 +1,5 @@
 
-const { create_category } = require('../../controllers/post/post_category_controller');
+const { create_category } = require('../../controllers/post/post_category_controller.js');
 
 function post_category_handler(req, res) {
     const { category, data } = req.body;

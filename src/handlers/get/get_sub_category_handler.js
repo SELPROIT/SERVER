@@ -1,4 +1,4 @@
-const { getAllSubCategories } = require('../../controllers/get/get_sub_category_controller');
+const { getAllSubCategories } = require('../../controllers/get/get_sub_category_controller.js');
 
 function toSubCategory(req, res) {
     getAllSubCategories()

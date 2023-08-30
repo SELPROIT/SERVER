@@ -1,10 +1,10 @@
-const {mercado_pago, receiveWebhook} = require('../../controllers/post/mercado_pago_controller');
+const {mercado_pago, receiveWebhook} = require('../../controllers/post/mercado_pago_controller.js');
 
 async function mercado_pago_handler(req, res) {
     try {
-        const { id, product_id, sub_category_id, category_id, } = req.body;
+        const { id, product, } = req.body;
 
-        if (!id ||!product_id ||!sub_category_id ||!category_id) throw new Error ("Missing data");
+        if (!id ||!product) throw new Error ("Missing data");
 
         const response = await mercado_pago(req.body);
 

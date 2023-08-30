@@ -1,4 +1,4 @@
-const { create_auction } = require('../../controllers/post/post_auction_controller');
+const { create_auction } = require('../../controllers/post/post_auction_controller.js');
 
 async function post_auction_handler(req, res) {
     try {

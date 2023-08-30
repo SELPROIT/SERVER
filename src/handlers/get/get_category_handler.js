@@ -1,4 +1,4 @@
-const { getAllCategory } = require('../../controllers/get/get_category_controller');
+const { getAllCategory } = require('../../controllers/get/get_category_controller.js');
 
 function toCategory(req, res) {
     getAllCategory()

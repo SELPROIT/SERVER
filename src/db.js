@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+const pg = require('pg')
 
 // const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
@@ -75,12 +76,6 @@ Auction.belongsTo(User);
 
 User.hasMany(Invert_auction);
 Invert_auction.belongsTo(User);
-
-//Relaciones n*m
-// User.belongsToMany(Auction, { through: 'favorites' });
-
-// Invert_auction.belongsToMany(User, { through: 'favorites' });
-
 
 module.exports = {
 	...sequelize.models,

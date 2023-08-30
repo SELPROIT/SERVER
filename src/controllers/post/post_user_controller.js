@@ -1,14 +1,13 @@
-const { User } = require('../../db');
+const { User } = require('../../db.js');
 const bcrypt = require('bcrypt');
-const { get_usersByName } = require('../get/get_user_by_user_name_controller');
-const { sendEmail } = require('./email_service');
+const { get_usersByName } = require('../get/get_user_by_user_name_controller.js');
+const { sendEmail } = require('./email_service.js');
 
 const postUser = async (newUser) => {
 	const {
 		name,
 		num_ident,
 		user_name,
-		password,
 		phone,
 		email,
 		adress,
@@ -19,11 +18,8 @@ const postUser = async (newUser) => {
 		id_subcat,
 	} = newUser;
 
-	const hashedPassword = await bcrypt.hash(password, 10);
 
-
-
-	if(!name, !num_ident, !user_name, !password, !company_name, !NIT, !sector, !CIIU, !phone, !email, !id_subcat, !adress) {
+	if(!name, !num_ident, !user_name, !company_name, !NIT, !sector, !CIIU, !phone, !email, !id_subcat, !adress) {
 		throw new Error ('Missing data');
 	};
 	let user_id = Math.floor(100000 + Math.random() * 900000);
@@ -42,7 +38,6 @@ const postUser = async (newUser) => {
 		name,
 		num_ident,
 		user_name,
-		password: hashedPassword,
 		phone,
 		email,
 		adress,

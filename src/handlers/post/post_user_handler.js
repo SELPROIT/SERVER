@@ -1,5 +1,5 @@
-const { postUser } = require('../../controllers/post/post_user_controller');
-const { register } = require('../../controllers/get/auth_controller');
+const { postUser } = require('../../controllers/post/post_user_controller.js');
+const { register } = require('../../controllers/get/auth_controller.js');
 
 const toPostUser = async (req, res) => {
   try {
@@ -7,7 +7,6 @@ const toPostUser = async (req, res) => {
       name,
       num_ident,
       user_name,
-      password,
       phone,
       email,
       adress,
@@ -18,9 +17,9 @@ const toPostUser = async (req, res) => {
       id_subcat,
     } = req.body;
 
-    if(!name || !num_ident || !user_name || !password || !phone || !email || !adress || !company_name || !NIT || !sector || !CIIU || !id_subcat) throw new Error ("Missing data");
+    if(!name || !num_ident || !user_name || !phone || !email || !adress || !company_name || !NIT || !sector || !CIIU || !id_subcat) throw new Error ("Missing data");
 
-    const registrationResult = await register(user_name, password);
+    const registrationResult = await register(user_name);
 
     if (registrationResult) {
       return res.status(400).json(('User registration failed'));
@@ -30,7 +29,6 @@ const toPostUser = async (req, res) => {
       name,
       num_ident,
       user_name,
-      password,
       phone,
       email,
       adress,

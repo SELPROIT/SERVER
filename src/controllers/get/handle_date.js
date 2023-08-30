@@ -1,4 +1,4 @@
-const { handle_finish_auction } = require("./handle_finish_auction");
+const { handle_finish_auction } = require("./handle_finish_auction.js");
 
 const handle_date = (status, close_date) => {
     const targetDate = new Date(close_date);

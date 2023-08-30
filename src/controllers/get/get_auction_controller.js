@@ -1,5 +1,5 @@
-const { Auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db'); // Asegúrate de importar sequelize
-const { handle_date } = require('./handle_date');
+const { Auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db.js'); // Asegúrate de importar sequelize
+const { handle_date } = require('./handle_date.js');
 
 const get_auction = async () => {
   try {
@@ -38,6 +38,8 @@ const get_auction = async () => {
           stock,
           status,
           type,
+          subCategory,
+          category,
           sale_price,
           Auction_bids // Access the associated Auction_bids here
         } = auction;
@@ -62,6 +64,8 @@ const get_auction = async () => {
           status,
           stock,
           type,
+          subCategory,
+          category,
           sale_price,
           // product,
           user,

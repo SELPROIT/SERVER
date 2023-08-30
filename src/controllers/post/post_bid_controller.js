@@ -1,4 +1,4 @@
-const { Auction_bid, Auction, Invert_auction, User } = require("../../db");
+const { Auction_bid, Auction, Invert_auction, User } = require("../../db.js");
 
 
 const createAuctionBid = (auction_id, proposed_price, target_accumulated, invert, user_id) => {

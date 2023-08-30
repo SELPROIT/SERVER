@@ -1,4 +1,4 @@
-const { delete_auctionBid } = require('../../controllers/delete/delete_auctionBid_controller');
+const { delete_auctionBid } = require('../../controllers/delete/delete_auctionBid_controller.js');
 
 const { validate: validateUUID } = require('uuid');
 

@@ -1,8 +1,8 @@
-const { get_usersByName } = require('../../controllers/get/get_user_by_user_name_controller');
+const { get_usersByName } = require('../../controllers/get/get_user_by_user_name_controller.js');
 
 const get_UserByName = async (req, res) => {
     try {
-        const { name } = req.params;
+        const { name } = req.query;
 
         if (!name) throw new Error("Missing data")
 
