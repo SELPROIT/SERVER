@@ -3,5 +3,6 @@
 	"target_quantity": 1000,
 	"base_price": 500,
 	"close_date": "2023-08-18T00:00:00.000Z",
-	"invert": true
+	"invert": true,
+	"user_id":"4db18ece-5158-44bc-96fd-e52781d8ab8c"
 }

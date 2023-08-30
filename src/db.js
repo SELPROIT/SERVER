@@ -66,16 +66,17 @@ Auction_bid.belongsTo(Auction);
 Invert_auction.hasMany(Auction_bid);
 Auction_bid.belongsTo(Invert_auction);
 
-// User.hasMany(Auction);
-
-// User.hasMany(Invert_auction);
-
 User.hasMany(Auction_bid);
 Auction_bid.belongsTo(User);
 
 User.hasMany(Product);
 Product.belongsTo(User);
 
+User.hasMany(Auction);
+Auction.belongsTo(User);
+
+User.hasMany(Invert_auction);
+Invert_auction.belongsTo(User);
 
 //Relaciones n*m
 // User.belongsToMany(Auction, { through: 'favorites' });
@@ -87,8 +88,6 @@ Auction.belongsToMany(User, { through: 'UserAuctions' });
 
 Invert_auction.belongsToMany(User, { through: 'UserInvAuctions' });
 User.belongsToMany(Invert_auction, { through: 'UserInvAuctions' });
-
-
 
 module.exports = {
 	...sequelize.models,
