@@ -1,4 +1,4 @@
-const { Category, Sub_category } = require('../../db');
+const { Category, Sub_category } = require('../../db.js');
 
 // Función que obtiene todas las categorías y sus subcategorías relacionadas utilizando promesas
 const getAllCategory = () => {

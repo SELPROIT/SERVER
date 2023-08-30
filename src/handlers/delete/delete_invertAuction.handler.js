@@ -1,5 +1,5 @@
 
-const { delete_invertAuction } = require('../../controllers/delete/delete_invertAuction_controller');
+const { delete_invertAuction } = require('../../controllers/delete/delete_invertAuction_controller.js');
 const { validate: validateUUID } = require('uuid');
 
 async function delete_invertAuction_handler(req, res) {

@@ -1,4 +1,4 @@
-const { put_prod_controller } = require("../../controllers/put/put_prod_controller");
+const { put_prod_controller } = require("../../controllers/put/put_prod_controller.js");
 
 
 const put_prod_handler= async (req, res) => {

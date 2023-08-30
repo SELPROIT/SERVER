@@ -1,4 +1,4 @@
-const { Auction, Invert_auction } = require("../../db");
+const { Auction, Invert_auction } = require("../../db.js");
 const { Op } = require('sequelize');
 
 // Define la función que devuelve una promesa para buscar productos por nombre

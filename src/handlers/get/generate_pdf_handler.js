@@ -1,4 +1,4 @@
-const { generatePDF } = require("../../controllers/get/generate_pdf")
+const { generatePDF } = require("../../controllers/get/generate_pdf.js")
 
 
 

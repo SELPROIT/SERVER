@@ -1,9 +1,4 @@
-
-
-
-
-
-const { Category } = require('../../db');
+const { Category } = require('../../db.js');
 
 const create_category = async (type, data) => {
 

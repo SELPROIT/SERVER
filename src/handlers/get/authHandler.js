@@ -1,4 +1,4 @@
-const { register } = require('../../controllers/get/auth_controller')
+const { register } = require('../../controllers/get/auth_controller.js')
 
 async function toRegister(req, res) {
     try {

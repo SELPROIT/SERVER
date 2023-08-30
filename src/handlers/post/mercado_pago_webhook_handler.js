@@ -1,4 +1,4 @@
-const { receiveWebhook } = require('../../controllers/post/mercado_pago_controller');
+const { receiveWebhook } = require('../../controllers/post/mercado_pago_controller.js');
 
 async function weebhook_handler(req, res) {
     try {

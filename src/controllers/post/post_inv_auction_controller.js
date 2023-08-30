@@ -1,4 +1,4 @@
-const { Invert_auction, Product, User } = require('../../db');
+const { Invert_auction, Product, User } = require('../../db.js');
 
 const create_invert_auction = async (product_id, base_price, target_quantity, close_date, user_id) => {
 

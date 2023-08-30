@@ -1,4 +1,4 @@
-const { getAuctionBid } = require("../../controllers/get/get_auction_bid_controller");
+const { getAuctionBid } = require("../../controllers/get/get_auction_bid_controller.js");
 
 const getAllAuctionBids = (req, res) => {
     getAuctionBid()

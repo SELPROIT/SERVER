@@ -1,4 +1,4 @@
-const { delete_category } = require('../../controllers/delete/delete_category_controller');
+const { delete_category } = require('../../controllers/delete/delete_category_controller.js');
 
 
 async function delete_category_handler(req, res) {

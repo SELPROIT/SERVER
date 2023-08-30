@@ -1,4 +1,4 @@
-const { Invert_auction } = require('../../db')
+const { Invert_auction } = require('../../db.js')
 
 const put_inv_auc_controller = async (
     id,

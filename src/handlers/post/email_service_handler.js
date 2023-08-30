@@ -1,4 +1,4 @@
-const { sendEmail } = require("../../controllers/post/email_service")
+const { sendEmail } = require("../../controllers/post/email_service.js")
 
 
 const emailSend = async (req, res) => {

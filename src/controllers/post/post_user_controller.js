@@ -1,7 +1,7 @@
-const { User } = require('../../db');
+const { User } = require('../../db.js');
 const bcrypt = require('bcrypt');
-const { get_usersByName } = require('../get/get_user_by_user_name_controller');
-const { sendEmail } = require('./email_service');
+const { get_usersByName } = require('../get/get_user_by_user_name_controller.js');
+const { sendEmail } = require('./email_service.js');
 
 const postUser = async (newUser) => {
 	const {

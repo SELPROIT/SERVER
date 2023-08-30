@@ -1,5 +1,5 @@
-const { postUser } = require('../../controllers/post/post_user_controller');
-const { register } = require('../../controllers/get/auth_controller');
+const { postUser } = require('../../controllers/post/post_user_controller.js');
+const { register } = require('../../controllers/get/auth_controller.js');
 
 const toPostUser = async (req, res) => {
   try {

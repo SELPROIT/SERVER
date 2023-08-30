@@ -1,5 +1,5 @@
 
-const { create_subCategory } = require('../../controllers/post/post_sub_cat_controller');
+const { create_subCategory } = require('../../controllers/post/post_sub_cat_controller.js');
 
 function post_subCategoty_handler(req, res) {
     const { category, data } = req.body;

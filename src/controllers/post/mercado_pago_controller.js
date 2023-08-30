@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Auction, Invert_auction, Product } = require('../../db');
+const { Auction, Invert_auction, Product } = require('../../db.js');
 const mercadopago = require("mercadopago")
 const { MERCADOPAGO_KEY } = process.env;
 

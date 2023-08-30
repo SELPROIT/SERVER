@@ -1,4 +1,4 @@
-const { User_admin } = require('../../db');
+const { User_admin } = require('../../db.js');
 
 // Define la función que devuelve una promesa con la lista de usuarios administradores
 const getUsersAdmin = () => {
