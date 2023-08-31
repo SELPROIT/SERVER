@@ -1,49 +1,58 @@
 const { Auction, Product, User } = require('../../db.js');
 
-
-const create_auction = async (product_id, base_price, close_date, user_id ,stock ) => {
-
-    if(!product_id || !base_price || !close_date || !user_id || !stock) throw new Error ("Faltan completar campos.");
-    //deleteFlag, authorize falta esto?
+const create_auction = async (auctionArray) => {
     try {
-        const product = await Product.findByPk(product_id);
-        if (!product) {
-            throw new Error('Producto no encontrado');
-        }
-        if (product.Auction) {
-            throw new Error('Ya existe una subasta para ese producto.');
-        }
-        const user = await User.findByPk(user_id); 
+        const productIds = auctionArray.map(auction => auction.product_id);
+        const userIds = auctionArray.map(auction => auction.user_id);
 
-        if (!user) {
-            throw new Error('Usuario no encontrado.');
-        }
-
-        let sale_price;
-        sale_price = Math.ceil(base_price * 1.75); //le agrego un 1.75 para agregarle un porcentaje al precio de venta
-         //preguntarle el porcentaje a steven, o que se haga en base al valor inicial, y después poner la posibilidad a modificarlo en el put
-
-        // const {user_name} = user;
-        //guardar la subasta en created_history, hacerle eun update 
-        const { name, image, brand, description, datasheet, SubCategoryId } = product;
-        
-        const new_auction = await product.createAuction({
-            image: image,
-            product_name: name,
-            brand: brand,
-            description: description,
-            datasheet: datasheet,
-            stock,
-            base_price,
-            close_date,
-            sale_price, 
-            type: 'AU',
-            subCategory: SubCategoryId
+        const products = await Product.findAll({
+            where: {
+                id: productIds
+            }
         });
 
-        await new_auction.setUser(user);
+        const users = await User.findAll({
+            where: {
+                id: userIds
+            }
+        });
 
-        return new_auction;
+        const createdAuctions = [];
+
+        for (let i = 0; i < auctionArray.length; i++) {
+            const auction = auctionArray[i];
+            const product = products.find(p => p.id === auction.product_id);
+            const user = users.find(u => u.id === auction.user_id);
+
+            if (!product) {
+                throw new Error('Product not found');
+            }
+            if (!user) {
+                throw new Error('User not found');
+            }
+
+            const { name, image, brand, description, datasheet, SubCategoryId } = product;
+
+            const new_auction = await Auction.create({
+                image: image,
+                product_name: name,
+                brand: brand,
+                description: description,
+                datasheet: datasheet,
+                stock: auction.stock,
+                base_price: auction.base_price,
+                sale_price: auction.sale_price,
+                close_date: auction.close_date,
+                subCategory: SubCategoryId,
+                type: 'AU',
+                ProductId: product.id
+            });
+            await new_auction.setUser(user);
+            createdAuctions.push(new_auction);
+        }
+
+        return createdAuctions;
+
     } catch (error) {
         throw new Error(`Error creating auction: ${error.message}`);
     }

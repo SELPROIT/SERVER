@@ -56,7 +56,7 @@ Product.belongsTo(Sub_category);
 Product.hasMany(Auction);
 Auction.belongsTo(Product);
 
-Product.hasOne(Invert_auction);
+Product.hasMany(Invert_auction);
 Invert_auction.belongsTo(Product);
 
 Auction.hasMany(Auction_bid);
@@ -73,9 +73,6 @@ Product.belongsTo(User);
 
 User.hasMany(Auction);
 Auction.belongsTo(User);
-
-User.hasMany(Invert_auction);
-Invert_auction.belongsTo(User);
 
 module.exports = {
 	...sequelize.models,
