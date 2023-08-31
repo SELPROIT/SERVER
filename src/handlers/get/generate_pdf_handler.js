@@ -4,10 +4,10 @@ const { generatePDF } = require("../../controllers/get/generate_pdf.js")
 
 const PDFgenerate = async (req, res) => {
     try {
-        await generatePDF()
-        res.send('PDF generado exitosamente')
+        const response = await generatePDF()
+        res.json({email: response})
     } catch (error) {
-        res.send({error: error.message})
+        res.send({ error: error.message })
     }
 }
 
