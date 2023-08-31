@@ -5,7 +5,6 @@ const getAllUsers = async (req, res) => {
     try {
         // Obtiene la lista de usuarios utilizando getUsers()
         const users = await getUsers(); 
-        console.log('users', users)
         // Si no se encuentran usuarios, devuelve una respuesta de error
         if (!users) {
             return res.status(400).json({ message: "Error al obtener usuarios." });

@@ -32,7 +32,6 @@ const put_user_controller = async (
   if (!user) {
     throw new Error('User not found');
   }
-  console.log('created_history', created_history)
   const changedUser = {};
 
   if (!!name) {
@@ -94,7 +93,6 @@ const put_user_controller = async (
       changedUser.interaction_history = [...user.interaction_history, bid_id]
     };
   }
-  // console.log('created_history', created_history)
   // if (!!created_history) {
   //   let auc_id = await Auction.findByPk(created_history)
   //   if (!auc_id) {

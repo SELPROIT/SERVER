@@ -9,7 +9,6 @@ const create_invert_auction = async (auctionArray) => {
                 id: productIds
             }
         });
-        console.log('productIds', productIds)
         const createdAuctions = [];
 
         for (let i = 0; i < auctionArray.length; i++) {
@@ -20,7 +19,6 @@ const create_invert_auction = async (auctionArray) => {
             }
 
             const { name, image, brand, description, datasheet, SubCategoryId } = product;
-            console.log('auction', auction)
             const new_auction = await Invert_auction.create({
                 image: image,
                 product_name: name,
