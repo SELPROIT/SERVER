@@ -1,5 +1,13 @@
 {
-  "create": {},
+
+  "create": {
+    
+      "product_id": "AB11",
+      "base_price": 8920,
+      "close_date": "2023-08-18T00:00:00.000Z",
+      "stock": 700,
+      "user_id":"2bbef767-4119-483f-a4d3-2b7e279ebb36"
+  },
   "authorize": {
     "authorize": true
   },
@@ -12,6 +20,7 @@
         "product_id": "AB11",
         "base_price": 300,
         "close_date": "2023-08-18T00:00:00.000Z",
+        "stock": 700,
         "user_id": "280756d1-8046-4d97-aefc-d8c0a4463d5f"
       }
     ]

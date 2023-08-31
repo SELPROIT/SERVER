@@ -1,4 +1,4 @@
-const { Product, Sub_category, Auction, Invert_auction, Auction_bid } = require('../../db.js');
+const { Product, Sub_category, Auction, Invert_auction, Auction_bid, User } = require('../../db.js');
 const productCloudinaryConfig = require('../../utils/productCloudinaryConfig.js');
 
 const postProductC = ({
@@ -7,13 +7,11 @@ const postProductC = ({
   image,
   description,
   datasheet,
-  rating,
-  stock,
   ref_subCategory,
   user_id
 }) => {
   return new Promise((resolve, reject) => {
-    if (!name || !brand || !image || !description || !datasheet || !rating || !stock || !ref_subCategory || !user_id) {
+    if (!name || !brand || !image || !description || !datasheet || !ref_subCategory || !user_id) {
       reject(new Error("Faltan completar campos."));
       return;
     }
@@ -26,17 +24,13 @@ const postProductC = ({
       Sub_category.findOne({ where: { id: ref_subCategory } })
         .then(foundRef => {
           if (!foundRef) {
-            console.error("Could not find Sub-Category");
-            resolve(null);
-            return;
+            throw new Error("No se pudo encontrar esa subcategoría.");
           }
 
           User.findOne({ where: { id: user_id } })
             .then(foundUser => {
               if (!foundUser) {
-                console.error("Could not find User");
-                resolve(null);
-                return;
+                throw new Error("No se pudo encontrar a ese usuario.")
               }
 
               Product.count({ where: { SubCategoryId: ref_subCategory } })
@@ -50,10 +44,8 @@ const postProductC = ({
                     image: cloudImage,
                     description,
                     datasheet: cloudDatasheet,
-                    rating,
-                    stock,
                     SubCategoryId: ref_subCategory,
-                    UserId: user_id, // Set the user ID
+                    UserId: user_id // Set the user ID
                   }];
 
                   Product.bulkCreate(products, { returning: true })

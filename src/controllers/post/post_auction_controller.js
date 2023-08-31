@@ -31,7 +31,7 @@ const create_auction = async (auctionArray) => {
                 throw new Error('User not found');
             }
 
-            const { name, image, brand, description, datasheet, stock, SubCategoryId } = product;
+            const { name, image, brand, description, datasheet, SubCategoryId } = product;
 
             const new_auction = await Auction.create({
                 image: image,
@@ -39,7 +39,7 @@ const create_auction = async (auctionArray) => {
                 brand: brand,
                 description: description,
                 datasheet: datasheet,
-                total: stock,
+                stock: auction.stock,
                 base_price: auction.base_price,
                 close_date: auction.close_date,
                 subCategory: SubCategoryId,

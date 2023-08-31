@@ -27,13 +27,17 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    total: { 
+    stock: { 
       type: DataTypes.INTEGER,
       allowNull: false
     },
     base_price: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    sale_price: {
+      type: DataTypes.INTEGER,// precio si usan el comprar ya
+      allowNull: false
     },
     close_date: {
       type: DataTypes.DATE,
