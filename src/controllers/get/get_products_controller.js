@@ -14,7 +14,7 @@ const getAllProd = () => {
       },
       {
         model: Invert_auction,
-        attributes: ['id', 'target_accumulated', 'close_date', 'target_quantity', 'desired_price']
+        attributes: ['id', 'close_date', 'target_quantity', 'desired_price']
       }
     ],
   })

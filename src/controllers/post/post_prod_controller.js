@@ -1,4 +1,4 @@
-const { Product, Sub_category, Auction, Invert_auction, Auction_bid } = require('../../db.js');
+const { Product, Sub_category, Auction, Invert_auction, Auction_bid, User } = require('../../db.js');
 const productCloudinaryConfig = require('../../utils/productCloudinaryConfig.js');
 
 const postProductC = ({
