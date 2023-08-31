@@ -8,7 +8,7 @@ const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
 //postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}
 
-const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a.oregon-postgres.render.com/selpro`, {
+const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro`, {
 	logging: false,
 	native: false,
 	dialectOptions: {
