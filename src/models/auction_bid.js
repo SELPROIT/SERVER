@@ -11,9 +11,9 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        total: {
+        target_accumulated: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
         deleteFlag: {
 			// no "delete" porque es palabra reservada.

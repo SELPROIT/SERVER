@@ -2,13 +2,13 @@ const { create_invert_auction } = require('../../controllers/post/post_inv_aucti
 
 async function post_invert_auction_handler(req, res) {
     try {
-        const { product_id, base_price, target_quantity, close_date, user_id } = req.body;
+        const { product_id, desired_price, target_quantity, close_date } = req.body;
 
-        if (!product_id || !base_price || !target_quantity || !close_date || !user_id) {
-            throw new Error('Missing required data');
+        if (!product_id || !desired_price || !target_quantity || !close_date) {
+            throw new Error('Producto no encontrado.');
         }
 
-        const response = await create_invert_auction(product_id, base_price, target_quantity, close_date, user_id);
+        const response = await create_invert_auction(product_id, desired_price, target_quantity, close_date);
 
         res.status(200).json(('Invert auction created successfully', response));
     } catch (error) {

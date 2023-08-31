@@ -25,13 +25,13 @@ module.exports = (sequelize) => {
     },
     product_name: {
       type: DataTypes.STRING,
-      allowNull: true
-    },
-    total: { 
-      type: DataTypes.INTEGER,
       allowNull: false
     },
-    base_price: { //precio base 
+    target_quantity: { //el total de productos que desea conseguir el cliente
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    desired_price: { //precio deseado por el comprador 
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -43,13 +43,13 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    status:{ //esta tiene solo activa porque la crea el admin y automáticamente se pone como activa
+      type: DataTypes.ENUM("Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
+      defaultValue: "Activa"
+    },
     type: {
       type: DataTypes.STRING,
       allowNull: true
-    },
-    status:{
-      type: DataTypes.ENUM("Pendiente", "Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
-      defaultValue: "Pendiente"
     },
     deleteFlag: {
       type: DataTypes.BOOLEAN,
@@ -59,10 +59,6 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     }, 
-    target_quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     invert: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
