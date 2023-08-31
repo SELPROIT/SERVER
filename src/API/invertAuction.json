@@ -9,11 +9,16 @@
   "create2": {
     "data": [
       {
-        "product_id": "AB11",
-        "target_quantity": 390,
-        "base_price": 151,
-        "desired_price": 900,
-        "close_date": "2023-02-25T15:30:00.000Z"
+        "product_id": "VS21",
+        "target_quantity": 200,
+        "desired_price": 400,
+        "close_date": "2023-10-22T15:30:00.000Z"
+      },
+	  {
+        "product_id": "PC51",
+        "target_quantity": 20,
+        "desired_price": 7000,
+        "close_date": "2023-10-22T15:30:00.000Z"
       }
     ]
   }

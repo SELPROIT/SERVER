@@ -75,6 +75,9 @@ Product.belongsTo(User);
 User.hasMany(Auction);
 Auction.belongsTo(User);
 
+User.hasMany(Invert_auction);
+Invert_auction.belongsTo(User);
+
 module.exports = {
 	...sequelize.models,
 	conn: sequelize,
