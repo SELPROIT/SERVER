@@ -4,33 +4,26 @@ const fs = require('fs');
 const path = require('path');
 const pg = require('pg')
 
-const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
+// const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-// const { PGR_USERNAME, PGR_DATABASE, PGR_HOST, PGR_PASSWORD } = process.env
-
-//postgres://${PGR_USERNAME}:${PGR_PASSWORD}@${PGR_HOST}/${PGR_DATABASE}
-
-// const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-
-const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`, {
-	logging: false,
-	native: false,
-	dialectOptions: {
-		ssl: {
-			rejectUnauthorized: false,
-		},
-	},
-	dialectModule: pg,
-});
-// const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
-
-// const sequelize = new Sequelize(
-// 	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/selpro`,
-// 	{
-// 		logging: false,
-// 		native: false,
+// const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`, {
+// 	logging: false,
+// 	native: false,
+// 	dialectOptions: {
+// 		ssl: {
+// 			rejectUnauthorized: false,
+// 		},
 // 	}
 // });
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+
+const sequelize = new Sequelize(
+	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/selpro`,
+	{
+		logging: false,
+		native: false,
+	}
+);
 
 const basename = path.basename(__filename);
 const modelDefiners = [];
@@ -63,7 +56,7 @@ Product.belongsTo(Sub_category);
 Product.hasMany(Auction);
 Auction.belongsTo(Product);
 
-Product.hasOne(Invert_auction);
+Product.hasMany(Invert_auction);
 Invert_auction.belongsTo(Product);
 
 Auction.hasMany(Auction_bid);
@@ -80,20 +73,6 @@ Product.belongsTo(User);
 
 User.hasMany(Auction);
 Auction.belongsTo(User);
-
-User.hasMany(Invert_auction);
-Invert_auction.belongsTo(User);
-
-//Relaciones n*m
-// User.belongsToMany(Auction, { through: 'favorites' });
-
-// Invert_auction.belongsToMany(User, { through: 'favorites' });
-
-Auction.belongsToMany(User, { through: 'UserAuctions' });
-Auction.belongsToMany(User, { through: 'UserAuctions' });
-
-Invert_auction.belongsToMany(User, { through: 'UserInvAuctions' });
-User.belongsToMany(Invert_auction, { through: 'UserInvAuctions' });
 
 module.exports = {
 	...sequelize.models,

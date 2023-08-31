@@ -1,46 +1,46 @@
-const { Invert_auction, Product, User } = require('../../db.js');
+const { Invert_auction, Product } = require('../../db.js');
 
-const create_invert_auction = async (product_id, base_price, target_quantity, close_date, user_id) => {
-
-    if (!product_id || !base_price || !target_quantity || !close_date || !user_id) throw new Error("Faltan completar campos.");
+const create_invert_auction = async (auctionArray) => {
     try {
-        const product = await Product.findByPk(product_id);
+        const productIds = auctionArray.map(auction => auction.product_id);
 
-        if (!product) {
-            throw new Error('Producto no encontrado.');
-        }
-
-        const user = await User.findByPk(user_id);
-
-        if (!user) {
-            throw new Error('Usuario no encontrado.');
-        }
-
-
-        const { name, image, brand, description, datasheet, stock, SubCategoryId } = product;
-
-        const new_invert_auction = await product.createInvert_auction({
-            image: image,
-            product_name: name,
-            brand: brand,
-            description: description,
-            datasheet: datasheet,
-            total: stock,
-            target_quantity,
-            base_price,
-            close_date,
-            invert: true,
-            subCategory: SubCategoryId,
-            type: 'IA',
-        }).catch((error) => {
-            throw new Error('Se produjo un error creando esa subasta inversa.', error.message);
+        const products = await Product.findAll({
+            where: {
+                id: productIds
+            }
         });
+        console.log('productIds', productIds)
+        const createdAuctions = [];
 
-        await new_invert_auction.setUser(user);
+        for (let i = 0; i < auctionArray.length; i++) {
+            const auction = auctionArray[i];
+            const product = products.find(p => p.id === auction.product_id);
+            if (!product) {
+                throw new Error('Product not found');
+            }
 
-        return new_invert_auction;
+            const { name, image, brand, description, datasheet, SubCategoryId } = product;
+            console.log('auction', auction)
+            const new_auction = await Invert_auction.create({
+                image: image,
+                product_name: name,
+                brand: brand,
+                description: description,
+                datasheet: datasheet,
+                target_quantity: auction.target_quantity,
+                close_date: auction.close_date,
+                desired_price: auction.desired_price,
+                invert: true,
+                subCategory: SubCategoryId,
+                type: 'IA',
+                ProductId: product.id
+            });
+            createdAuctions.push(new_auction);
+        }
+
+        return createdAuctions;
     } catch (error) {
-        throw new Error('Error creating invert auction.');
+        throw new Error(error);
     }
 };
 

@@ -14,7 +14,6 @@ const uploadFile = async (file) => {
         let result;
         if (typeof file === 'string') {
             // En caso de que sea una URL
-            console.log('file', file)
             result = await cloudinary.uploader.upload(file, {
                 folder: 'selpro/files',
                 resource_type: 'auto',
@@ -28,7 +27,6 @@ const uploadFile = async (file) => {
                 format: 'pdf',
             });
         }
-        console.log('result.secure_url', result.secure_url)
         return result.secure_url;
     } catch (error) {
         throw error;

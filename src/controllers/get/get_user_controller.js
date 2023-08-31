@@ -4,7 +4,6 @@ const { User, Auction, Invert_auction, Product, Auction_bid } = require("../../d
 const getUsers = () => {
   // Retorna una promesa que resuelve la consulta de usuarios con productos relacionados
   return User.findAll({
-    attributes: { exclude: ['password'] },
     // include: [
     //   {
     //     model: Auction,

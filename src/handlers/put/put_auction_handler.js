@@ -7,7 +7,7 @@ const put_auc_handler = async (req, res) => {
   try {
     const auction = await put_auc_controller(id, base_price, close_date, authorize, deleteFlag);
     if (!auction) {
-      return res.json({ error: 'Auction not found' });
+      return  res.status(400).json({ error: 'Auction not found' });
     }
     return res.json({ message: 'Auction changed successfully', auction });
   } catch (error) {
@@ -16,5 +16,5 @@ const put_auc_handler = async (req, res) => {
 };
 
 module.exports = {
-  put_auc_handler,
+  put_auc_handler
 };

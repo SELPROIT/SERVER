@@ -10,15 +10,13 @@ const getAllProd = () => {
       },
       {
         model: Auction,
-        attributes: ['id', 'base_price', 'close_date']
+        attributes: ['id', 'base_price', 'close_date', 'sale_price', 'stock']
       },
       {
         model: Invert_auction,
-        attributes: ['id', 'base_price', 'close_date']
+        attributes: ['id', 'close_date', 'target_quantity', 'desired_price']
       }
     ],
-    // Excluir atributos de producto si es necesario
-    // attributes: ['id', 'name', 'price', 'description', 'brand', 'stock', 'rating']
   })
     .then(products => {
       return products;

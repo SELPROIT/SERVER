@@ -13,7 +13,7 @@ const get_auction = async () => {
         },
         {
           model: User,
-          attributes: ['id', 'favorites', 'created_history']
+          attributes: ['user_id', 'favorites', 'created_history']
         },
         {
           model: Auction_bid
@@ -27,7 +27,7 @@ const get_auction = async () => {
           id,
           base_price,
           close_date,
-          Product: product,
+          // Product: product,
           User: user,
           authorize,
           image,
@@ -35,11 +35,12 @@ const get_auction = async () => {
           brand,
           description,
           datasheet,
-          total,
+          stock,
           status,
           type,
           subCategory,
           category,
+          sale_price,
           Auction_bids // Access the associated Auction_bids here
         } = auction;
 
@@ -54,8 +55,6 @@ const get_auction = async () => {
           id,
           base_price,
           close_date,
-          product,
-          user,
           authorize,
           image,
           product_name,
@@ -63,10 +62,13 @@ const get_auction = async () => {
           description,
           datasheet,
           status,
-          total,
+          stock,
           type,
           subCategory,
-          category: product.Sub_category.CategoryId,
+          category,
+          sale_price,
+          // product,
+          user,
           auction_bids: formattedAuctionBids // Include the formatted Auction_bids
         };
       })
