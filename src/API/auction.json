@@ -1,14 +1,19 @@
 {
-  "create": {
-    "product_id": "AB11",
-		"base_price": 300,
-		"close_date": "2023-08-18T00:00:00.000Z",
-    "user_id":"4db18ece-5158-44bc-96fd-e52781d8ab8c"
-  },
+  "create": {},
   "authorize": {
     "authorize": true
   },
   "deleteflag": {
     "deleteFlag": true
+  },
+  "create2": {
+    "data": [
+      {
+        "product_id": "AB11",
+        "base_price": 300,
+        "close_date": "2023-08-18T00:00:00.000Z",
+        "user_id": "280756d1-8046-4d97-aefc-d8c0a4463d5f"
+      }
+    ]
   }
 }
