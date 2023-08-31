@@ -41,14 +41,13 @@ const create_auction = async (auctionArray) => {
                 datasheet: datasheet,
                 stock: auction.stock,
                 base_price: auction.base_price,
+                sale_price: auction.sale_price,
                 close_date: auction.close_date,
                 subCategory: SubCategoryId,
-                type: 'AU'
+                type: 'AU',
+                ProductId: product.id
             });
-
             await new_auction.setUser(user);
-            await product.addAuction(new_auction);
-
             createdAuctions.push(new_auction);
         }
 
