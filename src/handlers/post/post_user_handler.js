@@ -38,7 +38,6 @@ const toPostUser = async (req, res) => {
       CIIU,
       id_subcat,
     });
-    console.log('newUser', newUser)
 
     res.status(200).json(('User created successfully', newUser));
   } catch (error) {

@@ -16,7 +16,6 @@ const toPostPreUser = async (req, res) => {
     const newPreUser = await postPreUser({
       email,
     });
-    console.log('newPreUser', newPreUser)
 
     res.status(200).json(('User created successfully', newPreUser));
   } catch (error) {

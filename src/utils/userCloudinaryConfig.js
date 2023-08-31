@@ -15,7 +15,6 @@ const uploadImage = async (imageInput) => {
         let result;
 
         if (typeof imageInput === 'string') {
-			console.log('imageInput', imageInput)
             result = await cloudinary.uploader.upload(imageInput, {
                 folder: 'selpro/user-documents',
 				resource_type: 'auto'

@@ -5,12 +5,10 @@ const getUserEmail = async (userId) => {
 
     const user = await User.findOne({ where: { id: userId } });
     if(!!user) return user.email;
-    console.log('user.email', user.email)
 };
 
 const sendEmail = async (userId) => {
     const recipientEmail = await getUserEmail(userId);
-    console.log('recipientEmail', recipientEmail)
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -30,7 +28,6 @@ const sendEmail = async (userId) => {
 
     try {
         const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent:', info.response);
     } catch (error) {
         console.error('Error sending email:', error);
         throw error;
