@@ -1,9 +1,8 @@
-
 const { postProductC } = require("../../controllers/post/post_prod_controller.js");
 
 function createdProd(req, res) {
-  const productData = req.body; // Assuming you're parsing the request body properly
-  postProductC(productData)
+  const { data } = req.body; // Assuming you're parsing the request body properly
+  postProductC(data)
     .then(newProducts => {
       res.status(201).json(newProducts); // Use a proper HTTP status code and send JSON response
     })
