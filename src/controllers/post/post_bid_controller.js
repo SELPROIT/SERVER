@@ -11,9 +11,11 @@ const createAuctionBid = async (auction_id, proposed_price, target_accumulated, 
         throw new Error("Usuario no encontrado.");
     }
 
+    
     if (invert) {
-        
+
         const invertAuction = await Invert_auction.findByPk(auction_id);
+    
 
         if(proposed_price > invertAuction.desired_price){
             throw new Error(`No se puede crear una puja con un precio mayor al de base.`);
@@ -29,30 +31,29 @@ const createAuctionBid = async (auction_id, proposed_price, target_accumulated, 
             throw new Error(`No se encontró esa subasta inversa.`);
         }
         
-        if (!invertAuction.auction_bids) {
-            return invertAuction;
-        }
-        
+        const bid = await Auction_bid.findAll({
+            where:{InvertAuctionId: invertAuction.id}
+        })
         let totalTargetAccumulated = 0;
-        
-        console.log(invertAuction + "invertAuction");
-        invertAuction.auction_bids.forEach(bid => {
-            totalTargetAccumulated += bid.target_accumulated;
-        });
+        if (bid.length) {
+            const accumulatedValues = bid.map(bid => bid.target_accumulated);
+            console.log(accumulatedValues);
+            totalTargetAccumulated = accumulatedValues.reduce((sum, value) => sum + value, 0);
 
-        const newTargetAccumulated = target_accumulated + totalTargetAccumulated;
-        console.log(newTargetAccumulated + "newTargetAccumulated");
+        }
+     
+        console.log(totalTargetAccumulated);
+        
+        
+
         const newAuctionBid = await Auction_bid.create({
             proposed_price,
-            target_accumulated: newTargetAccumulated,
+            target_accumulated: totalTargetAccumulated,
             UserId: user_id
         });
         await invertAuction.addAuction_bid(newAuctionBid);
 
-        console.log("newAuctionBid" + newAuctionBid);
-
         return newAuctionBid;
-
     } else {
         const auction = await Auction.findByPk(auction_id);
 
