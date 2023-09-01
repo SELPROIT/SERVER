@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
         },
         target_accumulated: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            defaultValue: 0
         },
         deleteFlag: {
 			// no "delete" porque es palabra reservada.
@@ -26,8 +26,3 @@ module.exports = (sequelize) => {
         }
     );
 };
-
-
-
-
-
