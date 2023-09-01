@@ -22,7 +22,7 @@
         "sale_price":500,
         "close_date": "2023-10-22T00:00:00.000Z",
         "stock": 700,
-        "user_id": "2a552218-4d3f-40cb-bff3-7f944e9eaa5a"
+        "user_id": "9fc1a307-8672-4160-acf8-44beedfe7f9f"
       },
       {
         "product_id": "PC51",
@@ -30,7 +30,7 @@
         "sale_price":8000,
         "close_date": "2023-10-22T00:00:00.000Z",
         "stock": 500,
-        "user_id": "2a552218-4d3f-40cb-bff3-7f944e9eaa5a"
+        "user_id": "9fc1a307-8672-4160-acf8-44beedfe7f9f"
       }
     ]
   }

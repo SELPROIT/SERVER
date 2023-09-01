@@ -1,15 +1,15 @@
 const { User_admin } = require('../../db.js');
 
 const postUserAdmin = async (newUserAdmin) => {
-  const { role, password, name, phone } = newUserAdmin;
-  const accessCondition = role === 'CEO' || role === 'Junior Developer' && password === 'selpro123*';
+  const { role, email, name, phone } = newUserAdmin;
+  const accessCondition = role === 'CEO' || role === 'Junior Developer';
 
   if (accessCondition) {
     try {
       const userAdmin = await User_admin.create({
         name,
+        email,
         role,
-        password,
         phone,
       });
 
