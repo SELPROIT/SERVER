@@ -43,7 +43,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    status:{ //esta tiene solo activa porque la crea el admin y automáticamente se pone como activa
+    status: { //esta tiene solo activa porque la crea el admin y automáticamente se pone como activa
       type: DataTypes.ENUM("Activa", "Eliminada", "Terminada"), //pendiente es cuando el admin tiene que aceptar la subasta propuesta
       defaultValue: "Activa"
     },
@@ -58,15 +58,16 @@ module.exports = (sequelize) => {
     authorize: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
-    }, 
+    },
     invert: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     }
   },
     {
-      timestamps: false,
+      timestamps: true,
       paranoid: true,
+      deletedAt: 'destroyTime',
     }
   );
 };

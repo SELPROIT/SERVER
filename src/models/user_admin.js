@@ -28,13 +28,14 @@ module.exports = (sequelize) => {
             defaultValue: true
         },
         deleteFlag: {
-			type: DataTypes.BOOLEAN,
-			defaultValue: false,
-		},
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
     },
         {
-            timestamps: false,
+            timestamps: true,
             paranoid: true,
+            deletedAt: 'destroyTime',
         }
     );
 };
