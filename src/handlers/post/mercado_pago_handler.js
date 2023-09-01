@@ -1,6 +1,6 @@
-const {mercado_pago, receiveWebhook} = require('../../controllers/post/mercado_pago_controller.js');
+const { mercado_pago } = require('../../controllers/post/mercado_pago_controller.js');
 
-async function mercado_pago_handler(req, res) {
+const mercado_pago_handler = async (req, res) => {
     try {
         const { id, product, } = req.body;
 

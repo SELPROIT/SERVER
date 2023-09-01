@@ -4,27 +4,27 @@ const fs = require('fs');
 const path = require('path');
 const pg = require('pg')
 
-const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
+// const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`, {
-	logging: false,
-	native: false,
-	dialectOptions: {
-		ssl: {
-			rejectUnauthorized: false,
-		},
-	},
-	dialectModule: pg,
-});
-// const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+// const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`, {
+// 	logging: false,
+// 	native: false,
+// 	dialectOptions: {
+// 		ssl: {
+// 			rejectUnauthorized: false,
+// 		},
+// 	},
+// 	dialectModule: pg,
+// });
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-// const sequelize = new Sequelize(
-// 	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/selpro`,
-// 	{
-// 		logging: false,
-// 		native: false,
-// 	}
-// );
+const sequelize = new Sequelize(
+	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/selpro`,
+	{
+		logging: false,
+		native: false,
+	}
+);
 
 const basename = path.basename(__filename);
 const modelDefiners = [];
@@ -45,7 +45,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction } = sequelize.models;
+const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction, Transaction } = sequelize.models;
 // Relaciones n*1
 
 Category.hasMany(Sub_category);
@@ -77,6 +77,9 @@ Auction.belongsTo(User);
 
 User.hasMany(Invert_auction);
 Invert_auction.belongsTo(User);
+
+User.hasMany(Transaction);
+Transaction.belongsTo(User);
 
 module.exports = {
 	...sequelize.models,
