@@ -47,8 +47,8 @@ const get_invert_auction = async () => {
         const formattedAuctionBids = Auction_bids.map(bid => ({
           bid_id: bid.id,
           proposed_price: bid.proposed_price,
+          proposed_amount: bid.proposed_amount,
           target_accumulated: bid.target_accumulated
-          // Include other relevant properties from Auction_bid if needed
         }));
 
         return {
