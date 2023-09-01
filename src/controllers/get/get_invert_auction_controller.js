@@ -47,15 +47,15 @@ const get_invert_auction = async () => {
         const formattedAuctionBids = Auction_bids.map(bid => ({
           bid_id: bid.id,
           proposed_price: bid.proposed_price,
-          total: bid.total,
-          // Include other relevant properties from Auction_bid if needed
+          proposed_amount: bid.proposed_amount,
+          target_accumulated: bid.target_accumulated
         }));
 
         return {
           id,
           desired_price,
           close_date,
-          // product,
+          product,
           user,
           authorize,
           image,
@@ -70,7 +70,7 @@ const get_invert_auction = async () => {
           category: product.Sub_category.CategoryId,
           target_quantity,
           invert,
-          auction_bids: formattedAuctionBids // Include the formatted Auction_bids
+          auction_bids: formattedAuctionBids 
         };
       })
     );
@@ -84,4 +84,3 @@ const get_invert_auction = async () => {
 module.exports = {
   get_invert_auction
 };
-

@@ -5,6 +5,9 @@ const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
 
 const put_user_controller = async (
   id,
+  interaction_history,
+  created_history,
+  favorites,
   name,
   num_ident,
   user_name,
@@ -21,9 +24,6 @@ const put_user_controller = async (
   commerce_chamber,
   legal_ident,
   commercial_references,
-  interaction_history,
-  created_history,
-  favorites,
   supplier,
   deleteFlag,
 
@@ -32,6 +32,7 @@ const put_user_controller = async (
   if (!user) {
     throw new Error('User not found');
   }
+  console.log('created_history', created_history)
   const changedUser = {};
 
   if (!!name) {
@@ -93,6 +94,7 @@ const put_user_controller = async (
       changedUser.interaction_history = [...user.interaction_history, bid_id]
     };
   }
+  // console.log('created_history', created_history)
   // if (!!created_history) {
   //   let auc_id = await Auction.findByPk(created_history)
   //   if (!auc_id) {

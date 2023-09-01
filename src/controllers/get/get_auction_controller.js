@@ -1,5 +1,6 @@
 const { Auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db.js'); // Asegúrate de importar sequelize
-const { handle_date } = require('./handle_date.js');
+const { handle_status } = require('./handle_status.js');
+// const { handle_date } = require('./handle_date.js');
 
 const get_auction = async () => {
   try {
@@ -46,8 +47,7 @@ const get_auction = async () => {
 
         const formattedAuctionBids = Auction_bids.map(bid => ({
           bid_id: bid.id,
-          proposed_price: bid.proposed_price,
-          total: bid.total,
+          proposed_price: bid.proposed_price
           // Include other relevant properties from Auction_bid if needed
         }));
 

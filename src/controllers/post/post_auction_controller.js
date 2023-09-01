@@ -33,6 +33,12 @@ const create_auction = async (auctionArray) => {
 
             const { name, image, brand, description, datasheet, SubCategoryId } = product;
 
+            
+            let sale_price_IVA;
+            sale_price_IVA = Math.ceil(auction.base_price * 1.75); //le agrego un 1.75 para agregarle un porcentaje al precio de venta
+
+            auction.sale_price = sale_price_IVA;
+
             const new_auction = await Auction.create({
                 image: image,
                 product_name: name,
@@ -49,7 +55,15 @@ const create_auction = async (auctionArray) => {
             });
             await new_auction.setUser(user);
             createdAuctions.push(new_auction);
+
+            //se guarda la subasta creada en el historial de creación del usuario
+            user.created_history.push(new_auction.id);
+            await user.save();
+
+            console.log(user);
         }
+
+        //llamar al admin para que me apruebe o no la auction creada
 
         return createdAuctions;
 
