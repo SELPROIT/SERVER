@@ -27,7 +27,7 @@ const get_auction = async () => {
           id,
           base_price,
           close_date,
-          // Product: product,
+          Product: product,
           User: user,
           authorize,
           image,
@@ -67,7 +67,7 @@ const get_auction = async () => {
           subCategory,
           category,
           sale_price,
-          // product,
+          product,
           user,
           auction_bids: formattedAuctionBids // Include the formatted Auction_bids
         };
