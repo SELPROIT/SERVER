@@ -27,13 +27,14 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         deleteFlag: {
-			// no "delete" porque es palabra reservada.
-			type: DataTypes.BOOLEAN,
-			defaultValue: false,
-		},
+            // no "delete" porque es palabra reservada.
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
     },
         {
             timestamps: false,
+            paranoid: true,
         }
     );
 };
