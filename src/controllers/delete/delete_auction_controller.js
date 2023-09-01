@@ -2,12 +2,10 @@ const { Auction } = require('../../db.js');
 
 const delete_auction = async (id) => {
 
-    const erase = await Auction.update(
-        { deleteFlag: true },
+    const erase = await Auction.destroy(
         {
             where: {
                 id: id,
-                deleteFlag: false
             }
         }
     );
