@@ -10,6 +10,8 @@ const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
 //postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a.oregon-postgres.render.com/selpro
 
+//postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro
+
 const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro`, {
 	logging: false,
 	native: false,

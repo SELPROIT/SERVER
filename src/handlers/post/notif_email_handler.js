@@ -7,7 +7,7 @@ const emailNotif = async (req, res) => {
         await notifEmail(name, auction_id)
         res.send('Email enviado exitosamente!')
     } catch (error) {
-        throw new Error({ error: error.message })
+        res.json({ error: error.message })
     }
 }
 
