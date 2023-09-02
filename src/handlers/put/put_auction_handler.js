@@ -16,11 +16,11 @@ const put_auc_handler = async (req, res) => {
       deleteFlag);
       
     if (!auction) {
-      return  res.status(400).json({ error: 'Auction not found' });
+      return  res.status(400).json({ error: 'Subasta no encontrada.' });
     }
-    return res.json({ message: 'Auction changed successfully', auction });
+    return res.json({ message: 'La subasta se actualizó correctamente.', auction });
   } catch (error) {
-    return res.json({ error: `Error changing auction: ${error.message}` });
+    return res.json({ error: `Error actualizando la subasta: ${error.message}` });
   }
 };
 

@@ -131,5 +131,5 @@ const put_user_controller = async (
 };
 
 module.exports = {
-  put_user_controller,
+  put_user_controller
 };

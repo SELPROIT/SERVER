@@ -9,6 +9,9 @@ const handle_finish_auction = (type, user_id, auction_id) => {
     //put_user_controller(interaction_history) le agrego la subasta ganada al usuario
 
   }
+  else if(type === "IA"){
+
+  }
 };
 
 module.exports = {

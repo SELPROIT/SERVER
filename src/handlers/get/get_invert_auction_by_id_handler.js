@@ -5,15 +5,15 @@ async function get_invertAuctionById_handler(req, res) {
     try {
         const { invertAuction_id } = req.params
 
-        if (!invertAuction_id) throw new Error("Missing data")
-        if (!validateUUID(invertAuction_id)) throw new Error("Invalid id")
+        if (!invertAuction_id) throw new Error("Falta data.")
+        if (!validateUUID(invertAuction_id)) throw new Error("ID inválida.")
 
         const response = await get_invertAuction_by_id(invertAuction_id);
-        if (!response) throw new Error("There was a problem acquiring this invert auction")
-        res.status(200).json(("Data acquire successfully", response));
+        if (!response) throw new Error("Hubo un problema al adquirir esta subasta inversa.")
+        res.status(200).json(("Adquisición de datos exitosa.", response));
 
     } catch (error) {
-        if (error.message === 'Missing data') {
+        if (error.message === 'Falta data.') {
             return res.status(400).json((error.message));
         }
         res.status(500).json((error.message));

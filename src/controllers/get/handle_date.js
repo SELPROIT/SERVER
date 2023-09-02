@@ -1,4 +1,4 @@
-const schedule = require("node-schedule");
+
 const { handle_finish_auction } = require("./handle_finish_auction.js");
 
 //Esta función calcula el número de días, horas, minutos, segundos y
