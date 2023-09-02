@@ -51,6 +51,7 @@ const get_auction = async () => {
           // Include other relevant properties from Auction_bid if needed
         }));
 
+
         return {
           id,
           base_price,

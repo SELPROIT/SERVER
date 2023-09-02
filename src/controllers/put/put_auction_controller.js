@@ -2,8 +2,9 @@ const { Auction } = require('../../db.js');
 
 const put_auc_controller = async (
   id,
-  base_price,
+  status,
   close_date,
+  base_price,
   authorize,
   deleteFlag
 ) => {
@@ -14,6 +15,9 @@ const put_auc_controller = async (
 
   const changed_auction = {};
 
+  if(status !== undefined){
+    changed_auction.status = status;
+  }
   if (base_price !== undefined) {
     changed_auction.base_price = base_price;
   }
