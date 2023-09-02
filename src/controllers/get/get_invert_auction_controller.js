@@ -48,7 +48,8 @@ const get_invert_auction = async () => {
           bid_id: bid.id,
           proposed_price: bid.proposed_price,
           proposed_amount: bid.proposed_amount,
-          target_accumulated: bid.target_accumulated
+          target_accumulated: bid.target_accumulated,
+          UserId: bid.user_id,
         }));
 
         return {

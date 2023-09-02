@@ -1,4 +1,5 @@
 const { Auction, Product, User } = require('../../db.js');
+const { put_activate } = require('../put/put_activate_controller.js');
 
 const create_auction = async (auctionArray) => {
     try {
@@ -60,10 +61,11 @@ const create_auction = async (auctionArray) => {
             user.created_history.push(new_auction.id);
             await user.save();
 
+            //llamar al admin para que me apruebe o no la auction creada
+            // put_activate(new_auction.id, new_auction.status, new_auction.close_date, new_auction.type);
             console.log(user);
         }
 
-        //llamar al admin para que me apruebe o no la auction creada
 
         return createdAuctions;
 

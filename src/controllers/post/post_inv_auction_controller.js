@@ -1,4 +1,7 @@
 const { Invert_auction, Product } = require('../../db.js');
+const { handle_status } = require('../get/handle_status.js');
+const schedule = require('node-schedule');
+const { put_activate } = require('../put/put_activate_controller.js');
 
 const create_invert_auction = async (auctionArray) => {
     try {
@@ -18,6 +21,7 @@ const create_invert_auction = async (auctionArray) => {
                 throw new Error('Producto no encontrado.');
             }
 
+            
             const { name, image, brand, description, datasheet, SubCategoryId } = product;
             const new_auction = await Invert_auction.create({
                 image: image,
@@ -34,6 +38,21 @@ const create_invert_auction = async (auctionArray) => {
                 ProductId: product.id
             });
             createdAuctions.push(new_auction);
+
+            handle_status(new_auction.id, new_auction.status, 'IA', new_auction.close_date);
+        
+            const date = new_auction.close_date;
+
+            const scheduler = schedule.scheduleJob(date, async () => {
+            
+                const changeStatus = await put_activate(new_auction.id, "Terminada", new_auction.type);
+               
+                const {id, status, type} = changeStatus
+            
+                handle_status(id, status, type);
+
+                scheduler.cancel();
+            });
         }
 
         return createdAuctions;

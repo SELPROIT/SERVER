@@ -1,42 +1,33 @@
+const { put_activate } = require("../put/put_activate_controller.js");
 const {put_auc_controller} = require("../put/put_auction_controller.js");
 const {put_inv_auc_controller} = require("../put/put_inv_auction_controller.js");
 const { put_user_controller } = require("../put/put_user_controller.js");
 const { handle_date } = require("./handle_date.js");
 const { handle_finish_auction } = require("./handle_finish_auction.js");
 
-const handle_status = (status, close_date, type, user_id, buyNow, auction_id) => {
+const handle_status = (auction_id, estados, types, close_date) => {
     
-
-    switch (status) {
+    switch (estados) {
         case "Pendiente": //llamar al admin para que la acepte o no, en caso de ser una AU
             break;
 
         case "Activa":
             //Una vez se crea la invert auction o se aprueba una actuion, se actualiza el status a activa 
             //y se llama a la función para que maneje el timer.
-            
-            const date = handle_date(close_date, buyNow);
+            // console.log(auction_id, status, types, close_date);
+            const handleDate = handle_date(auction_id, close_date, types);
+    
+            if(!handleDate) return "Termine handle date";
 
-            status = "Terminada";
-
-            if(type === "AU"){
-                put_auc_controller(auction_id, status, close_date);
-            }
-            else if(type === "IA"){
-                put_inv_auc_controller(auction_id, status, close_date);
-            }
-
-
-            return date; //el objeto que me devolvio la función handle date tiene: 
-            // months,
-            // days,
-            // hours, 
-            // minutes,
-            // seconds
+            console.log(handleDate);
+           
+            console.log("despues de la recursion");
+           
+            return handleDate;
 
         case "Terminada":
             //una vez terminada, llamar al manejo de finalización de auctions y relacionar a los users ganadores
-            handle_finish_auction(type, user_id);
+            handle_finish_auction(auction_id, types);
             break;
         case "Eliminada":
             //se guarda con el delete flag?
