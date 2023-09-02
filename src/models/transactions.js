@@ -3,8 +3,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     sequelize.define('Transaction', {
         id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            type: DataTypes.INTEGER,
             primaryKey: true,
         },
         date_created: {
@@ -41,13 +40,9 @@ module.exports = (sequelize) => {
         },
         card_last_four_digits: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         payer_email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        notification_url: {
             type: DataTypes.STRING,
             allowNull: false,
         },
