@@ -21,7 +21,7 @@ const create_subCategory = async (type, data) => {
     const verify = await Promise.all(exist)
 
     if (verify[0].some(result => result !== null)) {
-        throw new Error("This category name already exists")
+        throw new Error("El nombre de esta categoría ya existe.")
     }
 
     const response = await Promise.all(
@@ -29,7 +29,7 @@ const create_subCategory = async (type, data) => {
             const { id_category, name } = data;
             const category = await Category.findByPk(id_category)
 
-            if (!category) return "Missing category";
+            if (!category) throw new Error("Falta categoría.");
 
             const sub_category_id = await Sub_category.count({
                 where: {

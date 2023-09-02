@@ -10,7 +10,7 @@ const put_auc_controller = async (
 ) => {
   const auction = await Auction.findByPk(id);
   if (!auction) {
-    throw new Error('Auction not found');
+    throw new Error('Subasta no encontrada.');
   }
 
   const changed_auction = {};
@@ -24,7 +24,7 @@ const put_auc_controller = async (
   if (close_date !== undefined) {
     const parsedCloseDate = new Date(close_date);
     if (isNaN(parsedCloseDate)) {
-      throw new Error('Invalid date format for close_date');
+      throw new Error('Formato de fecha no válido para la fecha de cierre.');
     }
     changed_auction.close_date = parsedCloseDate;
   }
@@ -36,7 +36,7 @@ const put_auc_controller = async (
   }
 
   if (Object.keys(changed_auction).length === 0) {
-    throw new Error('No valid fields provided for update');
+    throw new Error('No se proporcionaron campos válidos para la actualización.');
   }
 
   const [updatedRows] = await Auction.update(changed_auction, {
@@ -48,7 +48,7 @@ const put_auc_controller = async (
     return auction;
   }
 
-  throw new Error('Unable to update auction');
+  throw new Error('No se puede actualizar la subasta.');
 };
 
 module.exports = {

@@ -15,7 +15,7 @@ const create_invert_auction = async (auctionArray) => {
             const auction = auctionArray[i];
             const product = products.find(p => p.id === auction.product_id);
             if (!product) {
-                throw new Error('Product not found');
+                throw new Error('Producto no encontrado.');
             }
 
             const { name, image, brand, description, datasheet, SubCategoryId } = product;
