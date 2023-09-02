@@ -2,17 +2,15 @@ const { User_admin } = require('../../db.js');
 
 const delete_userAdmin = async (id) => {
 
-    const erase = await User_admin.update(
-        { deleteFlag: true },
+    await User_admin.destroy(
         {
             where: {
                 id: id,
-                deleteFlag: false
             }
         }
     );
 
-    return erase
+    return 'Soft-deleted successfully'
 
 }
 

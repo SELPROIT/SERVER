@@ -2,7 +2,7 @@ const { Auction } = require('../../db.js');
 
 const delete_auction = async (id) => {
 
-    const erase = await Auction.destroy(
+    await Auction.destroy(
         {
             where: {
                 id: id,
@@ -10,7 +10,7 @@ const delete_auction = async (id) => {
         }
     );
 
-    return erase
+    return 'Soft-delete successfull'
 
 }
 

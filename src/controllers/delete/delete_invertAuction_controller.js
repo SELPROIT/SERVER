@@ -2,16 +2,14 @@ const { Invert_auction } = require('../../db.js');
 
 const delete_invertAuction = async (id) => {
 
-    const erase = await Invert_auction.update(        
-        { deleteFlag: true },
+    await Invert_auction.destroy(        
         {
             where: {
                 id: id,
-                deleteFlag: false
             }
         });
 
-    return erase
+    return 'Soft-delete successfull'
 
 }
 
