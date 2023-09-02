@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Auction, Product } = require('../../db.js');
+const { Auction, Product, Transaction } = require('../../db.js');
 const mercadopago = require("mercadopago")
 const { MERCADOPAGO_KEY } = process.env;
 
@@ -10,10 +10,10 @@ const mercado_pago = async (auction) => {
     const isAuction = Auction.findByPk(id)
     const existProduct = Product.findByPk(product.id)
 
-    if(!isAuction || !existProduct) throw new Error ("Subasta o producto no existen")
+    if (!isAuction || !existProduct) throw new Error("Subasta o producto no existen")
 
     if (isAuction) {
-        const {product_name, description, image} = auction;
+        const { product_name, description, image } = auction;
         console.log(image);
         const payment = await mercadopago.preferences.create({
             items: [
@@ -30,10 +30,13 @@ const mercado_pago = async (auction) => {
             ],
             back_urls: {
                 success: "http://localhost:3001",
-                failure:"",
-                pending:"",
+                failure: "",
+                pending: "",
             },
             notification_url: "https://121e-190-12-11-34.ngrok-free.app/create/webhook",
+            metadata: {
+                //user_id: user_id, // Puedes almacenar el user_id en el campo metadata
+            },
         })
 
         const url = payment.body.init_point
@@ -45,13 +48,28 @@ const mercado_pago = async (auction) => {
 const receiveWebhook = async (payment) => {
     console.log(payment);
     if (payment.type === "payment") {
-        const data = await mercadopago.payment.findById(payment["data.id"] )
-        
-        return data
+        const data = await mercadopago.payment.findById(payment["data.id"])
+        const { body } = data
+        const transaction = await Transaction.create({
+            id: body.id,
+            date_created: body.date_created,
+            date_approved: body.date_approved,
+            description: body.description,
+            status: body.status,
+            payment_type_id: body.payment_type_id,
+            currency_id: body.currency_id,
+            transaction_amount: body.transaction_amount,
+            payment_method_id: body.payment_method_id,
+            card_last_four_digits: body.card_last_four_digits,
+            payer_email: body.payer.email,
+        })
+
+        //Transaction.setUser()
+        return transaction
     }
 }
 
-module.exports = { 
+module.exports = {
     mercado_pago,
     receiveWebhook,
 };

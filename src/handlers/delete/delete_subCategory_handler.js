@@ -8,8 +8,8 @@ async function delete_subCategory_handler(req, res) {
         if (!subCategory_id) throw new Error("Falta data.")
 
         const response = await delete_subCategory(subCategory_id);
-        if (!response[0]) throw new Error("There was a problem erasing this category")
-        res.status(200).json(("Category deleted successfully", response[0]));
+        if (!response[0]) throw new Error("Hubo un problema borrando esta sub-categoría.")
+        res.status(200).json(("La sub-categoría ha sido borrada correctamente.", response[0]));
 
     } catch (error) {
         if (error.message === 'Falta data.') {

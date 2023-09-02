@@ -1,6 +1,6 @@
 const { receiveWebhook } = require('../../controllers/post/mercado_pago_controller.js');
 
-async function weebhook_handler(req, res) {
+const weebhook_handler = async (req, res) => {
     try {
         const payment = req.query;
         console.log(payment);
