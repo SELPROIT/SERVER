@@ -46,14 +46,14 @@ const get_admin_auction = async () => {
                     subCategory,
                     category,
                     sale_price,
-                    Auction_bids // Access the associated Auction_bids here
+                    Auction_bids,
+                    destroyTime,
                 } = auction;
 
                 const formattedAuctionBids = Auction_bids.map(bid => ({
                     bid_id: bid.id,
                     proposed_price: bid.proposed_price,
                     paranoid: false
-                    // Include other relevant properties from Auction_bid if needed
                 }));
 
                 return {
@@ -74,7 +74,8 @@ const get_admin_auction = async () => {
                     sale_price,
                     product,
                     user,
-                    auction_bids: formattedAuctionBids // Include the formatted Auction_bids
+                    auction_bids: formattedAuctionBids,
+                    destroyTime,
                 };
             })
         );
