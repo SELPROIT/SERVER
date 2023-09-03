@@ -1,5 +1,5 @@
 const { Auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db.js'); // Asegúrate de importar sequelize
-const { handle_status } = require('./handle_status.js');
+// const { handle_status } = require('./handle_status.js');
 // const { handle_date } = require('./handle_date.js');
 
 const get_admin_auction = async () => {
