@@ -5,30 +5,30 @@ const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
 
 const put_user_controller = async (
   id,
-  name,
-  num_ident,
-  user_name,
-  phone,
-  email,
-  adress,
-  company_name,
-  NIT,
-  sector,
-  CIIU,
-  id_subcat,
-  image,
-  RUT_image,
-  commerce_chamber,
-  legal_ident,
-  commercial_references,
-  interaction_history,
-  created_history,
-  favorites,
-  supplier,
-  deleteFlag,
-
+  { name,
+    num_ident,
+    user_name,
+    phone,
+    email,
+    adress,
+    company_name,
+    NIT,
+    sector,
+    CIIU,
+    id_subcat,
+    image,
+    RUT_image,
+    commerce_chamber,
+    legal_ident,
+    commercial_references,
+    interaction_history,
+    created_history,
+    favorites,
+    supplier, }
 ) => {
+  console.log('supplier', supplier)
   const user = await User.findOne({ where: { id } });
+  console.log('user.supplier', user.supplier)
   if (!user) {
     throw new Error('User not found');
   }
@@ -102,16 +102,13 @@ const put_user_controller = async (
   // }
   if (!!favorites) {
     let auc_id = await Auction.findByPk(favorites_history)
-    if(!auc_id) {
+    if (!auc_id) {
       auc_id = await Invert_auction.findByPk(favorites_history)
     }
     changedUser.favorites = [...user.favorites, auc_id];
   }
-  if (supplier !== undefined || supplier !== null) {
+  if (!!supplier) {
     changedUser.supplier = supplier;
-  }
-  if (deleteFlag !== undefined || deleteFlag !== null) {
-    changedUser.deleteFlag = deleteFlag;
   }
 
   const [updatedRows] = await User.update(changedUser, {

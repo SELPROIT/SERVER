@@ -7,7 +7,7 @@ async function delete_auctionBid_handler(req, res) {
         if (!response) throw new Error("There was a problem erasing this bid")
         res.status(200).send("Bid soft-deleted successfully");
     } catch (error) {
-        res.status(500).json(error.message);
+        res.status(500).send(error.message);
     }
 }
 
