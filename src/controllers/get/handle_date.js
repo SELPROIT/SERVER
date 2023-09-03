@@ -21,11 +21,11 @@ const handle_date = (status, close_date) => {
         const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
         // console.log(hours + minutes);
 
-        console.log(`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`);
+        // console.log(`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`);
 
         currentDate.setSeconds(currentDate.getSeconds() + 1);
 
-        // return `${days} ${hours} : ${minutes} : ${seconds} `;
+        
     }, 1000);
 };
 
