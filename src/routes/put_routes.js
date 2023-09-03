@@ -11,6 +11,6 @@ putRoutes.put('/product/:id', put_prod_handler)
 putRoutes.put('/auction/:id', put_auc_handler)
 putRoutes.put('/invertAuction/:id', put_inv_auc_handler)
 putRoutes.put('/user/:id', put_user_handler)
-putRoutes.put('/admin/Activate', put_activate_handler)
+putRoutes.put('/admin/activate', put_activate_handler)
 
 module.exports = putRoutes

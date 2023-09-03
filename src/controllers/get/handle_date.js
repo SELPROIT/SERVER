@@ -2,8 +2,6 @@
 //meses entre la fecha de cierre (targetDate) que se recibe por parámetros (close_date) y
 //la fecha del día actualen base al horario UTC.
 
-const { put_activate } = require("../put/put_activate_controller.js");
-
 const handle_date = (auction_id, close_date, types) => {
   const targetDate = new Date(close_date);
   const currentDate = new Date();

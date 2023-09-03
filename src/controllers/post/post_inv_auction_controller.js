@@ -1,7 +1,7 @@
 const { Invert_auction, Product } = require('../../db.js');
 const { handle_status } = require('../get/handle_status.js');
 const schedule = require('node-schedule');
-const { put_activate } = require('../put/put_activate_controller.js');
+const { invert_activate } = require('../../utils/invert_timer.js');
 
 const create_invert_auction = async (auctionArray) => {
     try {
@@ -45,7 +45,7 @@ const create_invert_auction = async (auctionArray) => {
 
             const scheduler = schedule.scheduleJob(date, async () => {
             
-                const changeStatus = await put_activate(new_auction.id, "Terminada", new_auction.type);
+                const changeStatus = await invert_activate(new_auction.id, "Terminada", new_auction.type);
                
                 const {id, status, type} = changeStatus
             
