@@ -1,4 +1,4 @@
-const { restore_auction } = require('../../controllers/restore/Restore_auction_controller.js');
+const { restore_auction } = require('../../controllers/restore/restore_auction_controller.js');
 
 async function restore_auction_handler(req, res) {
     const { id } = req.query
