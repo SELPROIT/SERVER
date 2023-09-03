@@ -46,8 +46,6 @@ const createAuctionBid = async (auction_id, proposed_price, proposed_amount, inv
         if (proposed_amount > invertAuction.target_quantity) {
             throw new Error(`La cantidad de productos ofrecidos no pueden ser mayor al la cantidad de productos solicitados. La cantidad de los meta es: ${invertAuction.target_quantity}`);
         }
-     
-        console.log(totalTargetAccumulated);
 
         const newAuctionBid = await Auction_bid.create({
             proposed_price,

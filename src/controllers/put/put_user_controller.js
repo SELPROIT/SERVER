@@ -30,7 +30,7 @@ const put_user_controller = async (
 ) => {
   const user = await User.findOne({ where: { id } });
   if (!user) {
-    throw new Error('User not found');
+    throw new Error('Usuario no encontrado.');
   }
   console.log('created_history', created_history)
   const changedUser = {};
@@ -127,9 +127,9 @@ const put_user_controller = async (
     return user;
   }
 
-  throw new Error('Unable to update user');
+  throw new Error('No se pudo actualizar el usuario.');
 };
 
 module.exports = {
-  put_user_controller,
+  put_user_controller
 };

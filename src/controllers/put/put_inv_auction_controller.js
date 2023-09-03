@@ -2,10 +2,11 @@ const { Invert_auction } = require('../../db.js')
 
 const put_inv_auc_controller = async (
   id,
+  status,
+  close_date,
   target_accumulated,
   desired_price,
   target_quantity,
-  close_date,
   deleteFlag,
   authorize,
   sale_price
@@ -14,6 +15,10 @@ const put_inv_auc_controller = async (
   if (!inv_auction) "Subasta inversa no encontrada.";
 
   const changed_inv_auction = {};
+
+  if(status !== undefined){
+    changed_inv_auction.status = status;
+  }
   if (!!desired_price) {
     changed_inv_auction.desired_price = desired_price;
   }

@@ -18,7 +18,7 @@ const sortAuctions = (sort, auctions) => {
       "descPrice",
     ].includes(sort)
   ) {
-    throw new Error("Invalid sort order");
+    throw new Error("Orden de clasificación no válido.");
   }
 
   // Definir las funciones de ordenación para cada criterio

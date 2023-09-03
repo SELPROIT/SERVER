@@ -4,7 +4,7 @@ async function post_auction_handler(req, res) {
     const { data } = req.body;
     try {
         const response = await create_auction(data);
-        res.status(200).json(('Auction created successfully', response));
+        res.status(200).json(('La subasta ha sido creada correctamente', response));
     } catch (error) {
         res.status(500).json(('Se ha producido un error creando esta subasta.', error.message));
     }
