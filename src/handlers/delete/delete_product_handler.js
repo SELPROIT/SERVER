@@ -2,20 +2,14 @@ const { delete_product } = require('../../controllers/delete/delete_product_cont
 
 
 async function delete_product_handler(req, res) {
+    const { id } = req.query
     try {
-        const { product_id } = req.query
-
-        if (!product_id) throw new Error("Falta data.")
-
-        const response = await delete_product(product_id);
-        if (!response[0]) throw new Error("Hubo un problema borrando este producto.")
-        res.status(200).json("El producto se ha borrado correctamente.", response[0]);
+        const response = await delete_product(id);
+        if (!response) throw new Error("There was a problem erasing this product")
+        res.status(200).send("Product deleted successfully");
 
     } catch (error) {
-        if (error.message === 'Falta data.') {
-            return res.status(400).json((error.message));
-        }
-        res.status(500).json((error.message));
+        res.status(500).send(error.message);
     }
 }
 

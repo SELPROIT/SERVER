@@ -36,4 +36,5 @@ const sendEmail = async (userId) => {
 
 module.exports = {
     sendEmail,
+    getUserEmail
 };

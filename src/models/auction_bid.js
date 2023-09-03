@@ -20,13 +20,15 @@ module.exports = (sequelize) => {
             defaultValue: 0
         },
         deleteFlag: {
-			// no "delete" porque es palabra reservada.
-			type: DataTypes.BOOLEAN,
-			defaultValue: false,
-		}
+            // no "delete" porque es palabra reservada.
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        }
     },
         {
-            timestamps: false,
+            timestamps: true,
+            paranoid: true,
+            deletedAt: 'destroyTime',
         }
     );
 };

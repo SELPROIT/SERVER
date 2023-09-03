@@ -1,37 +1,20 @@
 {
-
-  "create": {
-    
-      "product_id": "AB11",
-      "base_price": 8920,
-      "close_date": "2023-08-18T00:00:00.000Z",
+  "data": [
+    {
+      "product_id": "VS21",
+      "base_price": 300,
+      "sale_price": 500,
+      "close_date": "2023-10-22T00:00:00.000Z",
       "stock": 700,
-      "user_id":"2bbef767-4119-483f-a4d3-2b7e279ebb36"
-  },
-  "authorize": {
-    "authorize": true
-  },
-  "deleteflag": {
-    "deleteFlag": true
-  },
-  "create2": {
-    "data": [
-      {
-        "product_id": "VS21",
-        "base_price": 300,
-        "sale_price":500,
-        "close_date": "2023-10-22T00:00:00.000Z",
-        "stock": 700,
-        "user_id": "2a552218-4d3f-40cb-bff3-7f944e9eaa5a"
-      },
-      {
-        "product_id": "PC51",
-        "base_price": 5000,
-        "sale_price":8000,
-        "close_date": "2023-10-22T00:00:00.000Z",
-        "stock": 500,
-        "user_id": "2a552218-4d3f-40cb-bff3-7f944e9eaa5a"
-      }
-    ]
-  }
+      "user_id": "02ea0aac-f939-46a0-87df-f3ce1632bb88"
+    },
+    {
+      "product_id": "PC51",
+      "base_price": 5000,
+      "sale_price": 8000,
+      "close_date": "2023-10-22T00:00:00.000Z",
+      "stock": 500,
+      "user_id": "02ea0aac-f939-46a0-87df-f3ce1632bb88"
+    }
+  ]
 }

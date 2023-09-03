@@ -4,9 +4,15 @@ const fs = require('fs');
 const path = require('path');
 const pg = require('pg')
 
+//postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}
+
+//postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a.oregon-postgres.render.com/selpro
+
+//postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro
+
 // const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-// const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`, {
+// const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro`, {
 // 	logging: false,
 // 	native: false,
 // 	dialectOptions: {
@@ -16,6 +22,7 @@ const pg = require('pg')
 // 	},
 // 	dialectModule: pg,
 // });
+
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(

@@ -2,20 +2,13 @@ const { delete_subCategory } = require('../../controllers/delete/delete_subCateg
 
 
 async function delete_subCategory_handler(req, res) {
+    const { id } = req.query
     try {
-        const { subCategory_id } = req.query
-
-        if (!subCategory_id) throw new Error("Falta data.")
-
-        const response = await delete_subCategory(subCategory_id);
-        if (!response[0]) throw new Error("Hubo un problema borrando esta sub-categoría.")
-        res.status(200).json(("La sub-categoría ha sido borrada correctamente.", response[0]));
-
+        const response = await delete_subCategory(id);
+        if (!response) throw new Error("There was a problem erasing this category")
+        res.status(200).send("Sub-category soft-deleted successfully");
     } catch (error) {
-        if (error.message === 'Falta data.') {
-            return res.status(400).json((error.message));
-        }
-        res.status(500).json((error.message));
+        res.status(500).send(error.message);
     }
 }
 

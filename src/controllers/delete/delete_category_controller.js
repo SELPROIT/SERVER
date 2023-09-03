@@ -2,17 +2,15 @@ const { Category } = require('../../db.js');
 
 const delete_category = async (id) => {
 
-    const erase = await Category.update(
-        { deleteFlag: true },
+    await Category.destroy(
         {
             where: {
                 id: id,
-                deleteFlag: false
             }
         }
     );
 
-    return erase
+    return 'Soft-delete successfull'
 
 }
 
