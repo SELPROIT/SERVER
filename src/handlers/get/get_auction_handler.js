@@ -48,7 +48,7 @@ function get_auction_handler(req, res) {
       });
     })
     .catch(error => {
-      if (error.message === 'Missing data') {
+      if (error.message === 'Falta data.') {
         return res.status(400).json((error.message));
       }
       return res.status(500).json((error.message));

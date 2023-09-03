@@ -23,12 +23,12 @@ const postProductC = async (productArray) => {
 
     const foundRef = await Sub_category.findOne({ where: { id: ref_subCategory } });
     if (!foundRef) {
-      throw new Error("Sub-category not found.");
+      throw new Error("Sub-categoría no encontrada.");
     }
 
     const foundUser = await User.findOne({ where: { id: user_id } });
     if (!foundUser) {
-      throw new Error("User not found.");
+      throw new Error("Usuario no encontrado.");
     }
 
     const prodCount = await Product.count({ where: { SubCategoryId: ref_subCategory } });

@@ -1,4 +1,5 @@
 const { Auction, Product, User } = require('../../db.js');
+const { put_activate } = require('../put/put_activate_controller.js');
 
 const create_auction = async (auctionArray) => {
     try {
@@ -25,10 +26,10 @@ const create_auction = async (auctionArray) => {
             const user = users.find(u => u.id === auction.user_id);
 
             if (!product) {
-                throw new Error('Product not found');
+                throw new Error('Producto no encontrado.');
             }
             if (!user) {
-                throw new Error('User not found');
+                throw new Error('Usuario no encontrado');
             }
 
             const { name, image, brand, description, datasheet, SubCategoryId } = product;
@@ -60,15 +61,16 @@ const create_auction = async (auctionArray) => {
             user.created_history.push(new_auction.id);
             await user.save();
 
+            //llamar al admin para que me apruebe o no la auction creada
+            // put_activate(new_auction.id, new_auction.status, new_auction.close_date, new_auction.type);
             console.log(user);
         }
 
-        //llamar al admin para que me apruebe o no la auction creada
 
         return createdAuctions;
 
     } catch (error) {
-        throw new Error(`Error creating auction: ${error.message}`);
+        throw new Error(`Se produjo un error creando esa subasta: ${error.message}`);
     }
 };
 

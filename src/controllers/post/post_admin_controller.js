@@ -15,10 +15,10 @@ const postUserAdmin = async (newUserAdmin) => {
 
       return userAdmin;
     } catch (error) {
-      throw new Error('Error creating user admin.');
+      throw new Error('Se produjo un error creando el usuario de administrador.');
     }
   } else {
-    throw new Error('You do not have access to create an admin user.');
+    throw new Error('Usted no tiene acceso para crear un usuario de administrador.');
   }
 };
 

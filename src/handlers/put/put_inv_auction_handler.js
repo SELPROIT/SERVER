@@ -6,10 +6,11 @@ const {
 const put_inv_auc_handler = async (req, res) => {
   const { id } = req.params;
   const {
+    status,
+    close_date,
     target_accumulated,
     desired_price,
     target_quantity,
-    close_date,
     deleteFlag,
     authorize,
     sale_price
@@ -17,10 +18,11 @@ const put_inv_auc_handler = async (req, res) => {
   try {
     const inv_auction = await put_inv_auc_controller(
       id,
+      status,
+      close_date,
       target_accumulated,
       desired_price,
       target_quantity,
-      close_date,
       deleteFlag,
       authorize,
       sale_price

@@ -4,7 +4,7 @@ const postPreUser = async (newPreUser) => {
 	const {email} = newPreUser;
 
 	if(!email) {
-		throw new Error ('Missing data');
+		throw new Error ('Falta data.');
 	};
 
 	const user = await PreUser.create({email});
