@@ -5,7 +5,7 @@ const get_auction_by_id = async (auction_id) => {
     id,
     base_price,
     close_date,
-    // product,
+    product,
     user,
     authorize,
     image,
@@ -34,7 +34,7 @@ const get_auction_by_id = async (auction_id) => {
     status,
     stock,
     type,
-    // product,
+    product,
     user,
     auction_bids
   };

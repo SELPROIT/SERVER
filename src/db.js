@@ -52,7 +52,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction } = sequelize.models;
+const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction, Transaction } = sequelize.models;
 // Relaciones n*1
 
 Category.hasMany(Sub_category);
@@ -84,6 +84,9 @@ Auction.belongsTo(User);
 
 User.hasMany(Invert_auction);
 Invert_auction.belongsTo(User);
+
+User.hasMany(Transaction);
+Transaction.belongsTo(User);
 
 module.exports = {
 	...sequelize.models,

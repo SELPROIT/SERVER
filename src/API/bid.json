@@ -1,16 +1,14 @@
 {
-  "bidAuction":{
-    "auction_id": "722fe286-1f5d-4709-bb94-c9121bf1b1dd",
-	  "proposed_price":8921,
-	  "target_accumulated": 90,
-	  "invert":  false,
-	  "user_id":"65c165ae-5bf6-427c-8582-d0afe02886e4"
-  },
   "bidIvertAuction":{
+    "auction_id": "0874e064-985a-4e34-9a47-c305485187d7",
+		"proposed_price":30,
+		"invert":  true,
+		"proposed_amount": 10,
+		"user_id":"cada8cea-bb8b-49ca-8fec-89e49324ba6c"
+  },
+  "bidAuction":{
     "auction_id": "0a2d1780-4e9c-45d6-8d4e-7100066bec30",
     "proposed_price":450,
-    "total": 5000,
-    "invert":  false,
     "user_id":"372cc2ad-36d4-4ab9-998a-17ccb559b526"
   }
 }
