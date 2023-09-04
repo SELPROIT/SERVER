@@ -48,6 +48,7 @@ const create_subCategory = async (type, data) => {
                     id,
                     name: subCategory_name,
                     type,
+                    CategoryId: id_category
                 });
 
                 counter++;
@@ -55,10 +56,10 @@ const create_subCategory = async (type, data) => {
         })
     )
 
-    return response
+    return response;
 
 }
 
 module.exports = {
-    create_subCategory,
+    create_subCategory
 };

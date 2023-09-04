@@ -12,6 +12,8 @@ const { get_AuctionById_handler } = require("../handlers/get/get_auction_by_id_h
 const { get_invertAuctionById_handler } = require("../handlers/get/get_invert_auction_by_id_handler.js");
 const { PDFgenerate } = require('../handlers/get/generate_pdf_handler.js');
 const { get_PreUserByMail } = require('../handlers/get/get_pre_user_by_mail_handler.js');
+const { getUserById } = require('../handlers/get/get_user_by_id_handler.js');
+const { get_favorites_handler } = require('../handlers/get/get_favorites_handler.js');
 
 const getRoutes = require('express').Router()
 
@@ -20,6 +22,8 @@ getRoutes.get('/subcategory', toSubCategory);
 getRoutes.get('/product', getProdHandler);
 getRoutes.get('/allUsers', getAllUsers);
 getRoutes.get('/user', get_UserByName);
+getRoutes.get('/user/:user_id', getUserById);
+getRoutes.get('/user/favorites/:user_id', get_favorites_handler);
 getRoutes.get('/preuser', get_PreUserByMail);
 getRoutes.get('/bid', getAllAuctionBids);
 getRoutes.get('/admins', getUserAdmin);

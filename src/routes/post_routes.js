@@ -12,6 +12,7 @@ const { weebhook_handler } = require("../handlers/post/mercado_pago_webhook_hand
 const { toPostPreUser } = require("../handlers/post/post_pre_user_handler.js");
 const { emailNotif } = require("../handlers/post/notif_email_handler.js");
 const { emailHelp } = require("../handlers/post/help_email.js");
+const { handler_favorites } = require("../handlers/post/handler_favorites.js");
 
 const postRoutes = require('express').Router()
 
@@ -20,6 +21,7 @@ postRoutes.post("/subcategory", post_subCategoty_handler);
 postRoutes.post('/product', createdProd);
 postRoutes.post('/admin', createUserAdmin)
 postRoutes.post('/user', toPostUser);
+postRoutes.post('/user/favorites/:user_id', handler_favorites);
 postRoutes.post('/preUser', toPostPreUser);
 postRoutes.post('/bid', postAuction);
 postRoutes.post("/auction", post_auction_handler)
