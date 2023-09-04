@@ -1,3 +1,4 @@
+const { get_admin_all_auctions_handler } = require('../handlers/admin_get/get_admin_all_auctions_handler');
 const { get_admin_auction_bid_handler } = require('../handlers/admin_get/get_admin_auction_bid_handler');
 const { get_admin_auction_handler } = require('../handlers/admin_get/get_admin_auction_handler');
 const { get_admin_invert_auction_handler } = require('../handlers/admin_get/get_admin_invert_auction_handler');
@@ -21,7 +22,7 @@ const { restore_userAdmin_handler } = require('../handlers/restore/restore_user_
 const { restore_user_handler } = require('../handlers/restore/restore_user_handler');
 
 
-const adminRoutes = require('express').Router()
+const adminRoutes = require('express').Router();
 
 adminRoutes.delete('/delete/auction', delete_auction_handler);
 adminRoutes.delete('/delete/invertAuction', delete_invertAuction_handler);
@@ -39,10 +40,11 @@ adminRoutes.put('/restore/bid', restore_auctionBid_handler);
 adminRoutes.put('/restore/admin', restore_userAdmin_handler);
 adminRoutes.put('/restore/category', restore_category_handler);
 adminRoutes.put('/restore/subcategory', restore_subCategory_handler);
-adminRoutes.get('/users', get_admin_users_handler)
-adminRoutes.get('/bid', get_admin_auction_bid_handler)
-adminRoutes.get('/product', get_admin_product_handler)
-adminRoutes.get('/auction', get_admin_auction_handler)
-adminRoutes.get('/invertAuction', get_admin_invert_auction_handler)
+adminRoutes.get('/users', get_admin_users_handler);
+adminRoutes.get('/bid', get_admin_auction_bid_handler);
+adminRoutes.get('/product', get_admin_product_handler);
+adminRoutes.get('/auction', get_admin_auction_handler);
+adminRoutes.get('/invertAuction', get_admin_invert_auction_handler);
+adminRoutes.get('/allAuctions', get_admin_all_auctions_handler);
 
 module.exports = adminRoutes
