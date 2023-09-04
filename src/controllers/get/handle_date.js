@@ -44,9 +44,9 @@ const handle_date = (auction_id, close_date, types) => {
     // Advance the current date by one second.
     currentDate.setSeconds(currentDate.getSeconds() + 1);
 
-    console.log(
-      `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`
-    );
+    // console.log(
+    //   `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`
+    // );
 
     return date;
   }, 1000);

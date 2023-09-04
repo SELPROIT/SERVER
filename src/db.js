@@ -58,7 +58,7 @@ const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auct
 Category.hasMany(Sub_category);
 Sub_category.hasMany(Product);
 
-Sub_category.belongsTo(Category);
+Sub_category.belongsTo(Category, { foreignKey: 'categoryId' });
 Product.belongsTo(Sub_category);
 
 Product.hasMany(Auction);
