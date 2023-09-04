@@ -69,7 +69,16 @@ const getAuByType = (type, auctions) => {
 // Función para filtrar subastas por categoría
 const getAuByCategory = (category, auctions) => {
   let filterAu = []
-  
+  for (let i = 0; i < auctions.length; i++) {
+    const au = auctions[i]
+    filterAu = [...filterAu, au];
+    if (au.type === 'AU') {
+      filterAu = auctions.filter(auction => auction.product.Sub_category.CategoryId === category)
+    }
+    if (au.type === 'IA') {
+      filterAu = auctions.filter(auction => auction.category === category);
+    }
+  }
   return filterAu
 };
 
