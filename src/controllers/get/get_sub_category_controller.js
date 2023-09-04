@@ -1,8 +1,10 @@
 const { Sub_category, Category, Product } = require("../../db.js");
 
-// Función que obtiene todas las subcategorías con categorías y productos relacionados utilizando promesas
 const getAllSubCategories = () => {
   return Sub_category.findAll({
+    attributes: {
+      exclude: ['createdAt', 'updatedAt', "destroyTime"]
+    },
     include: [
       // {
       //   model: Category, // Incluir la Categoría relacionada

@@ -45,9 +45,9 @@ const postProductC = async (productArray) => {
       SubCategoryId: ref_subCategory,
       UserId: user_id
     };
-
-    const newProds = await Product.bulkCreate([product], { returning: true });
-
+    console.log('product', product)
+    const newProds = await Product.create(product);
+    console.log('newProds', newProds)
     await Promise.all(newProds.map(newProd => newProd.setSub_category(foundRef)));
 
     createdProducts.push(...newProds);

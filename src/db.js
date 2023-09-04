@@ -12,16 +12,17 @@ const pg = require('pg')
 
 // const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a.oregon-postgres.render.com/selpro`, {
-    logging: false,
-    native: false,
-    dialectOptions: {
-        ssl: {
-            rejectUnauthorized: false,
-        },
-    },
-    dialectModule: pg,
+const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro`, {
+	logging: false,
+	native: false,
+	dialectOptions: {
+		ssl: {
+			rejectUnauthorized: false,
+		},
+	},
+	dialectModule: pg,
 });
+
 // const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 // const sequelize = new Sequelize(

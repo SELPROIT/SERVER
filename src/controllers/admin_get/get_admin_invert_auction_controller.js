@@ -45,7 +45,8 @@ const get_admin_invert_auction = async () => {
                     status,
                     type,
                     subCategory,
-                    Auction_bids // Access the associated Auction_bids here
+                    Auction_bids,
+                    destroyTime,
                 } = auction;
 
                 const formattedAuctionBids = Auction_bids.map(bid => ({
@@ -74,7 +75,8 @@ const get_admin_invert_auction = async () => {
                     category: product.Sub_category.CategoryId,
                     target_quantity,
                     invert,
-                    auction_bids: formattedAuctionBids
+                    auction_bids: formattedAuctionBids,
+                    destroyTime,
                 };
             })
         );
