@@ -37,9 +37,6 @@ const createAuctionBid = async (auction_id, proposed_price, proposed_amount, inv
         // Sumar el nuevo proposed_amount al total
         totalTargetAccumulated += proposed_amount;
 
-        if (proposed_price > invertAuction.desired_price) {
-            throw new Error(`No se puede crear una puja con un precio mayor al de base.`);
-        }
         if (proposed_price <= 0) {
             throw new Error(`La puja no puede ser 0 o un número negativo.`);
         }
@@ -68,7 +65,7 @@ const createAuctionBid = async (auction_id, proposed_price, proposed_amount, inv
         const newAuctionBid = await Auction_bid.create({
             proposed_price,
             UserId: user_id,
-            AuctionId: auction.id // Asignar la subasta a la nueva puja
+            AuctionId: auction.id 
         });
 
         auction.addAuction_bid(newAuctionBid);
