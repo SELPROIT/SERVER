@@ -19,7 +19,7 @@ const getAllUsers = async (req, res) => {
         }
     } catch (error) {
         // En caso de error, devuelve un mensaje de error
-        return res.status(400).json({ message: error.message });
+        return res.status(500).json({ message: error.message });
     }
 };
 

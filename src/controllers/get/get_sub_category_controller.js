@@ -6,10 +6,14 @@ const getAllSubCategories = () => {
       exclude: ['createdAt', 'updatedAt', "destroyTime"]
     },
     include: [
-      
-      { 
-        model: Product, 
-        include: Sub_category
+      // {
+      //   model: Category, // Incluir la Categoría relacionada
+      // },
+      {
+        model: Product, // Incluir los Productos relacionados
+        include: {
+          model: Sub_category // Incluir las Sub_categorías relacionadas con los Productos
+        },
       },
     ],
   })
@@ -22,5 +26,5 @@ const getAllSubCategories = () => {
 };
 
 module.exports = {
-  getAllSubCategories,
+  getAllSubCategories
 };

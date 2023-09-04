@@ -4,7 +4,9 @@ const create_category = async (type, data) => {
 
     if(!data) throw new Error ("Faltan completar campos.");
 
-    await Promise.all(
+    //deleteFlag falta esto?
+
+    const categories = await Promise.all(
         data.map(async (category) => {
             let { id, name } = category
 
@@ -20,7 +22,7 @@ const create_category = async (type, data) => {
         })
     )
 
-    return true;
+    return categories;
 }
 
 module.exports = {
