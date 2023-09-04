@@ -1,27 +1,31 @@
 const { handle_date } = require("./handle_date.js");
 const { handle_finish_auction } = require("./handle_finish_auction.js");
 
-const handle_status = (auction_id, estados, types, close_date) => {
+const handle_status = async (auction_id, status, type, close_date) => {
 
-    switch (estados) {
+    
+    switch (status) {
         case "Activa":
             //Una vez se crea la invert auction o se aprueba una actuion, se actualiza el status a activa 
             //y se llama a la función para que maneje el timer.
             // console.log(auction_id, status, types, close_date);
-            const handleDate = handle_date(auction_id, close_date, types);
-
-            if (!handleDate) return "Termine handle date";
+            const handleDate = await handle_date(close_date);
 
             return handleDate;
 
         case "Terminada":
             //una vez terminada, llamar al manejo de finalización de auctions y relacionar a los users ganadores
-            handle_finish_auction(auction_id, types);
+            handle_finish_auction(auction_id, type);
             break;
 
+        case "Pendiente":
+            return "Esta subasta está pendiente para que el administrador la revise."; 
+
+        case "Eliminada":
+            return "Esta subasta ha sido cancelada.";
         default:
         //devolver algún error
-        throw newError("Error en el estado de la subasta")
+            throw Error("Error en el estado de la subasta")
     }
 
 };
