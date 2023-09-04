@@ -1,11 +1,9 @@
 const { User, Invert_auction, Auction_bid } = require('../../db.js');
 
-
 const handle_finish_auction = async (auction_id, type) => {
-  //hacer un winners que se relacione con interaction_history del usuario
 
   if (type === "AU") {
-    //put_user_controller(interaction_history) le agrego la subasta ganada al usuario
+    
     const bids = await Auction_bid.findAll({
       where: {
         AuctionId: auction_id
@@ -21,7 +19,7 @@ const handle_finish_auction = async (auction_id, type) => {
           id: bid.UserId
         }
       })
-      return user
+      return user;
     }))
 
     const maxBid = bids.reduce((max, bid) => {
@@ -42,11 +40,7 @@ const handle_finish_auction = async (auction_id, type) => {
   }
 
   if (type === "IA") {
-    // const proposed_price = invertAuction.auction_bids.proposed_price;
-    // const proposed_amount = invertAuction.auction_bids.proposed_amount;
-    // const user = invertAuction.auction_bids.UserId;
-    // const target_quantity = invertAuction.target_quantity;
-
+   
     const bids = await Auction_bid.findAll({
       where: {
         InvertAuctionId: auction_id
@@ -55,7 +49,6 @@ const handle_finish_auction = async (auction_id, type) => {
     const invert = await Invert_auction.findByPk(auction_id);
     const { target_quantity } = invert;
 
-    // Ordena las ofertas por precio ascendente
     bids.sort((a, b) => a.proposed_price - b.proposed_price);
     const winners = [];
     let currentQuantity = 0;
@@ -64,7 +57,7 @@ const handle_finish_auction = async (auction_id, type) => {
       if (currentQuantity < target_quantity) {
         const remainingQuantity = target_quantity - currentQuantity;
         if (bid.proposed_amount <= remainingQuantity) {
-          // Esta oferta puede cumplir completamente la cantidad restante
+          
           winners.push({
             user: bid.UserId,
             amount: bid.proposed_amount,
@@ -72,16 +65,16 @@ const handle_finish_auction = async (auction_id, type) => {
           });
           currentQuantity += bid.proposed_amount;
         } else {
-          // Esta oferta puede cumplir parcialmente la cantidad restante
+          
           winners.push({
             user: bid.UserId,
             amount: remainingQuantity,
             price: bid.proposed_price
           });
-          currentQuantity = target_quantity; // Se alcanzó la cantidad objetivo
+          currentQuantity = target_quantity;
         }
       } else {
-        // Se alcanzó la cantidad objetivo, sal del bucle
+        
         break;
       }
     }
