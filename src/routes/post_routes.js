@@ -13,6 +13,7 @@ const { toPostPreUser } = require("../handlers/post/post_pre_user_handler.js");
 const { emailNotif } = require("../handlers/post/notif_email_handler.js");
 const { emailHelp } = require("../handlers/post/help_email.js");
 const { handler_favorites } = require("../handlers/post/handler_favorites.js");
+const { emailInvNotif } = require("../handlers/post/email_notif_inv_handler.js");
 
 const postRoutes = require('express').Router()
 
@@ -31,6 +32,7 @@ postRoutes.post('/notif', emailNotif)
 postRoutes.post('/help', emailHelp)
 postRoutes.post("/payment", mercado_pago_handler)
 postRoutes.post("/webhook", weebhook_handler)
+postRoutes.post('/invNotif', emailInvNotif)
 
 
 module.exports = postRoutes
