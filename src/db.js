@@ -13,26 +13,26 @@ const pg = require('pg')
 //postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro
 
 
-const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro`, {
-	logging: false,
-	native: false,
-	dialectOptions: {
-		ssl: {
-			rejectUnauthorized: false,
-		},
-	},
-	dialectModule: pg,
-});
+// const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro`, {
+// 	logging: false,
+// 	native: false,
+// 	dialectOptions: {
+// 		ssl: {
+// 			rejectUnauthorized: false,
+// 		},
+// 	},
+// 	dialectModule: pg,
+// });
 
-// const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-// const sequelize = new Sequelize(
-// 	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/selpro`,
-// 	{
-// 		logging: false,
-// 		native: false,
-// 	}
-// );
+const sequelize = new Sequelize(
+	`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/selpro`,
+	{
+		logging: false,
+		native: false,
+	}
+);
 
 const basename = path.basename(__filename);
 const modelDefiners = [];
