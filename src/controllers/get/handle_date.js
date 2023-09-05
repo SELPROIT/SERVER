@@ -2,61 +2,45 @@
 //meses entre la fecha de cierre (targetDate) que se recibe por parámetros (close_date) y
 //la fecha del día actualen base al horario UTC.
 
-const handle_date = (auction_id, close_date, types) => {
-  const targetDate = new Date(close_date);
-  const currentDate = new Date();
+const handle_date = (close_date) => {
+  return new Promise((resolve) => {
+    const targetDate = new Date(close_date);
+    const currentDate = new Date();
 
-  if (targetDate <= currentDate) {
-    throw Error(
-      "No se puede establecer una fecha que ya pasó o que es actual. Por favor introduzca una fecha a futuro."
-    );
-  }
+    let timer = setInterval(() => {
+      const timeDifference = targetDate - currentDate;
 
-  // Se crea un timer que se va a actualizar cada 1 segundo.
-  let timer = setInterval( async () => {
-    // Se calcula la diferencia entre la close date y la fecha actual.
-    const timeDifference = targetDate - currentDate;
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    // Este código se ejecuta al finalizar el tiempo de la subasta, una vez que la diferencia entre los tiempos sea 0, se ejecuta.
+      const date = {
+        days,
+        hours,
+        minutes,
+        seconds,
+      };
 
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor(
-      (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-  
-    const date = {
-      days,
-      hours,
-      minutes,
-      seconds
-    };
+      if (timeDifference <= 0) {
+        clearInterval(timer);
+      }
 
-    if (timeDifference <= 0) {
-      // Esto hace que se corte la función del setInterval
-      clearInterval(timer);
+      currentDate.setSeconds(currentDate.getSeconds() + 1);
 
-    }
-
-    // Advance the current date by one second.
-    currentDate.setSeconds(currentDate.getSeconds() + 1);
-
-    // console.log(
-    //   `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`
-    // );
-
-    return date;
-  }, 1000);
-
+      resolve(date); // Resuelve la promesa con el valor actual del temporizador
+    }, 1000);
+  });
 };
 
 // handle_date("2023-09-01T23:29:00.000Z", false);
 
 module.exports = {
-  handle_date
+  handle_date,
 };
 
 // const handle_date = (close_date) => {

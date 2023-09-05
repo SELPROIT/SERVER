@@ -1,5 +1,5 @@
 const { Invert_auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db.js'); // Asegúrate de importar sequelize
-const { handle_date } = require('./handle_date.js');
+const { handle_status } = require('./handle_status.js');
 
 const get_invert_auction = async () => {
   try {
@@ -44,6 +44,8 @@ const get_invert_auction = async () => {
           Auction_bids // Access the associated Auction_bids here
         } = auction;
 
+        const timer = await handle_status(id, status, type, close_date);
+        
         const formattedAuctionBids = Auction_bids.map(bid => ({
           bid_id: bid.id,
           proposed_price: bid.proposed_price,
@@ -71,11 +73,13 @@ const get_invert_auction = async () => {
           category: product.Sub_category.CategoryId,
           target_quantity,
           invert,
-          auction_bids: formattedAuctionBids 
+          auction_bids: formattedAuctionBids,
+          timer 
         };
       })
     );
 
+    console.log(formattedAuctions);
     return formattedAuctions;
   } catch (error) {
     throw error;
