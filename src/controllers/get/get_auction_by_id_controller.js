@@ -1,4 +1,5 @@
 const { Auction } = require("../../db.js");
+const { handle_status } = require("./handle_status.js");
 
 const get_auction_by_id = async (auction_id) => {
   const {
@@ -20,6 +21,8 @@ const get_auction_by_id = async (auction_id) => {
     auction_bids
   } = await Auction.findByPk(auction_id);
 
+  const timer = await handle_status(id, status, type, close_date); 
+
   const response = {
     id,
     base_price,
@@ -36,7 +39,8 @@ const get_auction_by_id = async (auction_id) => {
     type,
     product,
     user,
-    auction_bids
+    auction_bids,
+    timer
   };
   return response;
 };

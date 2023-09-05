@@ -10,18 +10,6 @@ const handle_finish_auction = async (auction_id, type) => {
       }
     });
 
-    await Promise.all(bids.map(async (bid) => {
-      const update = {
-        interaction_history: [auction_id]
-      }
-      const user = await User.update(update, {
-        where: {
-          id: bid.UserId
-        }
-      })
-      return user;
-    }))
-
     const maxBid = bids.reduce((max, bid) => {
       if (bid.proposed_price > max.value) {
         return {
@@ -35,7 +23,7 @@ const handle_finish_auction = async (auction_id, type) => {
 
     //Mandar el Email
 
-    return true
+    return maxBid;
 
   }
 
@@ -77,6 +65,8 @@ const handle_finish_auction = async (auction_id, type) => {
         
         break;
       }
+      
+      return winners;
     }
 
     if (currentQuantity === target_quantity) {
