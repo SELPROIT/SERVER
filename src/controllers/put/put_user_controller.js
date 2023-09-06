@@ -2,6 +2,7 @@ const { User, Auction, Invert_auction, Auction_bid } = require('../../db.js');
 const bcrypt = require('bcrypt')
 const { uploadImage } = require('../../utils/userCloudinaryConfig.js');
 const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
+const { emailSupplier } = require('../post/email_supplier.js');
 
 const put_user_controller = async (
   id, { interaction_history,
@@ -105,6 +106,9 @@ const put_user_controller = async (
   }
   if (!!supplier) {
     changedUser.supplier = supplier;
+  }
+  if (changedUser.supplier === true) {
+    emailSupplier(user.id)
   }
 
   const [updatedRows] = await User.update(changedUser, {

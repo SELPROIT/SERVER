@@ -36,6 +36,8 @@ const notifEmail = async (name, auc_id) => {
     }
 };
 
+
+
 module.exports = {
     notifEmail,
 };
