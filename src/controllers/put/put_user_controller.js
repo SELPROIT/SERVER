@@ -24,13 +24,10 @@ const put_user_controller = async (
     legal_ident,
     commercial_references,
     supplier, }) => {
-  console.log('supplier', supplier)
   const user = await User.findOne({ where: { id } });
-  console.log('user.supplier', user.supplier)
   if (!user) {
     throw new Error('Usuario no encontrado.');
   }
-  console.log('created_history', created_history)
   const changedUser = {};
 
   if (!!name) {
@@ -92,7 +89,6 @@ const put_user_controller = async (
       changedUser.interaction_history = [...user.interaction_history, bid_id]
     };
   }
-  // console.log('created_history', created_history)
   // if (!!created_history) {
   //   let auc_id = await Auction.findByPk(created_history)
   //   if (!auc_id) {

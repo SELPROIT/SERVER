@@ -1,11 +1,11 @@
 const nodemailer = require('nodemailer');
+const { Invert_auction } = require('../../db.js');
 const { get_usersByName } = require('../get/get_user_by_user_name_controller.js');
 const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
-const { get_auction_by_id } = require('../get/get_auction_by_id_controller.js');
 const { userById } = require('../get/get_user_by_id.js');
 
 const winInvEmail = async (users_list, auction_id) => {
-    const auction = await get_auction_by_id(auction_id)
+    const auction = await Invert_auction.findByPk(auction_id)
     let userArray = []
     let userObject = {}
     for (let i = 0; i < users_list; i++) {

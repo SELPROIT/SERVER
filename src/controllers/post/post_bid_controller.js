@@ -16,7 +16,6 @@ const createAuctionBid = async (
     throw new Error("Usuario no encontrado.");
   }
 
-  console.log(user);
   let { interaction_history } = user;
 
   if (!interaction_history.includes(auction_id)) {

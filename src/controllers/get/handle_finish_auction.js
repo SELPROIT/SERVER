@@ -1,4 +1,6 @@
 const { User, Invert_auction, Auction_bid } = require('../../db.js');
+// const { winInvEmail } = require('../post/email_inv_auc_win_selpro.js');
+// const { winnerEmail } = require('../post/email_winner_controller.js');
 
 const handle_finish_auction = async (auction_id, type) => {
 
@@ -21,10 +23,9 @@ const handle_finish_auction = async (auction_id, type) => {
       }
     }, { value: 0, user: null });
 
-    //Mandar el Email
+    // await winnerEmail(maxBid.user, auction_id, maxBid.value)
 
     return maxBid;
-
   }
 
   if (type === "IA") {
@@ -70,6 +71,8 @@ const handle_finish_auction = async (auction_id, type) => {
     }
 
     if (currentQuantity === target_quantity) {
+      
+      // winInvEmail(winners, auction_id);
       // Envía el correo electrónico
       // para los ganadores
       // winners contiene la lista de ganadores con sus cantidades y precios
@@ -85,6 +88,9 @@ const handle_finish_auction = async (auction_id, type) => {
   }
 
 };
+
+// handle_finish_auction("1ccbfac8-d658-4dc1-8145-7aac0bab85ae","IA");
+// handle_finish_auction("9ec92f3b-72ba-40ea-906f-9ec95799e7db", "AU");
 
 module.exports = {
   handle_finish_auction
