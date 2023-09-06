@@ -64,8 +64,7 @@ async function generatePDF() {
             try {
                 // Upload PDF to Cloudinary
                 const pdfUrl = await uploadDoc(pdfBuffer);
-    
-                console.log('PDF URL:', pdfUrl);
+
                 resolve(pdfUrl)
             } catch (error) {
                 reject(error)

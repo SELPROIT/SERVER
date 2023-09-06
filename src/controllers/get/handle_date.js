@@ -52,12 +52,6 @@ module.exports = {
 //     const getActualHour = currentDate.getUTCHours();
 //     const getActualMinutes = currentDate.getUTCMinutes();
 //     const getActualSeconds = currentDate.getUTCSeconds();
-//     console.log(getActualYear);
-//     console.log(getActualMonth);
-//     console.log(getActualDay);
-//     console.log(getActualHour);
-//     console.log(getActualMinutes);
-//     console.log(getActualSeconds);
 
 //     let year = close_date.slice(0, 4);
 //     let month = close_date.slice(5, 7);
@@ -65,13 +59,6 @@ module.exports = {
 //     let hour = close_date.slice(11, 13);
 //     let minutes = close_date.slice(14, 16);
 //     let seconds = close_date.slice(17, 19);
-//     console.log("--------");
-//     console.log(year);
-//         console.log(month);
-//         console.log(day);
-//         console.log(hour);
-//         console.log(minutes);
-//         console.log(seconds);
 
 //     let timer = setInterval(()=>{
 
@@ -80,22 +67,11 @@ module.exports = {
 //         if(hour !== 0) hour = Number(hour) - getActualHour;
 //         if(minutes !== 0) minutes = Number(minutes) - getActualMinutes;
 //         if(seconds !== 0) seconds =  Number(seconds) - getActualSeconds;
-//         console.log("--------");
-//         console.log(year);
-//         console.log(month);
-//         console.log(day);
-//         console.log(hour);
-//         console.log(minutes);
-//         console.log(seconds);
 
 //         if(month === 0 && day === 0 && hour === 0 && minutes === 0 && seconds === 0){
 //             clearInterval(timer);
 //         }
 //     },1000);
-
-//     console.log(typeof year);
-//     console.log(typeof getActualYear);
-//     console.log(currentDate);
 // }
 
 // handle_date("2023-28-08T23:55:00.000Z");

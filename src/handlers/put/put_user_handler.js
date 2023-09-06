@@ -27,7 +27,6 @@ const put_user_handler = async (req, res) => {
     supplier,
   } = req.body;
 
-  console.log('supplier', supplier)
   try {
     const user = await put_user_controller(id, req.body);
 

@@ -6,7 +6,6 @@ const { MERCADOPAGO_KEY } = process.env;
 const mercado_pago = async (auction) => {
     mercadopago.configure({ access_token: "TEST-6508841798496540-082620-75c515c0d097a7644d34f05fc0d0b7f0-1462578434" })
     const { id, product, sale_price } = auction
-    console.log(sale_price);
     const isAuction = Auction.findByPk(id)
     const existProduct = Product.findByPk(product.id)
 
@@ -14,7 +13,6 @@ const mercado_pago = async (auction) => {
 
     if (isAuction) {
         const { product_name, description, image } = auction;
-        console.log(image);
         const payment = await mercadopago.preferences.create({
             items: [
                 {
@@ -46,7 +44,6 @@ const mercado_pago = async (auction) => {
 };
 
 const receiveWebhook = async (payment) => {
-    console.log(payment);
     if (payment.type === "payment") {
         const data = await mercadopago.payment.findById(payment["data.id"])
         const { body } = data
