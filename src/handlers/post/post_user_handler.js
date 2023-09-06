@@ -17,12 +17,12 @@ const toPostUser = async (req, res) => {
       id_subcat,
     } = req.body;
 
-    if(!name || !num_ident || !user_name || !phone || !email || !adress || !company_name || !NIT || !sector || !CIIU || !id_subcat) throw new Error ("Missing data");
+    if(!name || !num_ident || !user_name || !phone || !email || !adress || !company_name || !NIT || !sector || !CIIU || !id_subcat) throw new Error ("Falta data.");
 
     const registrationResult = await register(user_name);
 
     if (registrationResult) {
-      return res.status(400).json(('User registration failed'));
+      return res.status(400).json('Error en el registro de usuario.');
     }
 
     const newUser = await postUser({
@@ -38,7 +38,6 @@ const toPostUser = async (req, res) => {
       CIIU,
       id_subcat,
     });
-    console.log('newUser', newUser)
 
     res.status(200).json(('User created successfully', newUser));
   } catch (error) {

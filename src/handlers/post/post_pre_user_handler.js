@@ -5,22 +5,21 @@ const toPostPreUser = async (req, res) => {
   try {
     const {email} = req.body;
 
-    if(!email) throw new Error ("Missing data");
+    if(!email) throw new Error ("Falta data.");
 
     const registrationResult = await register(email);
 
     if (registrationResult) {
-      return res.status(400).json(('The username is alredy in using'));
+      return res.status(400).json(('Ese nombre de usuario ya está en uso.'));
     }
 
     const newPreUser = await postPreUser({
       email,
     });
-    console.log('newPreUser', newPreUser)
 
-    res.status(200).json(('User created successfully', newPreUser));
+    res.status(200).json(('El usuario ha sido creado correctamente.', newPreUser));
   } catch (error) {
-    res.status(400).json((`Error creating preUser: ${error.message}`));
+    res.status(400).json((`Error creando ese pre usuario: ${error.message}`));
   }
 };
 

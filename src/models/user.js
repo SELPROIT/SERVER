@@ -111,5 +111,9 @@ module.exports = (sequelize) => {
 			defaultValue: false,
 		},
 
-	}, { timestamps: false, });
+	}, {
+		timestamps: true,
+		paranoid: true,
+		deletedAt: 'destroyTime',
+	});
 };

@@ -1,24 +1,24 @@
 const { User_admin } = require('../../db.js');
 
 const postUserAdmin = async (newUserAdmin) => {
-  const { role, password, name, phone } = newUserAdmin;
-  const accessCondition = role === 'CEO' || role === 'Junior Developer' && password === 'selpro123*';
+  const { role, email, name, phone } = newUserAdmin;
+  const accessCondition = role === 'CEO' || role === 'Junior Developer';
 
   if (accessCondition) {
     try {
       const userAdmin = await User_admin.create({
         name,
+        email,
         role,
-        password,
         phone,
       });
 
       return userAdmin;
     } catch (error) {
-      throw new Error('Error creating user admin.');
+      throw new Error('Se produjo un error creando el usuario de administrador.');
     }
   } else {
-    throw new Error('You do not have access to create an admin user.');
+    throw new Error('Usted no tiene acceso para crear un usuario de administrador.');
   }
 };
 

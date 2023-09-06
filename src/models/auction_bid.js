@@ -11,23 +11,24 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        total: {
+        proposed_amount:{ //la cantidad de productos que ofrece el proveedor en la puja
             type: DataTypes.INTEGER,
-            allowNull: false,
+            defaultValue: 0
+        },
+        target_accumulated: { //el total de todos los productos acumulados de las pujas
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         },
         deleteFlag: {
-			// no "delete" porque es palabra reservada.
-			type: DataTypes.BOOLEAN,
-			defaultValue: false,
-		}
+            // no "delete" porque es palabra reservada.
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        }
     },
         {
-            timestamps: false,
+            timestamps: true,
+            paranoid: true,
+            deletedAt: 'destroyTime',
         }
     );
 };
-
-
-
-
-

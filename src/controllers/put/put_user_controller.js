@@ -4,35 +4,30 @@ const { uploadImage } = require('../../utils/userCloudinaryConfig.js');
 const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
 
 const put_user_controller = async (
-  id,
-  name,
-  num_ident,
-  user_name,
-  phone,
-  email,
-  adress,
-  company_name,
-  NIT,
-  sector,
-  CIIU,
-  id_subcat,
-  image,
-  RUT_image,
-  commerce_chamber,
-  legal_ident,
-  commercial_references,
-  interaction_history,
-  created_history,
-  favorites,
-  supplier,
-  deleteFlag,
-
-) => {
+  id, { interaction_history,
+    created_history,
+    favorites,
+    name,
+    num_ident,
+    user_name,
+    phone,
+    email,
+    adress,
+    company_name,
+    NIT,
+    sector,
+    CIIU,
+    id_subcat,
+    image,
+    RUT_image,
+    commerce_chamber,
+    legal_ident,
+    commercial_references,
+    supplier, }) => {
   const user = await User.findOne({ where: { id } });
   if (!user) {
-    throw new Error('User not found');
+    throw new Error('Usuario no encontrado.');
   }
-  console.log('created_history', created_history)
   const changedUser = {};
 
   if (!!name) {
@@ -94,7 +89,6 @@ const put_user_controller = async (
       changedUser.interaction_history = [...user.interaction_history, bid_id]
     };
   }
-  // console.log('created_history', created_history)
   // if (!!created_history) {
   //   let auc_id = await Auction.findByPk(created_history)
   //   if (!auc_id) {
@@ -104,16 +98,13 @@ const put_user_controller = async (
   // }
   if (!!favorites) {
     let auc_id = await Auction.findByPk(favorites_history)
-    if(!auc_id) {
+    if (!auc_id) {
       auc_id = await Invert_auction.findByPk(favorites_history)
     }
     changedUser.favorites = [...user.favorites, auc_id];
   }
-  if (supplier !== undefined || supplier !== null) {
+  if (!!supplier) {
     changedUser.supplier = supplier;
-  }
-  if (deleteFlag !== undefined || deleteFlag !== null) {
-    changedUser.deleteFlag = deleteFlag;
   }
 
   const [updatedRows] = await User.update(changedUser, {
@@ -127,9 +118,9 @@ const put_user_controller = async (
     return user;
   }
 
-  throw new Error('Unable to update user');
+  throw new Error('No se pudo actualizar el usuario.');
 };
 
 module.exports = {
-  put_user_controller,
+  put_user_controller
 };

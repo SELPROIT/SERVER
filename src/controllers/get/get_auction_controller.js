@@ -1,9 +1,12 @@
 const { Auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db.js'); // Asegúrate de importar sequelize
-const { handle_date } = require('./handle_date.js');
+const { handle_status } = require('./handle_status.js');
 
 const get_auction = async () => {
   try {
     const auctions = await Auction.findAll({
+      where: {
+        status: "Activa" // Filtra las subastas con el estado "Activa"
+      },
       include: [
         {
           model: Product,
@@ -13,7 +16,7 @@ const get_auction = async () => {
         },
         {
           model: User,
-          attributes: ['id', 'favorites', 'created_history']
+          attributes: ['user_id', 'favorites', 'created_history']
         },
         {
           model: Auction_bid
@@ -35,27 +38,28 @@ const get_auction = async () => {
           brand,
           description,
           datasheet,
-          total,
+          stock,
           status,
           type,
           subCategory,
           category,
+          sale_price,
           Auction_bids // Access the associated Auction_bids here
         } = auction;
 
         const formattedAuctionBids = Auction_bids.map(bid => ({
           bid_id: bid.id,
           proposed_price: bid.proposed_price,
-          total: bid.total,
+          UserId: bid.user_id
           // Include other relevant properties from Auction_bid if needed
         }));
+
+        const timer = await handle_status(id, status, type, close_date);        
 
         return {
           id,
           base_price,
           close_date,
-          product,
-          user,
           authorize,
           image,
           product_name,
@@ -63,10 +67,14 @@ const get_auction = async () => {
           description,
           datasheet,
           status,
-          total,
+          stock,
           type,
           subCategory,
-          category: product.Sub_category.CategoryId,
+          category,
+          sale_price,
+          product,
+          user,
+          timer,
           auction_bids: formattedAuctionBids // Include the formatted Auction_bids
         };
       })

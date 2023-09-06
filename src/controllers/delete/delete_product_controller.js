@@ -2,16 +2,14 @@ const { Product } = require('../../db.js');
 
 const delete_product = async (id) => {
 
-    const erase = await Product.update(        
-        { deleteFlag: true },
+    await Product.destroy(        
         {
             where: {
                 id: id,
-                deleteFlag: false
             }
         });
 
-    return erase
+    return 'Soft-delete successfull'
 
 }
 

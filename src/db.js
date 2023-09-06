@@ -4,15 +4,24 @@ const fs = require('fs');
 const path = require('path');
 const pg = require('pg')
 
-const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
+//postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}
 
-// const { PGR_USERNAME, PGR_DATABASE, PGR_HOST, PGR_PASSWORD } = process.env
+// const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
-//postgres://${PGR_USERNAME}:${PGR_PASSWORD}@${PGR_HOST}/${PGR_DATABASE}
+//deploy viejo cuenta selpro
 
-// const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+//postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a.oregon-postgres.render.com/selpro
 
-const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?options=project%3D${ENDPOINT_ID}`, {
+//postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro
+
+// deploy nuevo
+
+//postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a.oregon-postgres.render.com/selpro_n8dc
+
+//postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a/selpro_n8dc
+
+
+const sequelize = new Sequelize(`postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a/selpro_n8dc`, {
 	logging: false,
 	native: false,
 	dialectOptions: {
@@ -22,6 +31,7 @@ const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${
 	},
 	dialectModule: pg,
 });
+
 // const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 // const sequelize = new Sequelize(
@@ -30,7 +40,7 @@ const sequelize = new Sequelize(`postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${
 // 		logging: false,
 // 		native: false,
 // 	}
-// });
+// );
 
 const basename = path.basename(__filename);
 const modelDefiners = [];
@@ -51,7 +61,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction } = sequelize.models;
+const { Category, Product, Sub_category, Auction, Auction_bid, User, Invert_auction, Transaction } = sequelize.models;
 // Relaciones n*1
 
 Category.hasMany(Sub_category);
@@ -63,7 +73,7 @@ Product.belongsTo(Sub_category);
 Product.hasMany(Auction);
 Auction.belongsTo(Product);
 
-Product.hasOne(Invert_auction);
+Product.hasMany(Invert_auction);
 Invert_auction.belongsTo(Product);
 
 Auction.hasMany(Auction_bid);
@@ -84,16 +94,8 @@ Auction.belongsTo(User);
 User.hasMany(Invert_auction);
 Invert_auction.belongsTo(User);
 
-//Relaciones n*m
-// User.belongsToMany(Auction, { through: 'favorites' });
-
-// Invert_auction.belongsToMany(User, { through: 'favorites' });
-
-Auction.belongsToMany(User, { through: 'UserAuctions' });
-Auction.belongsToMany(User, { through: 'UserAuctions' });
-
-Invert_auction.belongsToMany(User, { through: 'UserInvAuctions' });
-User.belongsToMany(Invert_auction, { through: 'UserInvAuctions' });
+User.hasMany(Transaction);
+Transaction.belongsTo(User);
 
 module.exports = {
 	...sequelize.models,

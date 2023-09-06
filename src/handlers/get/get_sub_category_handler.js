@@ -6,10 +6,10 @@ function toSubCategory(req, res) {
             if (!subCategories) {
                 return res.status(400).json({ message: "Error en la respuesta de la base de datos" });
             }
-            res.status(200).json({ message: "Subcategorías obtenidas exitosamente", data: subCategories });
+            return res.status(200).json({ message: "Subcategorías obtenidas exitosamente", data: subCategories });
         })
         .catch(error => {
-            return res.status(500).json({ message: "Error al obtener subcategorías", error: null });
+            return res.status(500).json({ error: error.message });
         });
 }
 

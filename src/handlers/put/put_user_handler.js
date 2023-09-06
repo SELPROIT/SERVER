@@ -25,44 +25,18 @@ const put_user_handler = async (req, res) => {
     curr_auc,
     favorites,
     supplier,
-    deleteFlag,
   } = req.body;
 
   try {
-    const user = await put_user_controller(
-      id,
-      name,
-      num_ident,
-      user_name,
-      phone,
-      email,
-      adress,
-      company_name,
-      NIT,
-      sector,
-      CIIU,
-      id_subcat,
-      image,
-      RUT_image,
-      commerce_chamber,
-      legal_ident,
-      commercial_references,
-      interaction_history,
-      offers_history,
-      win_history,
-      curr_auc,
-      favorites,
-      supplier,
-      deleteFlag
-    );
+    const user = await put_user_controller(id, req.body);
 
     if (!user) {
-      return res.json({ error: "User not found" });
+      return res.json({ error: "Usuario no encontrado." });
     }
 
-    return res.json({ message: "User changed successfully", user });
+    return res.json({ message: "Usuario actualizado correctamente", user });
   } catch (error) {
-    return res.json({ error: `Error changing user: ${error.message}` });
+    return res.json({ error: `Error actualizando el usuario: ${error.message}` });
   }
 };
 

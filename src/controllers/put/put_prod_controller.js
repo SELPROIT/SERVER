@@ -14,7 +14,7 @@ const put_prod_controller = async (
 ) => {
   const product = await Product.findByPk(id);
   if (!product) {
-    return 'Product not found';
+    throw new Error('Producto no encontrado.');
   }
 
   const [cloudImage, cloudDatasheet] = await Promise.all([
@@ -56,7 +56,7 @@ const put_prod_controller = async (
     const updatedProduct = await Product.findByPk(id);
     return updatedProduct;
   }
-  return 'Unable to update product';
+  throw new Error('No se puede actualizar el producto');
 };
 
 module.exports = {

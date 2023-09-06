@@ -12,13 +12,13 @@ const sortAuctions = (sort, auctions) => {
     ![
       "asc",
       "desc",
-      "raitingAsc",
+      "raitingAsc",//debería sacarlo
       "raitingDesc",
       "ascPrice",
       "descPrice",
     ].includes(sort)
   ) {
-    throw new Error("Invalid sort order");
+    throw new Error("Orden de clasificación no válido.");
   }
 
   // Definir las funciones de ordenación para cada criterio
@@ -60,7 +60,7 @@ const sortAuctions = (sort, auctions) => {
 //   }
 // }
 
-  
+
 // Función para filtrar subastas por tipo (AU o IA)
 const getAuByType = (type, auctions) => {
   return auctions.filter(auction => auction.type === type);
@@ -68,7 +68,18 @@ const getAuByType = (type, auctions) => {
 
 // Función para filtrar subastas por categoría
 const getAuByCategory = (category, auctions) => {
-  return auctions.filter(auction => auction.category === category);
+  let filterAu = []
+  for (let i = 0; i < auctions.length; i++) {
+    const au = auctions[i]
+    filterAu = [...filterAu, au];
+    if (au.type === 'AU') {
+      filterAu = auctions.filter(auction => auction.product.Sub_category.CategoryId === category)
+    }
+    if (au.type === 'IA') {
+      filterAu = auctions.filter(auction => auction.category === category);
+    }
+  }
+  return filterAu
 };
 
 // Función para filtrar subastas por subcategoría

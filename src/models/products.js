@@ -6,49 +6,36 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             primaryKey: true,
         },
-
         name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         brand: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         image: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         description: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
         datasheet: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
-        rating: {
-            type: DataTypes.FLOAT,
-            allowNull: false,
-        },
-
-        stock: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
         deleteFlag: {
-			// no "delete" porque es palabra reservada.
-			type: DataTypes.BOOLEAN,
-			defaultValue: false,
-		},
+            // no "delete" porque es palabra reservada.
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
     },
         {
-            timestamps: false,
+            timestamps: true,
+            paranoid: true,
+            deletedAt: 'destroyTime',
         }
     );
 };

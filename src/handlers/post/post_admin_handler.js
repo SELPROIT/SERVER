@@ -5,15 +5,15 @@ const createUserAdmin = async (req, res) => {
         const {
             name,
             role,
-            password,
-            telefono, 
+            email,
+            phone, 
         } = req.body;
 
         const newUserAdmin = {
             name,
             role,
-            password,
-            phone: telefono, 
+            email,
+            phone, 
         };
 
         const createdUserAdmin = await postUserAdmin(newUserAdmin);

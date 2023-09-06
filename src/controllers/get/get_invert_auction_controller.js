@@ -1,9 +1,12 @@
 const { Invert_auction, Product, Category, Sub_category, User, Auction_bid } = require('../../db.js'); // Asegúrate de importar sequelize
-const { handle_date } = require('./handle_date.js');
+const { handle_status } = require('./handle_status.js');
 
 const get_invert_auction = async () => {
   try {
     const invert_auctions = await Invert_auction.findAll({
+      where: {
+        status: "Activa" // Filtra las subastas con el estado "Activa"
+      },
       include: [
         {
           model: Product,
@@ -13,7 +16,7 @@ const get_invert_auction = async () => {
         },
         {
           model: User,
-          attributes: ['id', 'favorites', 'created_history']
+          attributes: ['user_id', 'favorites']
         },
         {
           model: Auction_bid // Include the Auction_bid model here
@@ -25,7 +28,7 @@ const get_invert_auction = async () => {
       invert_auctions.map(async auction => {
         const {
           id,
-          base_price,
+          desired_price,
           close_date,
           Product: product,
           User: user,
@@ -35,26 +38,27 @@ const get_invert_auction = async () => {
           brand,
           description,
           datasheet,
-          total,
+          stock,
           target_quantity,
           invert,
           status,
           type,
           subCategory,
-          category,
           Auction_bids // Access the associated Auction_bids here
         } = auction;
+
+        const timer = await handle_status(id, status, type, close_date);
 
         const formattedAuctionBids = Auction_bids.map(bid => ({
           bid_id: bid.id,
           proposed_price: bid.proposed_price,
-          total: bid.total,
-          // Include other relevant properties from Auction_bid if needed
+          proposed_amount: bid.proposed_amount,
+          target_accumulated: bid.target_accumulated,
+          UserId: bid.user_id,
         }));
-
         return {
           id,
-          base_price,
+          desired_price,
           close_date,
           product,
           user,
@@ -65,17 +69,19 @@ const get_invert_auction = async () => {
           description,
           datasheet,
           status,
-          total,
+          stock,
           type,
           subCategory,
           category: product.Sub_category.CategoryId,
-          auction_bids: formattedAuctionBids, // Include the formatted Auction_bids
           target_quantity,
-          invert
+          invert,
+          auction_bids: formattedAuctionBids,
+          timer
         };
       })
     );
 
+    console.log(formattedAuctions);
     return formattedAuctions;
   } catch (error) {
     throw error;
@@ -85,4 +91,3 @@ const get_invert_auction = async () => {
 module.exports = {
   get_invert_auction
 };
-

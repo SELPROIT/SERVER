@@ -3,18 +3,16 @@ const { register } = require('../../controllers/get/auth_controller.js')
 async function toRegister(req, res) {
     try {
         const { user_name } = req.body;
+        if (!user_name) return res.status(400).json("Nombre de usuario incorrecto.");
         const result = await register(user_name);
-        if(!result) res.status(400).json({ message: error.message });
+        if (!result) return res.status(404).json({ message: "No se encontró el recurso solicitado." });
 
-        res.json(result);
+        return res.status(200).json(result);
     } catch (error) {
-        if (error.message === 'El nombre de usuario ya está en uso') {
-            return res.status(400).json({ message: error.message });
-        }
-        return res.status(500).json({ message: 'Hubo un error' });
+        return res.status(500).json({ message: 'Hubo un error interno del servidor.' });
     }
 }
 
 module.exports = {
-    toRegister,
+    toRegister
 }

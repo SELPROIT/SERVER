@@ -20,7 +20,7 @@ const postUser = async (newUser) => {
 
 
 	if(!name, !num_ident, !user_name, !company_name, !NIT, !sector, !CIIU, !phone, !email, !id_subcat, !adress) {
-		throw new Error ('Missing data');
+		throw new Error ('Falta data.');
 	};
 	let user_id = Math.floor(100000 + Math.random() * 900000);
 

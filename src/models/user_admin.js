@@ -11,11 +11,11 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        role: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        password: {
+        role: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -28,13 +28,14 @@ module.exports = (sequelize) => {
             defaultValue: true
         },
         deleteFlag: {
-			// no "delete" porque es palabra reservada.
-			type: DataTypes.BOOLEAN,
-			defaultValue: false,
-		},
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        },
     },
         {
-            timestamps: false,
+            timestamps: true,
+            paranoid: true,
+            deletedAt: 'destroyTime',
         }
     );
 };

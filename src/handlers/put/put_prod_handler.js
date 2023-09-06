@@ -7,7 +7,7 @@ const put_prod_handler= async (req, res) => {
   try {
     const product = await put_prod_controller(id, name, brand, image, description, datasheet, rating, stock, price)
     if(!product) res.json(({ error: error.message }, {}))
-    return res.status(200).json(('Product changed successfully', product))
+    return res.status(200).json(('Producto actualizado correctamente', product))
   } catch (error) {
     res.json(({ error: error.message }, {}))
   }
