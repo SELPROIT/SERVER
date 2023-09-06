@@ -8,7 +8,6 @@ const handle_status = async (auction_id, status, type, close_date) => {
         case "Activa":
             //Una vez se crea la invert auction o se aprueba una actuion, se actualiza el status a activa 
             //y se llama a la función para que maneje el timer.
-            // console.log(auction_id, status, types, close_date);
             const handleDate = await handle_date(close_date);
 
             return handleDate;
@@ -25,13 +24,12 @@ const handle_status = async (auction_id, status, type, close_date) => {
             return "Esta subasta ha sido cancelada.";
         default:
         //devolver algún error
-            throw Error("Error en el estado de la subasta")
+            throw new Error("Error en el estado de la subasta")
     }
 
 };
 
 // handle_status("Activa", "2023-09-01T23:53:00.000Z", "AU", null, false);
-// console.log("se sigue ejecutando");
 
 module.exports = {
     handle_status

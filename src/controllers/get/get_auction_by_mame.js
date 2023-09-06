@@ -28,7 +28,6 @@ const auctionByName = async (type, product_name) => {
     // const timer = auctions.map(auction => {
     //     return handle_status(auction.id, auction.status, type, auction.close_date);
     // });
-    // console.log(timer);
     return auctions;
 };
 

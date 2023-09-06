@@ -7,7 +7,6 @@ const winEmail = async (user_id, auc_id) => {
     const user = await userById(user_id);
     const auction = await Auction.findByPk(auc_id)
 
-    console.log(auc_id, auction);
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
