@@ -80,8 +80,6 @@ const get_invert_auction = async () => {
         };
       })
     );
-
-    console.log(formattedAuctions);
     return formattedAuctions;
   } catch (error) {
     throw error;
