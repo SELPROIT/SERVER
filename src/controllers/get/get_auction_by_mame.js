@@ -12,7 +12,8 @@ const auctionByName = async (type, product_name) => {
             where: {
                 product_name: {
                     [Op.iLike]: `%${product_name}%`
-                }
+                },
+                status:"Activa"
             }
         });
     }
@@ -21,13 +22,15 @@ const auctionByName = async (type, product_name) => {
             where: {
                 product_name: {
                     [Op.iLike]: `%${product_name}%`
-                }
+                },
+                status:"Activa"
             }
         });
     }
     // const timer = auctions.map(auction => {
     //     return handle_status(auction.id, auction.status, type, auction.close_date);
     // });
+    // console.log(timer);
     return auctions;
 };
 
