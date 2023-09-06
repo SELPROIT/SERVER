@@ -26,11 +26,6 @@ const postProductC = async (productArray) => {
       throw new Error("Sub-categoría no encontrada.");
     }
 
-    const foundUser = await User.findOne({ where: { id: user_id } });
-    if (!foundUser) {
-      throw new Error("Usuario no encontrado.");
-    }
-
     const prodCount = await Product.count({ where: { SubCategoryId: ref_subCategory } });
     const newID = prodCount + 1;
     const productId = `${ref_subCategory}${newID}`;
@@ -43,7 +38,7 @@ const postProductC = async (productArray) => {
       description,
       datasheet: cloudDatasheet,
       SubCategoryId: ref_subCategory,
-      UserId: user_id
+      UserId: user_id ? user_id : null
     };
 
     const newProds = await Product.bulkCreate([product], { returning: true });
