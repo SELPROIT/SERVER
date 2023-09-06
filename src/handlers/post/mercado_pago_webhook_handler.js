@@ -3,7 +3,6 @@ const { receiveWebhook } = require('../../controllers/post/mercado_pago_controll
 const weebhook_handler = async (req, res) => {
     try {
         const payment = req.query;
-        console.log(payment);
         if (!payment) throw new Error ("Ocurrió un error procesando este pago.");
 
         const response = await receiveWebhook(payment);
