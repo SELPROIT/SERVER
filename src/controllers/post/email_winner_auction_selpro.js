@@ -1,6 +1,5 @@
 const nodemailer = require('nodemailer');
-const {Auction } = require('../../db.js');
-const { get_usersByName } = require('../get/get_user_by_user_name_controller.js');
+const { Auction } = require('../../db.js');
 const { userById } = require('../get/get_user_by_id.js');
 
 const winEmail = async (user_id, auc_id) => {
@@ -24,7 +23,7 @@ const winEmail = async (user_id, auc_id) => {
             <h1>Ganador de la subasta</h1>
             <p>La subasta en cuestion es en la cual se subastó el siguiente producto: <strong>${auction.product_name}</strong>, de id: <strong>${auction.id}</strong>. El ganador fue el usuario <strong>${user.user_name}</strong>. Favor de ponerse en contacto con el cliente por la siguiente direccion de email: <a href="mailto:${user.email}">${user.email}</a>.</p>`,
     };
-    
+
 
     try {
         const info = await transporter.sendMail(mailOptions);

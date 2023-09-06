@@ -1,11 +1,12 @@
 const { User, Invert_auction, Auction_bid } = require('../../db.js');
-// const { winInvEmail } = require('../post/email_inv_auc_win_selpro.js');
-// const { winnerEmail } = require('../post/email_winner_controller.js');
+const { winEmail } = require('../post/email_winner_auction_selpro.js');
+const { winInvEmail } = require('../post/email_inv_auc_win_selpro.js');
+const { winnerEmail } = require('../post/email_winner_controller.js');
 
 const handle_finish_auction = async (auction_id, type) => {
 
   if (type === "AU") {
-    
+
     const bids = await Auction_bid.findAll({
       where: {
         AuctionId: auction_id
@@ -23,13 +24,14 @@ const handle_finish_auction = async (auction_id, type) => {
       }
     }, { value: 0, user: null });
 
-    // await winnerEmail(maxBid.user, auction_id, maxBid.value)
+    await winnerEmail(maxBid.user, auction_id, maxBid.value)
+    await winEmail(maxBid.user, auction_id)
 
     return maxBid;
   }
 
   if (type === "IA") {
-   
+
     const bids = await Auction_bid.findAll({
       where: {
         InvertAuctionId: auction_id
@@ -46,7 +48,7 @@ const handle_finish_auction = async (auction_id, type) => {
       if (currentQuantity < target_quantity) {
         const remainingQuantity = target_quantity - currentQuantity;
         if (bid.proposed_amount <= remainingQuantity) {
-          
+
           winners.push({
             user: bid.UserId,
             amount: bid.proposed_amount,
@@ -54,7 +56,7 @@ const handle_finish_auction = async (auction_id, type) => {
           });
           currentQuantity += bid.proposed_amount;
         } else {
-          
+
           winners.push({
             user: bid.UserId,
             amount: remainingQuantity,
@@ -63,16 +65,16 @@ const handle_finish_auction = async (auction_id, type) => {
           currentQuantity = target_quantity;
         }
       } else {
-        
+
         break;
       }
-      
+
       return winners;
     }
 
     if (currentQuantity === target_quantity) {
-      
-      // winInvEmail(winners, auction_id);
+
+      winInvEmail(winners, auction_id);
       // Envía el correo electrónico
       // para los ganadores
       // winners contiene la lista de ganadores con sus cantidades y precios

@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer');
-const { get_auction_by_id } = require('../get/get_auction_by_id_controller.js');
-const { userById } = require('../get/get_user_by_id.js');
+const { Auction, User } = require('../../db.js')
 
 const winnerEmail = async (user_id, auc_id, value) => {
-    const user = await userById(user_id);
+    // const user = await userById(user_id);
+    const user = await User.findByPk(user_id)
     const recipientEmail = user.email
-    const auction = await get_auction_by_id(auc_id)
+    // const auction = await get_auction_by_id(auc_id)
+    const auction = await Auction.findByPk(auc_id)
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -28,7 +29,7 @@ const winnerEmail = async (user_id, auc_id, value) => {
             <p>SELPRO Soluciones</p>
             `,
     };
-    
+
 
     try {
         const info = await transporter.sendMail(mailOptions);

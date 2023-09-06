@@ -1,7 +1,5 @@
 const nodemailer = require('nodemailer');
 const { Invert_auction } = require('../../db.js');
-const { get_usersByName } = require('../get/get_user_by_user_name_controller.js');
-const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
 const { userById } = require('../get/get_user_by_id.js');
 
 const winInvEmail = async (users_list, auction_id) => {

@@ -1,11 +1,13 @@
 const nodemailer = require('nodemailer');
 const { get_usersByName } = require('../get/get_user_by_user_name_controller.js');
 const { get_invertAuction_by_id } = require('../get/get_invert_auction_by_id_controller.js');
+const {Auction} = require('../../db.js')
 
 const notifInvEmail = async (name, auc_id) => {
     const user = await get_usersByName(name);
     const recipientEmail = user.email
-    const auction = await get_invertAuction_by_id(auc_id)
+    // const auction = await get_invertAuction_by_id(auc_id)
+    const auction = await Auction.findByPk(auc_id)
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
