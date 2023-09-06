@@ -8,12 +8,20 @@ const pg = require('pg')
 
 // const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
 
+//deploy viejo cuenta selpro
+
 //postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a.oregon-postgres.render.com/selpro
 
 //postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro
 
+// deploy nuevo
 
-const sequelize = new Sequelize(`postgres://selpro:72fmgLbfLZ4DVsGeHcTJMQnR2zx6HkNu@dpg-cjnnvavjbvhs73fklocg-a/selpro`, {
+//postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a.oregon-postgres.render.com/selpro_n8dc
+
+//postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a/selpro_n8dc
+
+
+const sequelize = new Sequelize(`postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a/selpro_n8dc`, {
 	logging: false,
 	native: false,
 	dialectOptions: {
