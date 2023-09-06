@@ -27,9 +27,6 @@ const postProductC = async (productArray) => {
     }
 
     const foundUser = await User.findOne({ where: { id: user_id } });
-    if (!foundUser) {
-      throw new Error("Usuario no encontrado.");
-    }
 
     const prodCount = await Product.count({ where: { SubCategoryId: ref_subCategory } });
     const newID = prodCount + 1;
