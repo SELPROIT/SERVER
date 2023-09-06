@@ -1,7 +1,7 @@
 const { User } = require("../../db.js");
 
 const post_favorites = async (auction_id, isFavorite, user_id) => {
-  const user = await User.findOne({
+  let user = await User.findOne({
     where: { id: user_id },
   });
 
@@ -14,15 +14,21 @@ const post_favorites = async (auction_id, isFavorite, user_id) => {
   if (!isFavorite) {
     favorites = favorites.filter((favorite) => favorite !== auction_id);
   }
-  if (!favorites.includes(auction_id)) {
-    const newFavorites = [...favorites, auction_id];
-    const update = {
-      favorites: newFavorites
-    };
-    await User.update(update, { where: { id: user_id } });
+  else if (isFavorite) {
+    favorites = [...favorites, auction_id];
+  };
+  
+  const update = {
+    favorites: favorites
+  };
 
-    return user;
-  }
+  await User.update(update, { where: { id: user_id } });
+
+  user = await User.findOne({
+    where: { id: user_id },
+  });
+
+  return user;
 };
 
 module.exports = {
