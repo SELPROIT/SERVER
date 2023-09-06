@@ -42,6 +42,7 @@ const get_auction_by_id = async (auction_id) => {
     auction_bids,
     timer
   };
+
   return response;
 };
 
