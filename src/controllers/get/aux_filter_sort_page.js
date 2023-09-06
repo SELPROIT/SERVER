@@ -87,6 +87,21 @@ const getAuBySubCategory = (subCategory, auctions) => {
   return auctions.filter(auction => auction.subCategory === subCategory);
 };
 
+const statusAu = (status, auctions) => {
+  let statAu = []
+  for (let i = 0; i < auctions.length; i++) {
+    const au = auctions[i]
+    statAu = [...statAu, au]
+    if(au.status === 'Pendiente') {
+      statAu = auctions.filter(a => a.status === status)
+    }
+    if(au.status === 'Activa') {
+      statAu = auctions.filter(a => a.status === status)
+    }
+  }
+  return statAu
+}
+
 
 // Exportar las funciones de ordenación y filtrado
 module.exports = {
@@ -95,5 +110,6 @@ module.exports = {
   paginateAu,
   getAuByType,
   getAuByCategory,
-  getAuBySubCategory
+  getAuBySubCategory,
+  statusAu
 };
