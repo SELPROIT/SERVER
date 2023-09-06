@@ -28,10 +28,7 @@ const create_auction = async (auctionArray) => {
             if (!product) {
                 throw new Error('Producto no encontrado.');
             }
-            if (!user) {
-                throw new Error('Usuario no encontrado');
-            }
-
+    
             const { name, image, brand, description, datasheet, SubCategoryId } = product;
 
             
@@ -54,12 +51,14 @@ const create_auction = async (auctionArray) => {
                 type: 'AU',
                 ProductId: product.id
             });
-            await new_auction.setUser(user);
-            createdAuctions.push(new_auction);
+            if(user){
+                await new_auction.setUser(user);
+                //se guarda la subasta creada en el historial de creación del usuario
+                user.created_history.push(new_auction.id);
+                await user.save();
+            }  
 
-            //se guarda la subasta creada en el historial de creación del usuario
-            user.created_history.push(new_auction.id);
-            await user.save();
+            createdAuctions.push(new_auction);
         }
 
         return createdAuctions;
