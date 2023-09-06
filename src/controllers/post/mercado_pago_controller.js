@@ -27,11 +27,11 @@ const mercado_pago = async (auction) => {
                 }
             ],
             back_urls: {
-                success: "http://localhost:3001",
+                success: "https://selpro-soluciones.netlify.app/",
                 failure: "",
                 pending: "",
             },
-            notification_url: "https://121e-190-12-11-34.ngrok-free.app/create/webhook",
+            notification_url: "https://selpro-it.onrender.com/create/webhook",
             metadata: {
                 //user_id: user_id, // Puedes almacenar el user_id en el campo metadata
             },
