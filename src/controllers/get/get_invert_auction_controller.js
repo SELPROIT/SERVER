@@ -4,6 +4,9 @@ const { handle_status } = require('./handle_status.js');
 const get_invert_auction = async () => {
   try {
     const invert_auctions = await Invert_auction.findAll({
+      where: {
+        status: "Activa" // Filtra las subastas con el estado "Activa"
+      },
       include: [
         {
           model: Product,
@@ -45,7 +48,7 @@ const get_invert_auction = async () => {
         } = auction;
 
         const timer = await handle_status(id, status, type, close_date);
-        
+
         const formattedAuctionBids = Auction_bids.map(bid => ({
           bid_id: bid.id,
           proposed_price: bid.proposed_price,
@@ -53,7 +56,6 @@ const get_invert_auction = async () => {
           target_accumulated: bid.target_accumulated,
           UserId: bid.user_id,
         }));
-
         return {
           id,
           desired_price,
@@ -74,11 +76,12 @@ const get_invert_auction = async () => {
           target_quantity,
           invert,
           auction_bids: formattedAuctionBids,
-          timer 
+          timer
         };
       })
     );
 
+    console.log(formattedAuctions);
     return formattedAuctions;
   } catch (error) {
     throw error;
