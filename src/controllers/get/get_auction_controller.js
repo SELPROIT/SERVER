@@ -4,6 +4,9 @@ const { handle_status } = require('./handle_status.js');
 const get_auction = async () => {
   try {
     const auctions = await Auction.findAll({
+      where: {
+        status: "Activa" // Filtra las subastas con el estado "Activa"
+      },
       include: [
         {
           model: Product,
