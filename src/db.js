@@ -21,7 +21,7 @@ const pg = require('pg')
 //postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a/selpro_n8dc
 
 
-const sequelize = new Sequelize(`postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a/selpro_n8dcc`, {
+const sequelize = new Sequelize(`postgres://selpro:KoXxDVLtk5ZFVFdhSK91amA7gOzEqRr5@dpg-cjrv800jbais7391q3v0-a/selpro_n8dc`, {
 	logging: false,
 	native: false,
 	dialectOptions: {
