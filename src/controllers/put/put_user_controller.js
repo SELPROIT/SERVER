@@ -4,6 +4,7 @@ const { uploadImage } = require('../../utils/userCloudinaryConfig.js');
 const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
 const { emailSupplier } = require('../post/email_supplier.js');
 const { emailClient } = require('../post/email_client.js');
+const { emailSupSelpro } = require('../post/email_supplier_selpro.js');
 
 const put_user_controller = async (
   id, { interaction_history,
@@ -84,6 +85,9 @@ const put_user_controller = async (
   if (!!commercial_references) {
     let cloudDatasheet = await uploadFile(commercial_references)
     changedUser.commercial_references = cloudDatasheet;
+  }
+  if(!!changedUser.commercial_references && !!changedUser.legal_ident && !!changedUser.commerce_chamber && !!changedUser.RUT_image) {
+    emailSupSelpro(user.id, changedUser.RUT_image, changedUser.commerce_chamber, changedUser.legal_ident, changedUser.commercial_references)
   }
   if (!!interaction_history) {
     let bid_id = await Auction_bid.findByPk(interaction_history)
