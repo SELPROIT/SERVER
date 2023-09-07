@@ -104,7 +104,7 @@ const put_user_controller = async (
     }
     changedUser.favorites = [...user.favorites, auc_id];
   }
-  if (!!supplier) {
+  if (supplier !== undefined || supplier !== null) {
     changedUser.supplier = supplier;
   }
   if (changedUser.supplier === true) {
