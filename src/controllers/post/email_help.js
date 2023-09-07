@@ -1,9 +1,7 @@
 const nodemailer = require('nodemailer');
 const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
-const { User } = require('../../db.js')
 
-const helpEmail = async (user_id, help) => {
-    const user = await User.findByPk(user_id)
+const helpEmail = async (email, help) => {
     const filesArray = help.files
     let files = []
     for (let i = 0; i < filesArray.length; i++) {
@@ -22,10 +20,10 @@ const helpEmail = async (user_id, help) => {
         from: 'selpro.informacion@gmail.com',
         to: 'selproit@gmail.com',
         subject: 'Notificación de ayuda',
-        text: `Este es un mail de ayuda de parte del usuario ${user.name}`,
+        text: `Este es un mail de ayuda.`,
         html: `
         <h1>Email de ayuda</h1>
-        <p>De parte del usuario de dirección de email: <a href="mailto:${user.email}">${user.email}</a>.</p>
+        <p>De parte del usuario de dirección de email: <a href="mailto:${email}">${email}</a>.</p>
         <p>Se detalla la siguiente descripción de ayuda:</p>
         <p>${help.detail}</p>
         <p>A continuación se adjuntan los archivos pertinentes:</p>
