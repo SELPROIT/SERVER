@@ -1,9 +1,9 @@
 const nodemailer = require('nodemailer');
-const { get_usersByName } = require('../get/get_user_by_user_name_controller.js');
 const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
+const { User } = require('../../db.js')
 
-const helpEmail = async (name, help) => {
-    const user = await get_usersByName(name)
+const helpEmail = async (user_id, help) => {
+    const user = await User.findByPk(user_id)
     const filesArray = help.files
     let files = []
     for (let i = 0; i < filesArray.length; i++) {
