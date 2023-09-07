@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const { User } = require('../../db.js')
 
-const emailSupplier = async (userId) => {
+const emailClient = async (userId) => {
     const user = await User.findByPk(userId);
     const recipientEmail = user.email;
 
@@ -17,10 +17,10 @@ const emailSupplier = async (userId) => {
         from: 'selpro.informacion@gmail.com',
         to: recipientEmail,
         subject: 'Aviso',
-        text: 'Ahora eres provedor!',
+        text: 'Ahora eres cliente!',
         html: `
         <h1>Buenos dias, estimado cliente!</h1>
-        <p>Queremos informarle que ha sido ascendido a proveedor, estamos muy contentos de que haya decidido vender con nosotros, y le deseamos el mayor de los exitos!</p>
+        <p>Queremos informarle que ha sido convertido en cliente, esperamos tenga muchas ofertas exitosas y este satisfecho con nuestros productos de calidad. Le deseamos el mayor de los exitos!</p>
         `,
     };
 
@@ -33,5 +33,5 @@ const emailSupplier = async (userId) => {
 };
 
 module.exports = {
-    emailSupplier
+    emailClient
 };

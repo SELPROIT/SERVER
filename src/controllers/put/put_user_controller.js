@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const { uploadImage } = require('../../utils/userCloudinaryConfig.js');
 const { uploadFile } = require('../../utils/PDFCloudinaryConfig.js');
 const { emailSupplier } = require('../post/email_supplier.js');
+const { emailClient } = require('../post/email_client.js');
 
 const put_user_controller = async (
   id, { interaction_history,
@@ -109,6 +110,9 @@ const put_user_controller = async (
   }
   if (changedUser.supplier === true) {
     emailSupplier(user.id)
+  }
+  if(changedUser.supplier === false) {
+    emailClient(user.id)
   }
 
   const [updatedRows] = await User.update(changedUser, {
